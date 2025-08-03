@@ -1,17 +1,64 @@
+---
+import '../styles/global.css'
+import '@fontsource-variable/raleway'
+
+export interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Driven Stage Detailing - Taller de Tuning Profesional',
+  description = 'Especialistas en tuning, detailing y modificaciones automotrices. Transforma tu vehículo con nuestros servicios profesionales.',
+} = Astro.props
+---
+
 <!doctype html>
 <html lang='en'>
   <head>
     <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <title>Astro Basics</title>
+    <meta name='description' content={description} />
+    <meta
+      name='keywords'
+      content='tuning, detailing, modificaciones automotrices, taller, personalización, performance'
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='website' />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+
+    <!-- Twitter -->
+    <meta property='twitter:card' content='summary_large_image' />
+    <meta property='twitter:title' content={title} />
+    <meta property='twitter:description' content={description} />
+
+    <!-- Fonts -->
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'
+      rel='stylesheet'
+    />
+
+    <title>{title}</title>
   </head>
-  <body>
+  <body class='antialiased font-inter'>
     <slot />
   </body>
 </html>
 
 <style is:global>
-  @import 'tailwindcss';
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
 </style>

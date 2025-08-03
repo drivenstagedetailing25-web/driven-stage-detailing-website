@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import '@fontsource-variable/raleway';
+@import '@fontsource/barlow-condensed';
+
+@layer base {
+  :root {
+    --color-primary: #035cb2;
+    --color-secondary: #034997;
+    --color-accent: #b3b6bb;
+    --color-neutral-light: #f5f5f5;
+    --color-neutral-dark: #83898c;
+    --color-muted-bg: #edf2f7;
+    --color-background: #ffffff;
+    --color-text: #035cb2;
+    --color-text-muted: #83898c;
+    
+    --gradient-primary: linear-gradient(135deg, #035cb2 0%, #034997 100%);
+    --gradient-accent: linear-gradient(135deg, #035cb2 0%, #b3d2ee 100%);
+    --gradient-grey: linear-gradient(135deg, #c3c6cb 0%, #93989b 100%);
+    
+    --shadow-glow: 0 0 20px rgb(3 92 178 / 0.3);
+    --shadow-glow-accent: 0 0 20px rgb(179 182 187 / 0.3);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #0f0f0f;
+      --color-text: #f5f5f5;
+      --color-text-muted: #8f95a1;
+      --color-neutral-light: #2d2d2d;
+    }
+  }
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  
+  .text-accent {
+    color: var(--color-accent);
+  }
+  
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+  
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  
+  .bg-neutral-light {
+    background-color: var(--color-neutral-light);
+  }
+  
+  .bg-neutral-dark {
+    background-color: var(--color-neutral-dark);
+  }
+  
+  .bg-muted {
+    background-color: var(--color-muted-bg);
+  }
+  
+  .bg-background {
+    background-color: var(--color-background);
+  }
+  
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .bg-gradient-grey {
+    background: var(--gradient-grey);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+  
+  /* Animaciones personalizadas */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .animate-glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    transform: translateY(20px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px rgb(3 92 178 / 0.3); }
+  100% { box-shadow: 0 0 20px rgb(3 92 178 / 0.8); }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(3, 92, 178, 0.3);
+  }
+  
+  .shadow-glow-accent {
+    box-shadow: 0 0 20px rgba(179, 182, 187, 0.3);
+  }
+}
+
+@theme {
+  --font-raleway: 'Raleway Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+  --font-barlow: 'Barlow Condensed', 'Raleway Variable', sans-serif;
+
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
