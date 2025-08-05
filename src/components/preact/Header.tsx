@@ -131,7 +131,7 @@ export default function Header() {
             </a>
 
             <a
-              href='/contact'
+              href='#contact'
               class='bg-primary hover:bg-primary-dark mt-4 block rounded-lg py-3 text-center font-bold text-white transition-all duration-300'
             >
               Contact
@@ -208,7 +208,7 @@ export default function Header() {
         </a>
 
         <a
-          href='/contact'
+          href='#contact'
           class='hover:text-muted group relative py-1 font-medium text-white transition-colors duration-200'
         >
           CONTACT
