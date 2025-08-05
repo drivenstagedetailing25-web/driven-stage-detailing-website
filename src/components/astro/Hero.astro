@@ -1,5 +1,5 @@
 <section
-  class='min-h-screen flex items-center justify-center relative overflow-hidden'
+  class='min-h-[100dvh] flex items-center justify-center relative overflow-hidden'
 >
   <div class='absolute inset-0 z-0'>
     <video
@@ -7,6 +7,7 @@
       muted
       loop
       playsinline
+      poster='/videos/fallback.png'
       class='absolute inset-0 w-full h-full object-cover'
     >
       <source src='/videos/video-bg.mp4' type='video/mp4' />
@@ -18,14 +19,17 @@
 
   <div class='container mx-auto px-6 text-center relative z-20 pt-10'>
     <h1
-      class='text-5xl md:text-[80px] font-black text-white mb-6 animate-slide-up font-barlow'
+      class='text-5xl md:text-[80px] font-black text-white mb-6 animate-slide-up font-barlow flex flex-col items-center'
     >
-      DRIVEN STAGE MOBILE
-      <span class='text-gradient block'> AUTO DETAILING</span>
+      <span class='block'>DRIVEN STAGE MOBILE</span>
+      <span class="block">
+        <span class='text-primary'>AUTO</span>
+        <span class='text-gradient-primary inline-block max-w-fit mx-auto'>DETAILING</span>
+      </span>
     </h1>
 
     <p
-      class='text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-up text-accent font-semibold'
+      class='text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-slide-up text-muted font-semibold'
       style='animation-delay: 0.2s;'
     >
       Auto Detailing Services employing premium products and industry best
@@ -36,16 +40,12 @@
       class='flex flex-col sm:flex-row gap-4 justify-center animate-slide-up'
       style='animation-delay: 0.4s;'
     >
-      <button
-        class='bg-secondary hover:bg-secondary/90 text-white font-bold py-4 px-8 rounded-lg shadow-glow transition-all duration-300 hover:shadow-glow-accent hover:scale-105'
-      >
+      <a href='#services' class='btn btn-primary btn-lg font-bold'>
         View Services
-      </button>
-      <button
-        class='border-2 border-accent text-accent hover:bg-accent hover:text-primary font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm bg-white/10'
-      >
+      </a>
+      <a href='/contact' class='btn btn-secondary btn-lg font-bold border-2'>
         Contact Us
-      </button>
+      </a>
     </div>
   </div>
 </section>

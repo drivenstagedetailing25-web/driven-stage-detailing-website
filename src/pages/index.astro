@@ -2,13 +2,13 @@
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/preact/Header.tsx'
 import Hero from '../components/astro/Hero.astro'
-import Footer from '../components/astro/Footer.astro'
 import { Image } from 'astro:assets'
 
 const services = [
   {
     id: 1,
     title: 'Mobile Detailing',
+    slug: 'mobile-detailing',
     description:
       'Professional detailing services that come to you. State-of-the-art equipment and premium products delivered to your location.',
     image: '/images/services/car-detailing.jpg',
@@ -17,6 +17,7 @@ const services = [
   {
     id: 3,
     title: 'Paint Correction',
+    slug: 'paint-correction',
     description:
       'Multi-stage process that eliminates swirl marks and scratches, restoring your vehicle to factory-perfect finish.',
     image: '/images/services/paint-correction.jpg',
@@ -25,6 +26,7 @@ const services = [
   {
     id: 2,
     title: 'Ceramic Coating',
+    slug: 'ceramic-coating',
     description:
       'Advanced nanotechnology protection that creates an invisible armor for your vehicle, enhancing shine and durability.',
     image: '/images/services/ceramic-coating.jpg',
@@ -38,18 +40,18 @@ const services = [
   <Hero />
 
   <!-- Services Preview Section -->
-  <section class='py-20 bg-white'>
+  <section id='services' class='py-20 bg-white'>
     <div class='container mx-auto px-6'>
       <h2
-        class='text-4xl md:text-5xl font-bold text-center font-barlow text-primary mb-16 text-gradient'
+        class='text-4xl md:text-5xl text-gradient-primary font-bold text-center font-barlow mb-16 max-w-fit mx-auto'
       >
         Our Services
       </h2>
 
-      <div class='grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto'>
+      <ul class='grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto'>
         {
           services.map((service) => (
-            <article class='group cursor-pointer relative overflow-hidden rounded-2xl aspect-[3/4] shadow-lg hover:shadow-2xl transition-all duration-500'>
+            <li class='group cursor-pointer relative overflow-hidden rounded-2xl aspect-[3/4] hover:shadow-2xl transition-all duration-500'>
               <Image
                 width={600}
                 height={400}
@@ -60,19 +62,26 @@ const services = [
 
               <div class='absolute inset-0 transition-colors duration-300 bg-gradient-to-t from-black via-black/50 to-transparent  group-hover:via-black/80' />
 
+              {/* Service Title */}
+
               <div class='absolute inset-0 flex flex-col justify-end p-8'>
                 <h3 class='text-3xl font-bold text-white mb-4 font-barlow transform transition-transform duration-300'>
                   {service.title}
                 </h3>
 
-                {/* Description - Appears on Hover */}
+                {/* Service Description */}
+
                 <div class=''>
-                  <p class='text-zinc-200 leading-relaxed mb-4'>
+                  <p class='text-zinc-300 leading-relaxed mb-4'>
                     {service.description}
                   </p>
 
-                  {/* View Detail Button */}
-                  <button class='inline-flex items-center text-white font-semibold text-sm border border-transparent hover:border-white/60 px-4 py-2 rounded-lg hover:backdrop-blur-sm bg-secondary hover:bg-white/30 transition-all duration-300 hover:cursor-pointer'>
+                  {/* Service View Detail Link */}
+
+                  <a 
+                    href={`/services/${service.slug}`} 
+                    class='btn btn-primary btn-sm inline-flex items-center'
+                  >
                     VIEW DETAIL
                     <svg
                       class='ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1'
@@ -87,18 +96,18 @@ const services = [
                         d='M9 5l7 7-7 7'
                       />
                     </svg>
-                  </button>
+                  </a>
                 </div>
               </div>
-            </article>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </div>
   </section>
 
   <!-- Why Choose Us Section -->
-  <section class='py-20 bg-muted'>
+  <section class='py-20 bg-muted-blue'>
     <div class='container mx-auto px-6'>
       <h2
         class='text-4xl md:text-5xl font-bold text-center font-barlow text-primary mb-16 text-gradient'
@@ -113,18 +122,14 @@ const services = [
             <h3 class='text-3xl font-bold text-primary mb-6 font-barlow'>
               Mobile Service at Your Location
             </h3>
-            <p class='text-muted mb-6 leading-relaxed text-lg'>
+            <p class='text-foreground mb-6 leading-relaxed text-lg'>
               We bring our professional service directly to your location. Our
               fully equipped mobile truck features state-of-the-art technology,
               independent electrical system, deionized spot-free water, and all
               the premium products needed. No need to leave your home or office
               - we handle everything on-site for your convenience.
             </p>
-            <button
-              class='bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-lg shadow-glow transition-all duration-300 hover:shadow-glow-accent hover:scale-105'
-            >
-              Book Now
-            </button>
+            <button class='btn btn-primary btn-base'> Book Now </button>
           </div>
 
           <div class='relative overflow-hidden rounded-2xl'>
@@ -154,29 +159,24 @@ const services = [
             <h3 class='text-3xl font-bold text-primary mb-6 font-barlow'>
               Certified Specialists
             </h3>
-            <p class='text-muted mb-6 leading-relaxed text-lg'>
+            <p class='text-foreground mb-6 leading-relaxed text-lg'>
               Our team consists of highly trained and certified technicians in
               every service area. Each team member receives continuous training
               in the latest detailing techniques, paint correction methods, and
               ceramic coating applications. Your vehicle will be in expert hands
               who understand the specific needs of every surface and material.
             </p>
-            <button
-              class='bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-lg shadow-glow transition-all duration-300 hover:shadow-glow-accent hover:scale-105'
-            >
-              Meet Our Team
-            </button>
           </div>
         </div>
 
-        <!-- Going the Extra Mile -->
+        <!-- Quality & Excellence -->
         <div class='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           <div class='lg:order-2 relative overflow-hidden rounded-2xl'>
             <Image
               width={600}
               height={400}
               src='/images/features/car-washing.jpg'
-              alt='Going the Extra Mile'
+              alt='Quality & Excellence in Service'
               class='w-full h-[400px] object-cover'
             />
           </div>
@@ -185,23 +185,16 @@ const services = [
             <h3 class='text-3xl font-bold text-primary mb-6 font-barlow'>
               Quality & Excellence
             </h3>
-            <p class='text-muted mb-6 leading-relaxed text-lg'>
+            <p class='text-foreground mb-6 leading-relaxed text-lg'>
               We implement the highest quality standards in every service. We
               use only premium products from world-renowned brands, follow
               strict cleaning protocols, and apply proven techniques that
               guarantee exceptional results. Every vehicle receives the same
               careful attention to detail, regardless of make or model.
             </p>
-            <button
-              class='bg-primary hover:bg-secondary text-white font-bold py-4 px-8 rounded-lg shadow-glow transition-all duration-300 hover:shadow-glow-accent hover:scale-105'
-            >
-              View Guarantee
-            </button>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <Footer />
 </Layout>
