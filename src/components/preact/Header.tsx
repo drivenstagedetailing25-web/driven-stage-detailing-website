@@ -26,7 +26,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header class='absolute top-0 right-0 left-0 z-50 container mx-auto flex items-center justify-between bg-transparent px-6 py-4'>
+    <header class='absolute top-0 right-0 left-0 z-50 container mx-auto flex h-[16dvh] items-center justify-between bg-transparent px-6 py-4 lg:h-[20dvh] xl:h-[24dvh]'>
       {/* Logo and Brand */}
       <div class='relative flex w-full items-center justify-between lg:w-auto'>
         <a

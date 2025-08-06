@@ -126,3 +126,15 @@
   padding: 8px 16px;
   font-size: 14px;
 }
+
+@utility first-section {
+  padding-top: 16dvh;
+
+  @media screen and (width >= 1024px) {
+    padding-top: 20dvh;
+  }
+
+  @media screen and (width >= 1280px) {
+    padding-top: 24dvh;
+  }
+}

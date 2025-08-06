@@ -1,5 +1,6 @@
 ---
 import Footer from '../components/astro/Footer.astro'
+import Header from '../components/preact/Header'
 import '../styles/global.css'
 import fontBarlow400 from '/fonts/barlow-condensed/barlow-condensed-latin-400-normal.woff2?url'
 import fontBarlow700 from '/fonts/barlow-condensed/barlow-condensed-latin-700-normal.woff2?url'
@@ -64,6 +65,7 @@ const {
     <title>{title}</title>
   </head>
   <body class='antialiased'>
+    <Header client:load />
     <slot />
     <Footer />
   </body>
