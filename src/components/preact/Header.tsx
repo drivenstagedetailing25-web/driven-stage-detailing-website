@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'preact/hooks'
 export default function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isHome, setIsHome] = useState(true)
   const servicesRef = useRef<HTMLButtonElement>(null)
 
   const services = [
@@ -15,6 +16,8 @@ export default function Header() {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
 
   useEffect(() => {
+    setIsHome(window.location.pathname === '/')
+    
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false)
@@ -26,7 +29,8 @@ export default function Header() {
   }, [])
 
   return (
-    <header class='absolute top-0 right-0 left-0 z-50 container mx-auto flex h-[16dvh] items-center justify-between bg-transparent px-6 py-4 lg:h-[20dvh] xl:h-[24dvh]'>
+    <header class={`absolute top-0 right-0 left-0 z-50 h-[16dvh] lg:h-[20dvh] xl:h-[24dvh] ${isHome ? 'bg-transparent' : 'bg-dark'}`}>
+      <div class='container mx-auto flex items-center justify-between px-6 py-4 h-full'>
       {/* Logo and Brand */}
       <div class='relative flex w-full items-center justify-between lg:w-auto'>
         <a
@@ -215,6 +219,7 @@ export default function Header() {
           <span class='bg-accent absolute -bottom-1 left-0 h-[3px] w-0 transition-all duration-200 group-hover:w-full'></span>
         </a>
       </nav>
+      </div>
     </header>
   )
 }
