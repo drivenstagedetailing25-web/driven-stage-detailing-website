@@ -1,0 +1,394 @@
+---
+import Header from '../../components/preact/Header'
+import Layout from '../../layouts/Layout.astro'
+import { Image } from 'astro:assets'
+import CheckMark from '../../assets/svg/check-mark.svg'
+import Calendar from '../../assets/svg/calendar.svg'
+
+const paintCorrectionOptions = [
+  {
+    id: 1,
+    title: 'Paint Correction Stage 1',
+    price: '$250',
+    duration: '4-5 hours',
+    image: '/images/services/paint-correction.jpg',
+    alt: 'Paint Correction Stage 1',
+    badge: {
+      text: 'Single Stage',
+      bgColor: 'bg-primary',
+    },
+    description:
+      'Single-step paint correction to remove light swirl marks, minor scratches, and oxidation. Perfect for vehicles with light to moderate paint imperfections using professional-grade compounds and polishing techniques.',
+    buttonText: 'Schedule Stage 1 Correction',
+    borderClass: 'border border-zinc-200',
+  },
+  {
+    id: 2,
+    title: 'Paint Correction Stage 2',
+    price: '$450',
+    duration: '8-10 hours',
+    image: '/images/services/ceramic-coating.jpg',
+    alt: 'Paint Correction Stage 2',
+    badge: {
+      text: 'Multi-Stage',
+      bgColor: 'bg-gradient-to-r from-yellow-400 to-orange-500',
+      textColor: 'text-dark',
+    },
+    description:
+      'Multi-step paint correction process for heavily damaged paint. Removes deep scratches, severe swirl marks, and restores paint to showroom condition with ceramic coating application and detailed documentation.',
+    buttonText: 'Schedule Stage 2 Correction',
+    borderClass: 'border-2 border-primary',
+  },
+]
+---
+
+<Layout title='Paint Correction Service - Driven Stage Detailing'>
+  <section class='first-section bg-gradient-secondary'>
+    <div
+      class='container mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'
+    >
+      <div
+        class='text-center lg:text-left flex flex-col items-center lg:items-start'
+      >
+        <!-- Breadcrumb -->
+        <nav
+          class='flex items-center space-x-2 text-sm mb-10'
+          aria-label='Breadcrumb'
+        >
+          <a
+            href='/'
+            class='text-foreground hover:text-accent transition-colors duration-200 flex items-center'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='icon mr-3 icon-tabler icons-tabler-outline icon-tabler-home'
+              ><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path
+                d='M5 12l-2 0l9 -9l9 9l-2 0'></path><path
+                d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7'></path><path
+                d='M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6'></path></svg
+            >
+            Home
+          </a>
+          <svg
+            class='w-4 h-4 text-dark'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+          >
+            <path
+              fill-rule='evenodd'
+              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+              clip-rule='evenodd'></path>
+          </svg>
+          <a
+            href='#'
+            class='text-foreground hover:text-accent transition-colors duration-200'
+            >Services</a
+          >
+          <svg
+            class='w-4 h-4 text-dark'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+          >
+            <path
+              fill-rule='evenodd'
+              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
+              clip-rule='evenodd'></path>
+          </svg>
+          <span class='text-gradient-accent font-medium'>Paint Correction</span>
+        </nav>
+
+        <h1
+          class='text-4xl md:text-5xl lg:text-6xl font-bold font-barlow text-primary mb-6 leading-tight'
+        >
+          Paint <span class='text-gradient-primary'>Correction</span>
+        </h1>
+        <p class='text-foreground text-lg md:text-xl leading-relaxed mb-8'>
+          Restore your vehicle's paint to its original brilliance. Our
+          professional paint correction services remove swirl marks, scratches,
+          and oxidation using advanced techniques and premium products for a
+          flawless finish.
+        </p>
+        <button type='button' id='schedule-btn' class='btn btn-primary btn-lg'>
+          Schedule Service
+          <Calendar class='ml-2 w-5 h-5' />
+        </button>
+      </div>
+
+      <div class='relative overflow-hidden rounded-2xl shadow-2xl'>
+        <Image
+          width={800}
+          height={600}
+          src='/images/services/paint-correction.jpg'
+          alt='Paint Correction Service'
+          class='w-full h-[450px] object-cover'
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Paint Correction Options Section -->
+  <section class='py-20 bg-white'>
+    <div class='container mx-auto px-6'>
+      <h2
+        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4 h-12'
+      >
+        Choose Your Paint Correction Level
+      </h2>
+      <p class='text-center text-foreground text-lg mb-16 max-w-3xl mx-auto'>
+        Select the appropriate paint correction stage based on your vehicle's
+        condition. Our expert technicians will assess and recommend the best
+        treatment for optimal results.
+      </p>
+
+      <div class='grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto'>
+        {
+          paintCorrectionOptions.map((service) => (
+            <article
+              class={`bg-white rounded-2xl overflow-hidden group hover:shadow-xl transition-all duration-300 ${service.borderClass} relative`}
+            >
+              <div class='relative w-full h-56 overflow-hidden rounded-t-2xl'>
+                <Image
+                  class='relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+                  width={400}
+                  height={200}
+                  src={service.image}
+                  alt={service.alt}
+                  loading='lazy'
+                />
+                <div class='absolute inset-0 bg-gradient-to-t from-black/60 to-black/20' />
+                <div class='absolute top-4 left-4'>
+                  <span
+                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-sm font-semibold`}
+                  >
+                    {service.badge.text}
+                  </span>
+                </div>
+              </div>
+
+              <div class='p-8'>
+                <h3 class='text-2xl font-bold font-barlow text-foreground mb-4'>
+                  {service.title}
+                </h3>
+                <div class='flex items-baseline mb-6'>
+                  <span class='text-foreground/85'>From</span>
+                  <span class='text-3xl font-bold text-gradient-accent ml-4'>
+                    {service.price}
+                  </span>
+                  <span class='text-foreground/85 ml-2'>
+                    / {service.duration}
+                  </span>
+                </div>
+
+                <p class='text-foreground/90 leading-relaxed mb-8'>
+                  {service.description}
+                </p>
+
+                <button
+                  type='button'
+                  class='schedule-btn w-full btn btn-primary btn-base'
+                >
+                  {service.buttonText}
+                  <Calendar class='ml-2 w-4 h-4' />
+                </button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class='py-20 bg-muted-blue'>
+    <div class='container mx-auto px-6'>
+      <h2
+        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-12'
+      >
+        Paint Correction Gallery
+      </h2>
+
+      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto'>
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/paint-correction.jpg'
+            alt='Paint correction before and after 1'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Before & After
+            </span>
+          </div>
+        </div>
+
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/ceramic-coating.jpg'
+            alt='Paint correction process 2'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Stage 2 Process
+            </span>
+          </div>
+        </div>
+
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/car-detailing.jpg'
+            alt='Paint correction equipment'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Professional Equipment
+            </span>
+          </div>
+        </div>
+
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/paint-correction.jpg'
+            alt='Paint correction result 4'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Swirl Mark Removal
+            </span>
+          </div>
+        </div>
+
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/ceramic-coating.jpg'
+            alt='Paint correction result 5'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Deep Scratch Correction
+            </span>
+          </div>
+        </div>
+
+        <div class='relative overflow-hidden rounded-2xl group cursor-pointer'>
+          <Image
+            width={400}
+            height={300}
+            src='/images/services/car-detailing.jpg'
+            alt='Final paint correction result'
+            class='w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110'
+          />
+          <div
+            class='absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300'
+          >
+          </div>
+          <div class='absolute bottom-4 left-4'>
+            <span
+              class='bg-black/50 backdrop-blur-sm px-3 py-2 rounded-lg text-white text-sm font-medium'
+            >
+              Final Result
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section
+    class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
+  >
+    <div class='container mx-auto px-6 text-center'>
+      <h2 class='text-3xl md:text-4xl font-bold font-barlow text-white mb-6'>
+        Ready to <span class='text-gradient-primary'>Restore</span> Your Paint?
+      </h2>
+      <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>
+        Transform your vehicle's appearance with our professional paint
+        correction services. Book your consultation today for a flawless finish.
+      </p>
+      <button
+        type='button'
+        id='schedule-btn-bottom'
+        class='btn btn-primary btn-base mr-4'
+      >
+        Schedule Now
+        <Calendar class='ml-2 w-5 h-5' />
+      </button>
+    </div>
+  </section>
+</Layout>
+
+<!-- JavaScript for Modal (if needed for scheduling) -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    const scheduleBtn = document.getElementById('schedule-btn')
+    const scheduleBtnBottom = document.getElementById('schedule-btn-bottom')
+
+    // Add event listeners for service option buttons
+    const serviceButtons = document.querySelectorAll('.schedule-btn')
+
+    function handleScheduleClick() {
+      // For now, just show an alert. You can integrate with the modal from mobile-detailing later
+      alert('Paint correction scheduling will be available soon!')
+    }
+
+    if (scheduleBtn) scheduleBtn.addEventListener('click', handleScheduleClick)
+    if (scheduleBtnBottom)
+      scheduleBtnBottom.addEventListener('click', handleScheduleClick)
+
+    serviceButtons.forEach((button) => {
+      button.addEventListener('click', handleScheduleClick)
+    })
+  })
+</script>
