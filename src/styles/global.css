@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@midudev/tailwind-animations';
 @import '@fontsource-variable/inter';
 
 @font-face {
@@ -70,10 +69,9 @@
     var(--color-secondary-lighter),
     var(--color-secondary-light)
   );
-
-  /* Shadows */
-  --shadow-glow: 0 0 20px rgb(3 92 178 / 0.5);
 }
+
+/* Gradients utilities */
 
 @utility text-gradient-primary {
   background: var(--gradient-primary);
@@ -152,8 +150,4 @@
   @media screen and (width >= 1280px) {
     padding-top: 24dvh;
   }
-}
-
-@utility bg-gradient-radial {
-  background-image: radial-gradient(circle, var(--tw-gradient-stops));
 }
