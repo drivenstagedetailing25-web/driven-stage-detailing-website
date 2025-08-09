@@ -1,44 +1,136 @@
 ---
 import Header from '../components/preact/Header'
 import Layout from '../layouts/Layout.astro'
+import { Image } from 'astro:assets'
 
-const services = [
+const missionAndValues = [
   {
-    id: 1,
-    title: 'Mobile Detailing',
+    title: 'Excellence',
+    icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
     description:
-      'Experience premium detailing wherever you are. Our mobile unit brings state-of-the-art equipment directly to your location, delivering showroom-quality results without the hassle of traveling to a shop. Perfect for busy professionals who demand excellence.',
-    image: '/images/mobile-detailing.jpg',
-    alt: 'Mobile Detailing Service',
+      'We pursue perfection in every detail, using only premium products and proven techniques to deliver results that exceed expectations.',
   },
   {
-    id: 2,
-    title: 'Ceramic Coating',
+    title: 'Convenience',
+    icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
     description:
-      "Shield your investment with cutting-edge nanotechnology protection. Our premium ceramic coatings create an invisible armor that repels dirt, water, and UV rays while enhancing your vehicle's natural shine for years to come. The ultimate in paint preservation.",
-    image: '/images/ceramic-coating.jpg',
-    alt: 'Ceramic Coating Service',
+      'Our mobile service brings professional detailing to your location, saving you time while delivering exceptional results at your convenience.',
   },
   {
-    id: 3,
-    title: 'Paint Correction',
+    title: 'Trust',
+    icon: 'M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z',
     description:
-      "Restore your vehicle's finish to factory perfection with our advanced multi-stage correction process. Using precision techniques and professional-grade compounds, we eliminate swirl marks, scratches, and imperfections to reveal a mirror-like finish that turns heads.",
-    image: '/images/paint-correction.jpg',
-    alt: 'Paint Correction Service',
+      'We build lasting relationships through transparency, reliability, and consistent delivery of premium service that protects your investment.',
   },
 ]
 ---
 
-<Layout>
-  <Header />
-  <section class="first-section container mx-auto px-6">
-    <p>
-      THE PURPOSE OF DRIVEN STAGE AUTO DETAILING LLC IS TO PROVIDE EXPERT
-      AUTOMOTIVE DETAILING SERVICES, INCLUDING INTERIOR AND EXTERIOR CLEANING,
-      PAINT CORRECTION, APPLICATION OF PROTECTIVE COATINGS, SURFACE RESTORATION,
-      AND VEHICLE MAINTENANCE PROGRAMS, EMPLOYING PREMIUM PRODUCTS AND INDUSTRY
-      BEST PRACTICES
-    </p>
+<Layout title='About Us - Driven Stage Detailing'>
+  <Header client:load />
+
+  <!-- Hero Section -->
+  <section class='first-section bg-gradient-secondary'>
+    <div class='container mx-auto px-6 py-20'>
+      <h1
+        class='text-4xl md:text-5xl h-20 lg:text-6xl font-bold font-barlow mb-8 text-center text-primary'
+      >
+        About <span class='text-gradient-primary'>Driven Stage Detailing</span>
+      </h1>
+      <p
+        class='max-w-4xl mx-auto text-center text-lg md:text-xl text-foreground leading-relaxed font-medium text-pretty'
+      >
+        THE PURPOSE OF DRIVEN STAGE AUTO DETAILING LLC IS TO PROVIDE EXPERT
+        AUTOMOTIVE MOBILE DETAILING SERVICES, INCLUDING INTERIOR AND EXTERIOR
+        CLEANING, PAINT CORRECTION, APPLICATION OF PROTECTIVE COATINGS, SURFACE
+        RESTORATION, AND VEHICLE MAINTENANCE PROGRAMS, EMPLOYING PREMIUM
+        PRODUCTS AND INDUSTRY BEST PRACTICES
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class='py-20 bg-white'>
+    <div
+      class='container mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'
+    >
+      <div class='lg:pr-8'>
+        <h2
+          class='text-3xl md:text-4xl font-bold font-barlow text-primary mb-6'
+        >
+          Our Story
+        </h2>
+        <p class='text-foreground leading-relaxed text-pretty mb-6 text-lg'>
+          Founded with a passion for automotive excellence, Driven Stage
+          Detailing emerged from a simple belief: every vehicle deserves to look
+          its absolute best. What started as a commitment to quality has evolved
+          into New Jersey's premier mobile detailing service.
+        </p>
+        <p class='text-foreground leading-relaxed text-pretty text-lg'>
+          We understand that your vehicle is more than just transportation—it's
+          an investment, a statement, and often a source of pride. That's why
+          we've dedicated ourselves to perfecting the art and science of
+          automotive detailing, bringing showroom-quality results directly to
+          your doorstep.
+        </p>
+        <div class='mt-8'>
+          <p class='text-foreground font-medium mb-4'>
+            Ready to experience the Driven Stage difference?
+          </p>
+          <a href='/#contact' class='btn btn-primary btn-base font-bold'>
+            Get Your Free Quote
+          </a>
+        </div>
+      </div>
+      <div class='overflow-hidden rounded-2xl shadow-xl'>
+        <Image
+          width={600}
+          height={400}
+          src='/images/features/mobile-detailing-trailer.jpg'
+          alt='Our mobile detailing setup'
+          class='w-full h-[400px] object-cover'
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values Section -->
+  <section
+    class='py-20 bg-dark bg-gradient-to-br from-primary/30 via-dark to-secondary/30'
+  >
+    <div class='container mx-auto px-6'>
+      <h2
+        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary max-w-fit mx-auto mb-16'
+      >
+        Our Mission & Values
+      </h2>
+
+      <ul class='grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'>
+        {
+          missionAndValues.map((value, index) => (
+            <li
+              class={`bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 shadow-lg text-center transition-all duration-300 hover:bg-white/15 hover:border-white/40 hover:shadow-2xl hover:-translate-y-1 cursor-pointer ${
+                index === 2 ? 'md:col-span-2 lg:col-span-1' : ''
+              }`}
+            >
+              <div class='w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6'>
+                <svg
+                  class='w-8 h-8 text-white'
+                  fill='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path d={value.icon} />
+                </svg>
+              </div>
+              <h3 class='text-2xl font-bold font-barlow mb-4 text-white'>
+                {value.title}
+              </h3>
+              <p class='text-muted leading-relaxed text-pretty'>
+                {value.description}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 </Layout>
