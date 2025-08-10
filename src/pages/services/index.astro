@@ -1,0 +1,235 @@
+---
+import { Image } from 'astro:assets'
+import Layout from '../../layouts/Layout.astro'
+
+const services = [
+  {
+    id: 1,
+    title: 'Mobile Detailing',
+    description:
+      'Experience premium detailing wherever you are. Our mobile unit brings state-of-the-art equipment directly to your location, delivering showroom-quality results without the hassle of traveling to a shop. Perfect for busy professionals who demand excellence.',
+    image: '/images/services/car-detailing.jpg',
+    alt: 'Mobile Detailing Service',
+    href: '/services/mobile-detailing',
+    priceFrom: '$149',
+  },
+  {
+    id: 2,
+    title: 'Ceramic Coating',
+    description:
+      "Shield your investment with cutting-edge nanotechnology protection. Our premium ceramic coatings create an invisible armor that repels dirt, water, and UV rays while enhancing your vehicle's natural shine for years to come. The ultimate in paint preservation.",
+    image: '/images/services/ceramic-coating.jpg',
+    alt: 'Ceramic Coating Service',
+    href: '/services/ceramic-coating',
+    priceFrom: '$600',
+  },
+  {
+    id: 3,
+    title: 'Paint Correction',
+    description:
+      "Restore your vehicle's finish to factory perfection with our advanced multi-stage correction process. Using precision techniques and professional-grade compounds, we eliminate swirl marks, scratches, and imperfections to reveal a mirror-like finish that turns heads.",
+    image: '/images/services/paint-correction.jpg',
+    alt: 'Paint Correction Service',
+    href: '/services/paint-correction',
+    priceFrom: '$250',
+  },
+]
+
+const individualServices = [
+  {
+    id: 1,
+    title: 'Headlight Restoration',
+    description:
+      'Transform clouded and yellowed headlight lenses back to crystal clear condition for enhanced night visibility.',
+    image: '/images/services/individual/headlight-restoration.jpg',
+    alt: 'Headlight Restoration Service',
+    price: '$75',
+    badge: 'Add-on',
+  },
+  {
+    id: 2,
+    title: 'Steam and Shampoo Carpet',
+    description:
+      'Intensive steam treatment and specialized cleaning for vehicle carpets to eliminate dirt and bacteria.',
+    image: '/images/services/individual/steam-and-shampoo-carpet.jpg',
+    alt: 'Carpet Steam Cleaning Service',
+    price: '$65',
+    badge: '',
+  },
+  {
+    id: 3,
+    title: 'Steam and Shampoo Seats',
+    description:
+      'Complete steam cleaning and conditioning service for fabric and leather upholstery to restore original beauty.',
+    image: '/images/services/individual/steam-and-shampoo-seats.jpg',
+    alt: 'Seat Steam Cleaning Service',
+    price: '$85',
+    badge: '',
+  },
+  {
+    id: 4,
+    title: 'Water Spot Removal',
+    description:
+      'Professional removal of hard water marks and mineral buildup from all vehicle surfaces.',
+    image: '/images/services/individual/water-spot-removal.jpg',
+    alt: 'Water Spot Removal Service',
+    price: '$55',
+    badge: 'Add-on',
+  },
+  {
+    id: 5,
+    title: 'Pet Hair Extraction',
+    description:
+      'Complete removal of pet fur from all interior areas using professional-grade extraction equipment.',
+    image: '/images/services/individual/pet-hair-extraction.jpg',
+    alt: 'Pet Hair Extraction Service',
+    price: '$45',
+    badge: 'Add-on',
+  },
+  {
+    id: 6,
+    title: 'Exterior Black Trim Restoration',
+    description:
+      'Professional restoration of faded exterior plastic components to their original factory finish.',
+    image: '/images/services/individual/exterior-black-trim-restoration.jpg',
+    alt: 'Black Trim Restoration Service',
+    price: '$60',
+    badge: 'Add-on',
+  },
+]
+---
+
+<Layout
+  title='Our Services - Driven Stage Detailing'
+  description='Explore our comprehensive range of professional auto detailing services, from mobile detailing to paint correction and ceramic coating.'
+>
+  <!-- Hero Section -->
+  <section class='first-section py-20 bg-gradient-secondary'>
+    <article class='container mx-auto px-4 text-center'>
+      <h1
+        class='text-4xl md:text-5xl lg:text-6xl font-bold font-barlow text-primary mb-6 leading-tight'
+      >
+        Our <span class='text-gradient-primary'>Premium Services</span>
+      </h1>
+      <p
+        class='text-xl text-foreground max-w-3xl mx-auto leading-relaxed text-pretty'
+      >
+        From comprehensive mobile detailing to specialized paint correction and
+        ceramic coatings, we offer the complete range of services to keep your
+        vehicle looking its absolute best.
+      </p>
+    </article>
+  </section>
+
+  <!-- Main Services Section -->
+  <section class='py-20'>
+    <div
+      class='container mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8'
+    >
+      {
+        services.map((service) => (
+          <article class='bg-light rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group border border-zinc-200'>
+            <div class='relative h-64 overflow-hidden'>
+              <Image
+                class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+                width={256}
+                height={256}
+                src={service.image}
+                alt={service.alt}
+                loading='lazy'
+              />
+              <div class='absolute top-4 left-4'>
+                <span class='bg-accent text-white px-4 py-2 rounded-full text-base font-semibold font-barlow'>
+                  From {service.priceFrom}
+                </span>
+              </div>
+            </div>
+
+            <div class='p-6'>
+              <h3 class='text-3xl font-bold text-dark mb-4 font-barlow'>
+                {service.title}
+              </h3>
+              <p class='text-foreground leading-relaxed text-pretty mb-8'>
+                {service.description}
+              </p>
+
+              <a href={service.href} class='btn btn-primary btn-base w-full'>
+                View Details
+                <svg
+                  class='w-4 h-4 ml-2'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Individual Services Section -->
+  <section class='py-20 bg-light'>
+    <div class='container mx-auto px-4'>
+      <header class='text-center mb-16'>
+        <h2
+          class='text-3xl md:text-4xl font-bold text-gradient-primary mb-4 font-barlow'
+        >
+          Individual Services
+        </h2>
+        <p class='text-lg text-foreground max-w-2xl mx-auto'>
+          Specialized add-on services to address specific needs and enhance your
+          detailing experience.
+        </p>
+      </header>
+
+      <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+        {
+          individualServices.map((service) => (
+            <article class='bg-secondary-light/20 rounded-xl p-6 hover:bg-muted-blue hover:shadow-md transition-all duration-300 group'>
+              <div class='relative mb-4'>
+                <Image
+                  class='w-full h-48 object-cover rounded-lg transition-shadow duration-300'
+                  width={256}
+                  height={156}
+                  src={service.image}
+                  alt={service.alt}
+                  loading='lazy'
+                />
+                {service.badge && (
+                  <div class='absolute top-3 right-3'>
+                    <span class='bg-primary text-light px-2 py-1 rounded-full text-xs font-medium'>
+                      {service.badge}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <div class='mb-4'>
+                <div class='flex justify-between items-start mb-2'>
+                  <h3 class='text-lg font-bold text-dark font-barlow'>
+                    {service.title}
+                  </h3>
+                  <span class='text-xl font-bold text-gradient-accent font-barlow'>
+                    From {service.price}
+                  </span>
+                </div>
+                <p class='text-foreground text-sm leading-relaxed'>
+                  {service.description}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
