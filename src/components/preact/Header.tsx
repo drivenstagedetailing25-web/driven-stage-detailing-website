@@ -7,6 +7,7 @@ export default function Header() {
   const servicesRef = useRef<HTMLButtonElement>(null)
 
   const services = [
+    { name: 'All Services', href: '/services' },
     { name: 'Mobile Detailing', href: '/services/mobile-detailing' },
     { name: 'Paint Correction', href: '/services/paint-correction' },
     { name: 'Ceramic Coating', href: '/services/ceramic-coating' },
