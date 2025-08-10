@@ -144,13 +144,13 @@
 }
 
 @utility first-section {
-  padding-top: 16dvh;
+  margin-top: 16dvh;
 
   @media screen and (width >= 1024px) {
-    padding-top: 20dvh;
+    margin-top: 20dvh;
   }
 
   @media screen and (width >= 1280px) {
-    padding-top: 24dvh;
+    margin-top: 24dvh;
   }
 }
