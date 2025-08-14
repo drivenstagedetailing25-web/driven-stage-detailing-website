@@ -1,0 +1,237 @@
+---
+import { Image } from 'astro:assets'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title='Driven Stage Detailing - Contact'>
+  <!-- Contact Section with Car Animation -->
+  <section
+    class='first-section bg-gradient-to-br from-primary/5 via-dark to-dark relative pb-20 bg-dark overflow-hidden'
+  >
+    <!-- Animated Car Background -->
+    <div
+      id='car-animation'
+      class='absolute inset-0 opacity-30 transition-all duration-800 ease-out transform translate-x-full scale-75'
+    >
+      <div
+        id='contact'
+        class='absolute right-0 top-1/2 -translate-y-1/2 w-full h-full'
+      >
+        <img
+          src='/images/yellow-sport-car.png'
+          alt='Car approaching'
+          class='w-full h-full object-cover object-center'
+        />
+        <div
+          class='absolute inset-0 bg-gradient-to-l from-transparent via-dark/50 to-dark'
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form Container -->
+    <div
+      class='container pb-20 mx-auto px-6 relative z-10 h-full flex items-center'
+    >
+      <div
+        class='flex flex-col lg:flex-row items-center lg:justify-around w-full'
+      >
+        <!-- Left Side - Giant Title -->
+        <div
+          class='flex flex-col text-center lg:text-left pt-2 justify-center h-full'
+        >
+          <h2
+            id='giant-title'
+            class='text-4xl md:text-4xl lg:text-7xl mb-6 font-bold font-barlow text-white leading-none opacity-0 transform translate-y-6 transition-all duration-800 ease-out'
+          >
+            Get Your
+            <span class='text-gradient-primary block'>Free Quote</span>
+          </h2>
+          <p
+            id='subtitle'
+            class='text-white mt-8 text-lg leading-relaxed opacity-0 transform translate-y-8 transition-all duration-800 ease-out delay-300'
+          >
+            Ready to bring the best professional detailing service directly to
+            your location. Fill out the form and we'll reply with a personalized
+            quote as soon as possible.
+          </p>
+          <ul class='mt-8 space-y-3 text-sm text-light/80'>
+            <li class='flex items-start gap-2'>
+              <span class='text-white font-bold'>•</span> Same-day response during
+              business hours.
+            </li>
+            <li class='flex items-start gap-2'>
+              <span class='text-white font-bold'>•</span> Premium products and certified
+              processes.
+            </li>
+            <li class='flex items-start gap-2'>
+              <span class='text-white font-bold'>•</span> Mobile service: we come
+              to your home or office.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Form - Right Side -->
+        <div
+          class='flex flex-col justify-center h-full w-full max-w-3xl lg:max-w-md xl:max-w-xl mt-10 lg:mt-0'
+        >
+          <!-- Contact Form with Blur Background -->
+          <div
+            class='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20'
+          >
+            <form class='space-y-4'>
+              <!-- Name -->
+              <div>
+                <label for='name' class='block text-light font-medium mb-1'>
+                  Full Name *
+                </label>
+                <input
+                  type='text'
+                  id='name'
+                  name='name'
+                  required
+                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
+                  placeholder='Enter your full name'
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label for='email' class='block text-light font-medium mb-1'>
+                  Email Address *
+                </label>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  required
+                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
+                  placeholder='Enter your email'
+                />
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label for='phone' class='block text-light font-medium mb-1'>
+                  Phone Number
+                </label>
+                <input
+                  type='tel'
+                  id='phone'
+                  name='phone'
+                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
+                  placeholder='Enter your phone number'
+                />
+              </div>
+
+              <!-- Service -->
+              <div>
+                <label for='service' class='block text-light font-medium mb-1'>
+                  Service Interested In
+                </label>
+                <select
+                  id='service'
+                  name='service'
+                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
+                >
+                  <option value=''>Select a service</option>
+                  <option value='mobile-detailing'>Mobile Detailing</option>
+                  <option value='paint-correction'>Paint Correction</option>
+                  <option value='ceramic-coating'>Ceramic Coating</option>
+                  <option value='multiple'>Multiple Services</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for='message' class='block text-light font-medium mb-1'>
+                  Additional Details
+                </label>
+                <textarea
+                  id='message'
+                  name='message'
+                  rows='3'
+                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none text-sm text-foreground'
+                  placeholder='Tell us about your vehicle and service preferences...'
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div class='text-center pt-2'>
+                <button type='submit' class='w-full btn btn-primary btn-base'>
+                  Get My Free Quote
+                  <svg
+                    class='ml-2 w-4 h-4'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M12 19l9 2-9-18-9 18 9-2zm0 0v-8'></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript for Car Animation -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const carElement = document.getElementById('car-animation')
+        const giantTitle = document.getElementById('giant-title')
+        const subtitle = document.getElementById('subtitle')
+        const contactSection = document.querySelector('section:last-of-type')
+
+        if (!carElement || !contactSection || !giantTitle || !subtitle) return
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Car enters the scene
+                carElement.classList.remove('translate-x-full', 'scale-75')
+                carElement.classList.add('translate-x-0', 'scale-100')
+                carElement.style.opacity = '0.3'
+
+                // Animate giant title and subtitle
+                setTimeout(() => {
+                  giantTitle.classList.remove('opacity-0', 'translate-y-8')
+                  giantTitle.classList.add('opacity-100', 'translate-y-0')
+                }, 200)
+
+                setTimeout(() => {
+                  subtitle.classList.remove('opacity-0', 'translate-y-8')
+                  subtitle.classList.add('opacity-100', 'translate-y-0')
+                }, 500)
+              } else {
+                // Car exits the scene
+                carElement.classList.add('translate-x-full', 'scale-75')
+                carElement.classList.remove('translate-x-0', 'scale-100')
+                carElement.style.opacity = '0.1'
+
+                // Hide title and subtitle
+                giantTitle.classList.add('opacity-0', 'translate-y-8')
+                giantTitle.classList.remove('opacity-100', 'translate-y-0')
+
+                subtitle.classList.add('opacity-0', 'translate-y-8')
+                subtitle.classList.remove('opacity-100', 'translate-y-0')
+              }
+            })
+          },
+          {
+            threshold: 0.3,
+            rootMargin: '0px 0px -10% 0px',
+          },
+        )
+
+        observer.observe(contactSection)
+      })
+    </script>
+  </section>
+</Layout>
