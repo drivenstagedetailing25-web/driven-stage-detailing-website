@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '../../layouts/Layout.astro'
+import ChevronRight from '../../assets/svg/chevron-right.svg'
+import Calendar from '../../assets/svg/calendar.svg'
+import Clock from '../../assets/svg/clock.svg'
 
 const services = [
   {
@@ -11,7 +14,7 @@ const services = [
     image: '/images/services/car-detailing.jpg',
     alt: 'Mobile Detailing Service',
     href: '/services/mobile-detailing',
-    priceFrom: '$149',
+    priceFrom: '$110',
   },
   {
     id: 2,
@@ -21,7 +24,7 @@ const services = [
     image: '/images/services/ceramic-coating.jpg',
     alt: 'Ceramic Coating Service',
     href: '/services/ceramic-coating',
-    priceFrom: '$600',
+    priceFrom: '$1000',
   },
   {
     id: 3,
@@ -31,69 +34,88 @@ const services = [
     image: '/images/services/paint-correction.jpg',
     alt: 'Paint Correction Service',
     href: '/services/paint-correction',
-    priceFrom: '$250',
+    priceFrom: '$595',
   },
 ]
 
 const individualServices = [
   {
     id: 1,
-    title: 'Headlight Restoration',
-    description:
-      'Transform clouded and yellowed headlight lenses back to crystal clear condition for enhanced night visibility.',
-    image: '/images/services/individual/headlight-restoration.jpg',
-    alt: 'Headlight Restoration Service',
-    price: '$75',
-    badge: 'Add-on',
-  },
-  {
-    id: 2,
     title: 'Steam and Shampoo Carpet',
     description:
       'Intensive steam treatment and specialized cleaning for vehicle carpets to eliminate dirt and bacteria.',
     image: '/images/services/individual/steam-and-shampoo-carpet.jpg',
     alt: 'Carpet Steam Cleaning Service',
-    price: '$65',
+    price: '$150',
+    duration: '2 hours',
     badge: '',
   },
+  {
+    id: 2,
+    title: 'Headlight Restoration',
+    description:
+      'Transform clouded and yellowed headlight lenses back to crystal clear condition for enhanced night visibility.',
+    image: '/images/services/individual/headlight-restoration.jpg',
+    alt: 'Headlight Restoration Service',
+    price: '$120',
+    duration: '1 hour',
+    badge: 'Add-on',
+  },
+
   {
     id: 3,
-    title: 'Steam and Shampoo Seats',
-    description:
-      'Complete steam cleaning and conditioning service for fabric and leather upholstery to restore original beauty.',
-    image: '/images/services/individual/steam-and-shampoo-seats.jpg',
-    alt: 'Seat Steam Cleaning Service',
-    price: '$85',
-    badge: '',
-  },
-  {
-    id: 4,
     title: 'Water Spot Removal',
     description:
       'Professional removal of hard water marks and mineral buildup from all vehicle surfaces.',
     image: '/images/services/individual/water-spot-removal.jpg',
     alt: 'Water Spot Removal Service',
-    price: '$55',
+    price: '$160',
+    duration: '1 hr',
     badge: 'Add-on',
   },
+  {
+    id: 4,
+    title: 'Steam and Shampoo Seats',
+    description:
+      'Complete steam cleaning and conditioning service for fabric and leather upholstery to restore original beauty.',
+    image: '/images/services/individual/steam-and-shampoo-seats.jpg',
+    alt: 'Seat Steam Cleaning Service',
+    price: '$150',
+    duration: '2 hours',
+    badge: '',
+  },
+
   {
     id: 5,
-    title: 'Pet Hair Extraction',
-    description:
-      'Complete removal of pet fur from all interior areas using professional-grade extraction equipment.',
-    image: '/images/services/individual/pet-hair-extraction.jpg',
-    alt: 'Pet Hair Extraction Service',
-    price: '$45',
-    badge: 'Add-on',
-  },
-  {
-    id: 6,
     title: 'Exterior Black Trim Restoration',
     description:
       'Professional restoration of faded exterior plastic components to their original factory finish.',
     image: '/images/services/individual/exterior-black-trim-restoration.jpg',
     alt: 'Black Trim Restoration Service',
-    price: '$60',
+    price: '$45',
+    duration: '30 minutes',
+    badge: 'Add-on',
+  },
+  {
+    id: 6,
+    title: 'Pet Hair Extraction',
+    description:
+      'Complete removal of pet fur from all interior areas using professional-grade extraction equipment.',
+    image: '/images/services/individual/pet-hair-extraction.jpg',
+    alt: 'Pet Hair Extraction Service',
+    price: '$55',
+    duration: '1 hour',
+    badge: 'Add-on',
+  },
+  {
+    id: 7,
+    title: 'Engine Bay Cleaning',
+    description:
+      'Thorough degreasing and detailed cleaning of the engine compartment to enhance appearance and help identify potential issues sooner.',
+    image: '/images/services/premium-exterior.jpg',
+    alt: 'Engine Bay Cleaning Service',
+    price: '$90',
+    duration: '1 hr',
     badge: 'Add-on',
   },
 ]
@@ -139,7 +161,7 @@ const individualServices = [
                 loading='lazy'
               />
               <div class='absolute top-4 left-4'>
-                <span class='bg-accent text-white px-4 py-2 rounded-full text-base font-semibold font-barlow'>
+                <span class='bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold'>
                   From {service.priceFrom}
                 </span>
               </div>
@@ -153,21 +175,12 @@ const individualServices = [
                 {service.description}
               </p>
 
-              <a href={service.href} class='btn btn-primary btn-base w-full'>
+              <a
+                href={service.href}
+                class='btn btn-primary btn-base w-full group/detail'
+              >
                 View Details
-                <svg
-                  class='w-4 h-4 ml-2'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    stroke-width='2'
-                    d='M9 5l7 7-7 7'
-                  />
-                </svg>
+                <ChevronRight class='ml-2 size-4.5 group-hover/detail:translate-x-1 transition-transform duration-200' />
               </a>
             </div>
           </article>
@@ -177,59 +190,85 @@ const individualServices = [
   </section>
 
   <!-- Individual Services Section -->
-  <section class='py-20 bg-light'>
-    <div class='container mx-auto px-4'>
-      <header class='text-center mb-16'>
-        <h2
-          class='text-3xl md:text-4xl font-bold text-gradient-primary mb-4 font-barlow'
-        >
-          Individual Services
-        </h2>
-        <p class='text-lg text-foreground max-w-2xl mx-auto'>
-          Specialized add-on services to address specific needs and enhance your
-          detailing experience.
-        </p>
-      </header>
+  <section class='py-20 bg-muted-blue'>
+    <div class='container mx-auto px-4 text-center'>
+      <h2
+        class='text-3xl md:text-4xl font-bold text-gradient-primary mb-4 font-barlow'
+      >
+        Individual Services
+      </h2>
+      <p class='text-lg text-foreground max-w-2xl mx-auto'>
+        Specialized add-on services to address specific needs and enhance your
+        detailing experience.
+      </p>
 
-      <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+      <div class='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-12 mt-10'>
         {
           individualServices.map((service) => (
-            <article class='bg-secondary-light/20 rounded-xl p-6 hover:bg-muted-blue hover:shadow-md transition-all duration-300 group'>
-              <div class='relative mb-4'>
+            <article class='relative group rounded-2xl bg-white/95 border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1'>
+              <div class='relative h-56 overflow-hidden'>
                 <Image
-                  class='w-full h-48 object-cover rounded-lg transition-shadow duration-300'
+                  class='w-full h-full object-cover rounded-t-2xl'
                   width={256}
                   height={156}
                   src={service.image}
                   alt={service.alt}
                   loading='lazy'
                 />
+                <div class='absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300' />
                 {service.badge && (
-                  <div class='absolute top-3 right-3'>
-                    <span class='bg-primary text-light px-2 py-1 rounded-full text-xs font-medium'>
+                  <div class='absolute top-3 left-3'>
+                    <span class='bg-black/70 backdrop-blur-sm text-white/95 px-3 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-md'>
                       {service.badge}
                     </span>
                   </div>
                 )}
               </div>
 
-              <div class='mb-4'>
-                <div class='flex justify-between items-start mb-2'>
-                  <h3 class='text-lg font-bold text-dark font-barlow'>
-                    {service.title}
-                  </h3>
-                  <span class='text-xl font-bold text-gradient-accent font-barlow'>
-                    From {service.price}
-                  </span>
-                </div>
-                <p class='text-foreground text-sm leading-relaxed'>
+              <div class='p-5 flex flex-col h-[200px] md:h-[210px] text-left'>
+                <h3 class='text-lg md:text-xl xl:text-2xl font-bold text-dark font-barlow mb-2 group-hover:text-primary transition-colors'>
+                  {service.title}
+                </h3>
+                <p class='text-foreground/90 text-sm md:text-[15px] leading-relaxed mb-4 line-clamp-4'>
                   {service.description}
                 </p>
+                <div class='mt-auto flex items-center justify-between pt-2 border-t border-neutral-200'>
+                  <div class='flex items-center text-sm text-foreground/70 font-medium'>
+                    <Clock class='size-5 mr-1.5 text-accent' />
+                    {service.duration}
+                  </div>
+                  <span class='text-xl font-bold text-gradient-accent font-barlow'>
+                    {service.price}
+                  </span>
+                </div>
               </div>
             </article>
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section
+    class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
+  >
+    <div class='container mx-auto px-6 text-center'>
+      <h2 class='text-3xl md:text-4xl font-bold font-barlow text-white mb-6'>
+        Ready to <span class='text-gradient-primary'>Transform</span> Your Vehicle?
+      </h2>
+      <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>
+        Book your mobile detailing service today and experience the convenience
+        of premium car care at your doorstep.
+      </p>
+      <button
+        type='button'
+        id='schedule-btn-bottom'
+        class='btn btn-primary btn-base mr-4'
+      >
+        Schedule Now
+        <Calendar class='ml-2 w-5 h-5' />
+      </button>
     </div>
   </section>
 </Layout>

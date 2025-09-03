@@ -1,16 +1,16 @@
 ---
-import Header from '../../components/preact/Header'
 import Layout from '../../layouts/Layout.astro'
 import { Image } from 'astro:assets'
-import CheckMark from '../../assets/svg/check-mark.svg'
 import Calendar from '../../assets/svg/calendar.svg'
+import Home from '../../assets/svg/home.svg'
+import ChevronRight from '../../assets/svg/chevron-right.svg'
 
 const ceramicCoatingOptions = [
   {
     id: 1,
     title: 'Ceramic Coating Stage 1',
-    price: '$600',
-    duration: '6-8 hours',
+    price: '$1000',
+    duration: '8 hours',
     image: '/images/services/ceramic-coating.jpg',
     alt: 'Ceramic Coating Stage 1',
     badge: {
@@ -25,8 +25,8 @@ const ceramicCoatingOptions = [
   {
     id: 2,
     title: 'Ceramic Coating Stage 2',
-    price: '$1200',
-    duration: '12-14 hours',
+    price: '$1550',
+    duration: '9 hours',
     image: '/images/services/paint-correction.jpg',
     alt: 'Ceramic Coating Stage 2',
     badge: {
@@ -59,49 +59,17 @@ const ceramicCoatingOptions = [
             href='/'
             class='text-foreground hover:text-accent transition-colors duration-200 flex items-center'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              class='icon mr-3 icon-tabler icons-tabler-outline icon-tabler-home'
-              ><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path
-                d='M5 12l-2 0l9 -9l9 9l-2 0'></path><path
-                d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7'></path><path
-                d='M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6'></path></svg
-            >
+            <Home class='size-6 mr-2' />
             Home
           </a>
-          <svg
-            class='w-4 h-4 text-dark'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path
-              fill-rule='evenodd'
-              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-              clip-rule='evenodd'></path>
-          </svg>
+          <ChevronRight class='size-4 text-dark' />
           <a
-            href='#'
+            href='/services'
             class='text-foreground hover:text-accent transition-colors duration-200'
-            >Services</a
           >
-          <svg
-            class='w-4 h-4 text-dark'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path
-              fill-rule='evenodd'
-              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-              clip-rule='evenodd'></path>
-          </svg>
+            Services
+          </a>
+          <ChevronRight class='size-4 text-dark' />
           <span class='text-gradient-accent font-medium'>Ceramic Coating</span>
         </nav>
 
@@ -118,7 +86,7 @@ const ceramicCoatingOptions = [
         </p>
         <button type='button' id='schedule-btn' class='btn btn-primary btn-lg'>
           Schedule Service
-          <Calendar class='ml-2 w-5 h-5' />
+          <Calendar class='ml-2 size-5' />
         </button>
       </div>
 
@@ -152,11 +120,11 @@ const ceramicCoatingOptions = [
         {
           ceramicCoatingOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden group hover:shadow-xl transition-all duration-300 ${service.borderClass} relative`}
+              class={`bg-white rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative`}
             >
               <div class='relative w-full h-64 overflow-hidden rounded-t-2xl'>
                 <Image
-                  class='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+                  class='w-full h-full object-cover'
                   width={500}
                   height={300}
                   src={service.image}
@@ -196,7 +164,7 @@ const ceramicCoatingOptions = [
                   class='schedule-btn w-full btn btn-primary btn-base'
                 >
                   {service.buttonText}
-                  <Calendar class='ml-2 w-4 h-4' />
+                  <Calendar class='ml-2 size-5' />
                 </button>
               </div>
             </article>

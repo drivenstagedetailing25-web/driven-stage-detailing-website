@@ -3,15 +3,17 @@ import Layout from '../../layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import CheckMark from '../../assets/svg/check-mark.svg'
 import Calendar from '../../assets/svg/calendar.svg'
+import Home from '../../assets/svg/home.svg'
+import ChevronRight from '../../assets/svg/chevron-right.svg'
 
 const serviceOptions = [
   {
     id: 1,
-    title: 'Premium Exterior',
-    price: '$120',
-    duration: '1.5-2 hours',
+    title: 'Essential Stage Exterior',
+    price: '$110',
+    duration: '1 hour',
     image: '/images/services/premium-exterior.jpg',
-    alt: 'Premium Exterior Detail',
+    alt: 'Essential Stage Exterior Detail',
     badge: {
       text: 'Exterior Only',
       bgColor: 'bg-primary',
@@ -23,16 +25,15 @@ const serviceOptions = [
       'Wax protection',
       'Exterior glass cleaning',
     ],
-    buttonText: 'Schedule Premium Exterior Detail',
-    borderClass: 'border border-zinc-200',
+    borderClass: 'border border-neutral-200',
   },
   {
     id: 2,
-    title: 'Premium Interior',
-    price: '$100',
-    duration: '1.5-2 hours',
+    title: 'Essential Stage Interior',
+    price: '$190',
+    duration: '1 hr 30 min',
     image: '/images/services/car-detailing.jpg',
-    alt: 'Premium Interior Detail',
+    alt: 'Essential Stage Interior Detail',
     badge: {
       text: 'Interior Only',
       bgColor: 'bg-secondary',
@@ -44,17 +45,15 @@ const serviceOptions = [
       'Interior glass cleaning',
       'Air freshening treatment',
     ],
-    buttonText: 'Schedule Premium Interior Detail',
-    borderClass: 'border border-zinc-200',
+    borderClass: 'border border-neutral-200',
   },
   {
     id: 3,
-    title: 'Premium Full Detail',
-    price: '$180',
-    originalPrice: '$220',
-    duration: '3-4 hours',
+    title: 'Essential Stage Full Detail',
+    price: '$240',
+    duration: '2 hr 30 min',
     image: '/images/services/paint-correction.jpg',
-    alt: 'Premium Full Detail',
+    alt: 'Essential Stage Full Detail',
     badge: {
       text: 'Complete Package',
       bgColor: 'bg-yellow-400',
@@ -69,9 +68,8 @@ const serviceOptions = [
       'Premium wax protection',
       'Fabric protection treatment',
       'Engine bay cleaning',
-      { text: 'Save $40!', highlight: true },
+      'Thorough wipe down',
     ],
-    buttonText: 'Schedule Premium Full Detail',
     borderClass: 'border-2 border-primary',
   },
 ]
@@ -79,55 +77,51 @@ const serviceOptions = [
 const luxuryServiceOptions = [
   {
     id: 1,
-    title: 'Luxury Exterior',
-    price: '$200',
-    duration: '3-4 hours',
+    title: 'Prestige Stage Exterior',
+    price: '$160',
+    duration: '2 hr',
     image: '/images/services/ceramic-coating.jpg',
-    alt: 'Luxury Exterior Detail',
+    alt: 'Prestige Stage Exterior Detail',
     badge: {
-      text: 'Luxury Exterior',
+      text: 'Exterior Only',
       bgColor: 'bg-gradient-to-r from-yellow-400 to-orange-500',
       textColor: 'text-dark',
     },
     description:
       'Premium exterior treatment with multi-stage paint correction, ceramic coating application, and professional wheel restoration for the ultimate finish.',
-    buttonText: 'Schedule Luxury Exterior Detail',
-    borderClass: 'border-2 border-yellow-400',
+    borderClass: 'border border-neutral-200',
   },
   {
     id: 2,
-    title: 'Luxury Interior',
-    price: '$180',
-    duration: '3-4 hours',
+    title: 'Prestige Stage Interior',
+    price: '$390',
+    duration: '4 hr 30 min',
     image: '/images/services/car-detailing.jpg',
-    alt: 'Luxury Interior Detail',
+    alt: 'Prestige Stage Interior Detail',
     badge: {
-      text: 'Luxury Interior',
+      text: 'Interior Only',
       bgColor: 'bg-gradient-to-r from-purple-500 to-blue-600',
     },
     description:
       'Deep steam cleaning and extraction with leather restoration, fabric protection, and advanced odor elimination for a completely refreshed cabin.',
-    buttonText: 'Schedule Luxury Interior Detail',
-    borderClass: 'border-2 border-purple-500',
+    borderClass: 'border border-neutral-200',
   },
   {
     id: 3,
-    title: 'Luxury Full Detail',
-    price: '$350',
-    originalPrice: '$410',
-    duration: '6-8 hours',
+    title: 'Prestige Stage Full Detail',
+    price: '$400',
+    duration: '6 hours',
     image: '/images/services/paint-correction.jpg',
-    alt: 'Luxury Full Detail',
+    alt: 'Prestige Stage Full Detail',
     badge: {
       text: 'Ultimate Package',
       bgColor: 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500',
-      textColor: 'text-white',
+      textColor: 'text-dark',
     },
     description:
       'The complete luxury experience combining both premium services with paint correction, ceramic coating, engine bay detailing, and 6-month warranty.',
     savings: 'Save $60!',
-    buttonText: 'Schedule Luxury Full Detail',
-    borderClass: 'border-2 border-gradient-to-r from-yellow-400 to-orange-500',
+    borderClass: 'border-2 border-yellow-400',
   },
 ]
 ---
@@ -149,49 +143,16 @@ const luxuryServiceOptions = [
             href='/'
             class='text-foreground hover:text-accent transition-colors duration-200 flex items-center'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='2'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              class='icon mr-3 icon-tabler icons-tabler-outline icon-tabler-home'
-              ><path stroke='none' d='M0 0h24v24H0z' fill='none'></path><path
-                d='M5 12l-2 0l9 -9l9 9l-2 0'></path><path
-                d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7'></path><path
-                d='M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6'></path></svg
-            >
+            <Home class='size-6 mr-2' />
             Home
           </a>
-          <svg
-            class='w-4 h-4 text-dark'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path
-              fill-rule='evenodd'
-              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-              clip-rule='evenodd'></path>
-          </svg>
+          <ChevronRight class='size-4 text-dark' />
           <a
-            href='#'
+            href='/services'
             class='text-foreground hover:text-accent transition-colors duration-200'
             >Services</a
           >
-          <svg
-            class='w-4 h-4 text-dark'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path
-              fill-rule='evenodd'
-              d='M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z'
-              clip-rule='evenodd'></path>
-          </svg>
+          <ChevronRight class='size-4 text-dark' />
           <span class='text-gradient-accent font-medium'>Mobile Detailing</span>
         </nav>
 
@@ -208,7 +169,7 @@ const luxuryServiceOptions = [
         </p>
         <button type='button' id='schedule-btn' class='btn btn-primary btn-lg'>
           Schedule Service
-          <Calendar class='ml-2 w-5 h-5' />
+          <Calendar class='ml-2 size-5' />
         </button>
       </div>
 
@@ -238,15 +199,15 @@ const luxuryServiceOptions = [
         equipment.
       </p>
 
-      <div class='grid lg:grid-cols-3 gap-8'>
+      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {
           serviceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden group hover:shadow-xl transition-all duration-300 ${service.borderClass} relative`}
+              class={`bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative`}
             >
               <div class='relative w-full h-48 overflow-hidden rounded-t-2xl'>
                 <Image
-                  class='w-full h-full object-cover group-hover:scale-110 transition-transform duration-300'
+                  class='w-full h-full object-cover'
                   width={400}
                   height={200}
                   src={service.image}
@@ -272,11 +233,6 @@ const luxuryServiceOptions = [
                   <span class='text-3xl font-bold text-gradient-accent ml-4'>
                     {service.price}
                   </span>
-                  {service.originalPrice && (
-                    <span class='text-foreground/85 ml-2 line-through'>
-                      {service.originalPrice}
-                    </span>
-                  )}
                   <span class='text-foreground/85 ml-2'>
                     / {service.duration}
                   </span>
@@ -295,8 +251,8 @@ const luxuryServiceOptions = [
                   type='button'
                   class='schedule-btn w-full btn btn-primary btn-base'
                 >
-                  {service.buttonText}
-                  <Calendar class='ml-2 w-4 h-4' />
+                  Schedule Service
+                  <Calendar class='ml-2 size-5' />
                 </button>
               </div>
             </article>
@@ -320,15 +276,15 @@ const luxuryServiceOptions = [
         attention to detail for the most discerning clients.
       </p>
 
-      <div class='grid lg:grid-cols-3 gap-8'>
+      <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {
           luxuryServiceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden group hover:shadow-2xl transition-all duration-300 ${service.borderClass} relative shadow-lg`}
+              class={`bg-white rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative shadow-md`}
             >
               <div class='relative w-full h-48 overflow-hidden rounded-t-2xl'>
                 <Image
-                  class='w-full h-full object-cover group-hover:scale-110 transition-transform duration-500'
+                  class='w-full h-full object-cover'
                   width={400}
                   height={200}
                   src={service.image}
@@ -361,11 +317,6 @@ const luxuryServiceOptions = [
                   <span class='text-3xl font-bold text-gradient-accent ml-4'>
                     {service.price}
                   </span>
-                  {service.originalPrice && (
-                    <span class='text-foreground/85 ml-2 line-through'>
-                      {service.originalPrice}
-                    </span>
-                  )}
                   <span class='text-foreground/85 ml-2'>
                     / {service.duration}
                   </span>
@@ -378,8 +329,8 @@ const luxuryServiceOptions = [
                   type='button'
                   class='schedule-btn w-full btn btn-primary btn-base'
                 >
-                  {service.buttonText}
-                  <Calendar class='ml-2 w-4 h-4' />
+                  Schedule Service
+                  <Calendar class='ml-2 size-5' />
                 </button>
               </div>
             </article>
@@ -395,8 +346,7 @@ const luxuryServiceOptions = [
   >
     <div class='container mx-auto px-6 text-center'>
       <h2 class='text-3xl md:text-4xl font-bold font-barlow text-white mb-6'>
-        Ready to <span class='text-gradient-primary'>Transform</span> Your
-        Vehicle?
+        Ready to <span class='text-gradient-primary'>Transform</span> Your Vehicle?
       </h2>
       <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>
         Book your mobile detailing service today and experience the convenience
@@ -412,577 +362,4 @@ const luxuryServiceOptions = [
       </button>
     </div>
   </section>
-
-  <!-- Modal for Scheduling -->
-  <div
-    id='schedule-modal'
-    class='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4'
-  >
-    <div
-      class='bg-white rounded-3xl max-w-6xl w-full max-h-[95vh] overflow-y-auto'
-    >
-      <div class='p-8 pb-6'>
-        <!-- Header -->
-        <div class='flex justify-between items-center mb-8'>
-          <div>
-            <h3 class='text-3xl font-bold font-barlow text-dark mb-2'>
-              Schedule your service
-            </h3>
-            <p class='text-muted text-lg'>
-              Check out our availability and book the date and time that works
-              for you
-            </p>
-          </div>
-          <button
-            type='button'
-            id='close-modal'
-            class='text-muted hover:text-primary transition-colors p-2'
-          >
-            <svg
-              class='w-7 h-7'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                stroke-width='2'
-                d='M6 18L18 6M6 6l12 12'></path>
-            </svg>
-          </button>
-        </div>
-
-        <form class='grid lg:grid-cols-3 gap-8'>
-          <!-- Left Column - Calendar -->
-          <div class='lg:col-span-2'>
-            <div class='mb-6'>
-              <h4 class='text-xl font-semibold text-dark mb-4'>
-                Select a Date and Time
-              </h4>
-              <p class='text-sm text-muted mb-6'>Pacific Daylight Time (PDT)</p>
-            </div>
-
-            <!-- Calendar -->
-            <div class='bg-gray-50 rounded-2xl p-6 mb-6'>
-              <!-- Calendar Header -->
-              <div class='flex justify-between items-center mb-6'>
-                <button
-                  type='button'
-                  id='prev-month'
-                  class='p-2 hover:bg-gray-200 rounded-lg transition-colors'
-                >
-                  <svg
-                    class='w-5 h-5 text-muted'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'
-                  >
-                    <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      stroke-width='2'
-                      d='M15 19l-7-7 7-7'></path>
-                  </svg>
-                </button>
-                <h5 id='current-month' class='text-lg font-semibold text-dark'>
-                  August 2025
-                </h5>
-                <button
-                  type='button'
-                  id='next-month'
-                  class='p-2 hover:bg-gray-200 rounded-lg transition-colors'
-                >
-                  <svg
-                    class='w-5 h-5 text-muted'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'
-                  >
-                    <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      stroke-width='2'
-                      d='M9 5l7 7-7 7'></path>
-                  </svg>
-                </button>
-              </div>
-
-              <!-- Calendar Grid -->
-              <div class='grid grid-cols-7 gap-1 mb-4'>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Sun
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Mon
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Tue
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Wed
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Thu
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Fri
-                </div>
-                <div class='p-3 text-center text-sm font-medium text-muted'>
-                  Sat
-                </div>
-              </div>
-
-              <div id='calendar-days' class='grid grid-cols-7 gap-1'>
-                <!-- Calendar days will be generated by JavaScript -->
-              </div>
-            </div>
-
-            <!-- Available Times -->
-            <div id='time-slots' class='hidden'>
-              <h5 class='text-lg font-semibold text-dark mb-4'>
-                Availability for <span id='selected-date-display'></span>
-              </h5>
-              <div
-                class='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6'
-              >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-yellow-400 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200 bg-yellow-400 text-dark font-semibold'
-                  data-time='7:00'>7:00 am</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='7:30'>7:30 am</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='8:00'>8:00 am</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='14:00'>2:00 pm</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='14:30'>2:30 pm</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='15:00'>3:00 pm</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='15:30'>3:30 pm</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='16:00'>4:00 pm</button
-                >
-                <button
-                  type='button'
-                  class='time-slot py-3 px-4 border-2 border-gray-200 rounded-xl text-center hover:border-primary hover:bg-primary hover:text-white transition-all duration-200'
-                  data-time='16:30'>4:30 pm</button
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column - Preferences & Details -->
-          <div class='lg:col-span-1'>
-            <h4 class='text-xl font-semibold text-dark mb-6'>Preferences</h4>
-
-            <!-- Vehicle Type -->
-            <div class='mb-6'>
-              <label class='block text-dark font-medium mb-3'
-                >Vehicle type *</label
-              >
-              <select
-                class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-dark'
-              >
-                <option value=''>Select vehicle type</option>
-                <option value='sedan'>Sedan</option>
-                <option value='suv'>SUV</option>
-                <option value='truck'>Truck</option>
-                <option value='coupe'>Coupe</option>
-                <option value='luxury'>Luxury Vehicle</option>
-              </select>
-            </div>
-
-            <!-- Service Details -->
-            <div class='bg-muted-blue rounded-2xl p-6 mb-6'>
-              <h5 class='text-lg font-semibold text-dark mb-3'>
-                Service Details
-              </h5>
-              <div class='space-y-3'>
-                <div class='flex justify-between'>
-                  <span class='text-dark font-medium'>Premium Full Detail</span>
-                </div>
-                <div class='text-sm text-muted'>
-                  <p class='mb-2'>
-                    Complete interior and exterior detailing service including:
-                  </p>
-                  <ul class='space-y-1 text-xs'>
-                    <li>• Premium hand wash & dry</li>
-                    <li>• Interior deep cleaning</li>
-                    <li>• Wax protection</li>
-                    <li>• Tire & wheel detailing</li>
-                  </ul>
-                </div>
-                <div class='pt-3 border-t border-gray-300'>
-                  <span class='text-lg font-bold text-primary'>$150 - $350</span
-                  >
-                  <p class='text-xs text-muted'>
-                    Final price depends on vehicle size
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Location -->
-            <div class='mb-6'>
-              <label class='block text-dark font-medium mb-3'
-                >Service Location *</label
-              >
-              <input
-                type='text'
-                placeholder='Enter your address'
-                class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
-              />
-            </div>
-
-            <!-- Contact Information -->
-            <div class='space-y-4 mb-6'>
-              <div>
-                <label class='block text-dark font-medium mb-3'>Name *</label>
-                <input
-                  type='text'
-                  required
-                  placeholder='Your name'
-                  class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
-                />
-              </div>
-
-              <div>
-                <label class='block text-dark font-medium mb-3'>Phone *</label>
-                <input
-                  type='tel'
-                  required
-                  placeholder='Your phone number'
-                  class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
-                />
-              </div>
-
-              <div>
-                <label class='block text-dark font-medium mb-3'>Email *</label>
-                <input
-                  type='email'
-                  required
-                  placeholder='Your email address'
-                  class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
-                />
-              </div>
-            </div>
-
-            <!-- Special Requests -->
-            <div class='mb-8'>
-              <label class='block text-dark font-medium mb-3'
-                >Special Requests</label
-              >
-              <textarea
-                rows='3'
-                placeholder='Any special requests or details about your vehicle...'
-                class='w-full px-4 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none'
-              ></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button
-              type='submit'
-              id='next-btn'
-              class='w-full bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-6 rounded-2xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
-              disabled
-            >
-              Next
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 </Layout>
-
-<!-- JavaScript for Modal -->
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('schedule-modal')
-    const scheduleBtn = document.getElementById('schedule-btn')
-    const scheduleBtnBottom = document.getElementById('schedule-btn-bottom')
-    const closeModal = document.getElementById('close-modal')
-    const nextBtn = document.getElementById('next-btn')
-    const timeSlotsContainer = document.getElementById('time-slots')
-    const selectedDateDisplay = document.getElementById('selected-date-display')
-    const calendarDays = document.getElementById('calendar-days')
-    const currentMonthDisplay = document.getElementById('current-month')
-    const prevMonthBtn = document.getElementById('prev-month')
-    const nextMonthBtn = document.getElementById('next-month')
-
-    let currentDate = new Date()
-    let selectedDate = null
-    let selectedTime = null
-
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
-
-    function openModal() {
-      if (modal) {
-        modal.classList.remove('hidden')
-        modal.classList.add('flex')
-        document.body.style.overflow = 'hidden'
-        generateCalendar()
-      }
-    }
-
-    function closeModalFunc() {
-      if (modal) {
-        modal.classList.add('hidden')
-        modal.classList.remove('flex')
-        document.body.style.overflow = 'auto'
-        resetForm()
-      }
-    }
-
-    function resetForm() {
-      selectedDate = null
-      selectedTime = null
-      if (timeSlotsContainer) timeSlotsContainer.classList.add('hidden')
-      if (nextBtn) {
-        nextBtn.disabled = true
-        nextBtn.classList.add('opacity-50', 'cursor-not-allowed')
-      }
-
-      // Reset calendar selection
-      const selectedDays = document.querySelectorAll('.calendar-day.selected')
-      selectedDays.forEach((day) => {
-        day.classList.remove('selected', 'bg-primary', 'text-white')
-        day.classList.add('hover:bg-gray-100')
-      })
-
-      // Reset time selection
-      const selectedTimeSlots = document.querySelectorAll('.time-slot.selected')
-      selectedTimeSlots.forEach((slot) => {
-        slot.classList.remove(
-          'selected',
-          'bg-primary',
-          'border-primary',
-          'text-white',
-        )
-        slot.classList.add('border-gray-200')
-      })
-    }
-
-    function generateCalendar() {
-      if (!calendarDays || !currentMonthDisplay) return
-
-      const year = currentDate.getFullYear()
-      const month = currentDate.getMonth()
-
-      currentMonthDisplay.textContent = `${months[month]} ${year}`
-
-      const firstDay = new Date(year, month, 1)
-      const lastDay = new Date(year, month + 1, 0)
-      const daysInMonth = lastDay.getDate()
-      const startingDayOfWeek = firstDay.getDay()
-
-      calendarDays.innerHTML = ''
-
-      // Add empty cells for days before the first day of the month
-      for (let i = 0; i < startingDayOfWeek; i++) {
-        const emptyCell = document.createElement('div')
-        emptyCell.className = 'p-3'
-        calendarDays.appendChild(emptyCell)
-      }
-
-      // Add days of the month
-      const today = new Date()
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dayElement = document.createElement('button')
-        dayElement.type = 'button'
-        dayElement.className =
-          'calendar-day p-3 text-center rounded-lg hover:bg-gray-100 transition-colors'
-        dayElement.textContent = day
-
-        const currentDateObj = new Date(year, month, day)
-
-        // Disable past dates
-        if (currentDateObj < today.setHours(0, 0, 0, 0)) {
-          dayElement.disabled = true
-          dayElement.className += ' text-gray-300 cursor-not-allowed'
-        } else {
-          // Make some days yellow (available)
-          if ([7, 8, 12, 13, 14, 19, 20, 21].includes(day)) {
-            dayElement.className +=
-              ' bg-yellow-400 text-dark font-semibold hover:bg-yellow-500'
-          }
-
-          dayElement.addEventListener('click', function () {
-            selectDate(currentDateObj, dayElement)
-          })
-        }
-
-        calendarDays.appendChild(dayElement)
-      }
-    }
-
-    function selectDate(date, dayElement) {
-      selectedDate = date
-
-      // Update visual selection
-      const allDays = document.querySelectorAll('.calendar-day')
-      allDays.forEach((day) => {
-        day.classList.remove('selected', 'bg-primary', 'text-white')
-        if (
-          !day.disabled &&
-          ![7, 8, 12, 13, 14, 19, 20, 21].includes(parseInt(day.textContent))
-        ) {
-          day.classList.add('hover:bg-gray-100')
-        }
-      })
-
-      dayElement.classList.add('selected', 'bg-primary', 'text-white')
-      dayElement.classList.remove(
-        'hover:bg-gray-100',
-        'bg-yellow-400',
-        'hover:bg-yellow-500',
-      )
-
-      // Show time slots
-      if (timeSlotsContainer && selectedDateDisplay) {
-        const options = {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        }
-        selectedDateDisplay.textContent = date.toLocaleDateString(
-          'en-US',
-          options,
-        )
-        timeSlotsContainer.classList.remove('hidden')
-      }
-
-      checkFormCompletion()
-    }
-
-    function selectTime(timeSlot) {
-      selectedTime = timeSlot.dataset.time
-
-      // Update visual selection
-      const allTimeSlots = document.querySelectorAll('.time-slot')
-      allTimeSlots.forEach((slot) => {
-        slot.classList.remove(
-          'selected',
-          'bg-primary',
-          'border-primary',
-          'text-white',
-        )
-        slot.classList.add('border-gray-200')
-      })
-
-      timeSlot.classList.add(
-        'selected',
-        'bg-primary',
-        'border-primary',
-        'text-white',
-      )
-      timeSlot.classList.remove('border-gray-200')
-
-      checkFormCompletion()
-    }
-
-    function checkFormCompletion() {
-      if (nextBtn) {
-        if (selectedDate && selectedTime) {
-          nextBtn.disabled = false
-          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed')
-        } else {
-          nextBtn.disabled = true
-          nextBtn.classList.add('opacity-50', 'cursor-not-allowed')
-        }
-      }
-    }
-
-    // Event listeners
-    if (scheduleBtn) scheduleBtn.addEventListener('click', openModal)
-    if (scheduleBtnBottom)
-      scheduleBtnBottom.addEventListener('click', openModal)
-    if (closeModal) closeModal.addEventListener('click', closeModalFunc)
-
-    // Add event listeners for service option buttons
-    const serviceButtons = document.querySelectorAll('.schedule-btn')
-    serviceButtons.forEach((button) => {
-      button.addEventListener('click', openModal)
-    })
-
-    if (prevMonthBtn) {
-      prevMonthBtn.addEventListener('click', function () {
-        currentDate.setMonth(currentDate.getMonth() - 1)
-        generateCalendar()
-      })
-    }
-
-    if (nextMonthBtn) {
-      nextMonthBtn.addEventListener('click', function () {
-        currentDate.setMonth(currentDate.getMonth() + 1)
-        generateCalendar()
-      })
-    }
-
-    // Time slot selection
-    document.addEventListener('click', function (e) {
-      if (e.target.classList.contains('time-slot')) {
-        selectTime(e.target)
-      }
-    })
-
-    if (modal) {
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          closeModalFunc()
-        }
-      })
-    }
-
-    // Handle form submission
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function (e) {
-        e.preventDefault()
-        if (selectedDate && selectedTime) {
-          alert(
-            `Appointment scheduled for ${selectedDate.toDateString()} at ${selectedTime}`,
-          )
-          closeModalFunc()
-        }
-      })
-    }
-  })
-</script>
