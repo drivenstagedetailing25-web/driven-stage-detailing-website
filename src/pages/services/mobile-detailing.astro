@@ -5,6 +5,7 @@ import CheckMark from '../../assets/svg/check-mark.svg'
 import Calendar from '../../assets/svg/calendar.svg'
 import Home from '../../assets/svg/home.svg'
 import ChevronRight from '../../assets/svg/chevron-right.svg'
+import { OpenContactModalButton } from '../../components/preact/OpenContactModalButton'
 
 const serviceOptions = [
   {
@@ -167,13 +168,14 @@ const luxuryServiceOptions = [
           showroom-quality results without the hassle of traveling to a shop.
           Perfect for busy professionals who demand excellence.
         </p>
-        <button type='button' id='schedule-btn' class='btn btn-primary btn-lg'>
+
+        <OpenContactModalButton client:visible size='lg'>
           Schedule Service
           <Calendar class='ml-2 size-5' />
-        </button>
+        </OpenContactModalButton>
       </div>
 
-      <div class='relative overflow-hidden rounded-2xl shadow-2xl'>
+      <div class='overflow-hidden rounded-2xl shadow-2xl'>
         <Image
           width={800}
           height={600}
@@ -247,13 +249,10 @@ const luxuryServiceOptions = [
                   ))}
                 </ul>
 
-                <button
-                  type='button'
-                  class='schedule-btn w-full btn btn-primary btn-base'
-                >
+                <OpenContactModalButton client:visible fullWidth>
                   Schedule Service
                   <Calendar class='ml-2 size-5' />
-                </button>
+                </OpenContactModalButton>
               </div>
             </article>
           ))
@@ -325,13 +324,11 @@ const luxuryServiceOptions = [
                 <p class='text-foreground/90 leading-relaxed mb-6'>
                   {service.description}
                 </p>
-                <button
-                  type='button'
-                  class='schedule-btn w-full btn btn-primary btn-base'
-                >
+
+                <OpenContactModalButton client:visible fullWidth>
                   Schedule Service
                   <Calendar class='ml-2 size-5' />
-                </button>
+                </OpenContactModalButton>
               </div>
             </article>
           ))
@@ -352,14 +349,11 @@ const luxuryServiceOptions = [
         Book your mobile detailing service today and experience the convenience
         of premium car care at your doorstep.
       </p>
-      <button
-        type='button'
-        id='schedule-btn-bottom'
-        class='btn btn-primary btn-base mr-4'
-      >
-        Schedule Now
-        <Calendar class='ml-2 w-5 h-5' />
-      </button>
+
+      <OpenContactModalButton client:visible>
+        Schedule Service
+        <Calendar class='ml-2 size-5' />
+      </OpenContactModalButton>
     </div>
   </section>
 </Layout>

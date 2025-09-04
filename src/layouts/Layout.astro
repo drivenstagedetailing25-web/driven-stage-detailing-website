@@ -1,5 +1,6 @@
 ---
 import Footer from '../components/astro/Footer.astro'
+import { ContactFormModal } from '../components/preact/ContactFormModal'
 import Header from '../components/preact/Header'
 import '../styles/global.css'
 import fontBarlow400 from '/fonts/barlow-condensed/barlow-condensed-latin-400-normal.woff2?url'
@@ -66,6 +67,7 @@ const {
   </head>
   <body class='antialiased font-inter'>
     <Header client:load />
+    <ContactFormModal client:load />
     <slot />
     <Footer />
   </body>

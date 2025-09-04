@@ -4,6 +4,7 @@ import { Image } from 'astro:assets'
 import Calendar from '../../assets/svg/calendar.svg'
 import Home from '../../assets/svg/home.svg'
 import ChevronRight from '../../assets/svg/chevron-right.svg'
+import { OpenContactModalButton } from '../../components/preact/OpenContactModalButton'
 
 const ceramicCoatingOptions = [
   {
@@ -84,10 +85,10 @@ const ceramicCoatingOptions = [
           enhanced gloss, and hydrophobic properties for years of superior paint
           preservation.
         </p>
-        <button type='button' id='schedule-btn' class='btn btn-primary btn-lg'>
+        <OpenContactModalButton client:visible>
           Schedule Service
           <Calendar class='ml-2 size-5' />
-        </button>
+        </OpenContactModalButton>
       </div>
 
       <div class='relative overflow-hidden rounded-2xl shadow-2xl'>
@@ -159,13 +160,10 @@ const ceramicCoatingOptions = [
                   {service.description}
                 </p>
 
-                <button
-                  type='button'
-                  class='schedule-btn w-full btn btn-primary btn-base'
-                >
-                  {service.buttonText}
+                <OpenContactModalButton client:visible fullWidth>
+                  Schedule Service
                   <Calendar class='ml-2 size-5' />
-                </button>
+                </OpenContactModalButton>
               </div>
             </article>
           ))
@@ -187,38 +185,10 @@ const ceramicCoatingOptions = [
         services. Contact us today for a consultation and protect your
         investment for years to come.
       </p>
-      <button
-        type='button'
-        id='schedule-btn-bottom'
-        class='btn btn-primary btn-base mr-4'
-      >
-        Schedule Now
-        <Calendar class='ml-2 w-5 h-5' />
-      </button>
+      <OpenContactModalButton client:visible>
+        Schedule Service
+        <Calendar class='ml-2 size-5' />
+      </OpenContactModalButton>
     </div>
   </section>
 </Layout>
-
-<!-- JavaScript for Modal (if needed for scheduling) -->
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    const scheduleBtn = document.getElementById('schedule-btn')
-    const scheduleBtnBottom = document.getElementById('schedule-btn-bottom')
-
-    // Add event listeners for service option buttons
-    const serviceButtons = document.querySelectorAll('.schedule-btn')
-
-    function handleScheduleClick() {
-      // For now, just show an alert. You can integrate with the modal from mobile-detailing later
-      alert('Ceramic coating scheduling will be available soon!')
-    }
-
-    if (scheduleBtn) scheduleBtn.addEventListener('click', handleScheduleClick)
-    if (scheduleBtnBottom)
-      scheduleBtnBottom.addEventListener('click', handleScheduleClick)
-
-    serviceButtons.forEach((button) => {
-      button.addEventListener('click', handleScheduleClick)
-    })
-  })
-</script>

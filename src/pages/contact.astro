@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
+import { ContactForm } from '../components/preact/ContactForm'
 ---
 
 <Layout title='Driven Stage Detailing - Contact'>
@@ -31,18 +32,18 @@ import Layout from '../layouts/Layout.astro'
 
     <!-- Contact Form Container -->
     <div
-      class='container pb-20 mx-auto px-6 relative z-10 h-full flex items-center'
+      class='container lg:pb-10 mx-auto px-6 relative z-10 h-full flex items-center'
     >
       <div
-        class='flex flex-col lg:flex-row items-center lg:justify-around w-full'
+        class='flex flex-col lg:flex-row lg:gap-20 lg:justify-around w-full'
       >
         <!-- Left Side - Giant Title -->
         <div
-          class='flex flex-col text-center lg:text-left pt-2 justify-center h-full'
+          class='flex lg:mt-20 flex-col text-center lg:text-left pt-2 justify-center h-full'
         >
           <h2
             id='giant-title'
-            class='text-4xl md:text-4xl lg:text-7xl mb-6 font-bold font-barlow text-white leading-none opacity-0 transform translate-y-6 transition-all duration-800 ease-out'
+            class='text-4xl md:text-6xl lg:text-7xl mb-6 font-bold font-barlow text-white leading-none opacity-0 transform translate-y-6 transition-all duration-800 ease-out'
           >
             Get Your
             <span class='text-gradient-primary block'>Free Quote</span>
@@ -72,111 +73,11 @@ import Layout from '../layouts/Layout.astro'
         </div>
 
         <!-- Contact Form - Right Side -->
-        <div
-          class='flex flex-col justify-center h-full w-full max-w-3xl lg:max-w-md xl:max-w-xl mt-10 lg:mt-0'
+        <article
+          class='flex flex-col justify-center h-full w-full max-w-3xl lg:max-w-md xl:max-w-xl mt-10'
         >
-          <!-- Contact Form with Blur Background -->
-          <div
-            class='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20'
-          >
-            <form class='space-y-4'>
-              <!-- Name -->
-              <div>
-                <label for='name' class='block text-light font-medium mb-1'>
-                  Full Name *
-                </label>
-                <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  required
-                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
-                  placeholder='Enter your full name'
-                />
-              </div>
-
-              <!-- Email -->
-              <div>
-                <label for='email' class='block text-light font-medium mb-1'>
-                  Email Address *
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  required
-                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
-                  placeholder='Enter your email'
-                />
-              </div>
-
-              <!-- Phone -->
-              <div>
-                <label for='phone' class='block text-light font-medium mb-1'>
-                  Phone Number
-                </label>
-                <input
-                  type='tel'
-                  id='phone'
-                  name='phone'
-                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
-                  placeholder='Enter your phone number'
-                />
-              </div>
-
-              <!-- Service -->
-              <div>
-                <label for='service' class='block text-light font-medium mb-1'>
-                  Service Interested In
-                </label>
-                <select
-                  id='service'
-                  name='service'
-                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm text-foreground'
-                >
-                  <option value=''>Select a service</option>
-                  <option value='mobile-detailing'>Mobile Detailing</option>
-                  <option value='paint-correction'>Paint Correction</option>
-                  <option value='ceramic-coating'>Ceramic Coating</option>
-                  <option value='multiple'>Multiple Services</option>
-                </select>
-              </div>
-
-              <!-- Message -->
-              <div>
-                <label for='message' class='block text-light font-medium mb-1'>
-                  Additional Details
-                </label>
-                <textarea
-                  id='message'
-                  name='message'
-                  rows='3'
-                  class='w-full px-3 py-2 bg-light border border-muted rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none text-sm text-foreground'
-                  placeholder='Tell us about your vehicle and service preferences...'
-                ></textarea>
-              </div>
-
-              <!-- Submit Button -->
-              <div class='text-center pt-2'>
-                <button type='submit' class='w-full btn btn-primary btn-base'>
-                  Get My Free Quote
-                  <svg
-                    class='ml-2 w-4 h-4'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'
-                  >
-                    <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      stroke-width='2'
-                      d='M12 19l9 2-9-18-9 18 9-2zm0 0v-8'></path>
-                  </svg>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+          <ContactForm client:visible blurredBackground />
+        </article>
       </div>
     </div>
 
