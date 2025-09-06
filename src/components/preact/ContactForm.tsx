@@ -10,6 +10,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
   const [preferredDate, setPreferredDate] = useState('')
   const [preferredTime, setPreferredTime] = useState('')
   const [dateError, setDateError] = useState('')
+  const [error, setError] = useState('')
 
   const todayISO = useMemo(() => {
     const d = new Date()
@@ -54,7 +55,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     }
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!preferredDate) {
@@ -68,8 +69,27 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
 
     const formData = new FormData(e.currentTarget)
     const dataToSend = Object.fromEntries(formData.entries())
-    alert(JSON.stringify(dataToSend))
-    closeContactModal()
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      })
+
+      if (!response.ok) {
+        setError('There was an error sending your message. Please try again.')
+        window.alert(error)
+      }
+
+      window.alert('Thank you! Your message has been sent.')
+
+      closeContactModal()
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    }
   }
 
   return (
@@ -139,7 +159,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         <div>
           <label
-            htmlFor ='preferredDate'
+            htmlFor='preferredDate'
             className='text-light mb-1 block font-medium'
           >
             Preferred Date *
