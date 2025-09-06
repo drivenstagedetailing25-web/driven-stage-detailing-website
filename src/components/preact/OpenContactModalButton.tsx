@@ -1,8 +1,7 @@
-import type { ComponentChildren } from 'preact'
-import { openContactModal } from '../../store/modalStore'
+import { useContactModal } from '../../store/modalStore'
 
 interface OpenContactModalButtonProps {
-  children: ComponentChildren
+  children: React.ReactNode
   size?: 'sm' | 'base' | 'lg'
   fullWidth?: boolean
 }
@@ -10,8 +9,10 @@ interface OpenContactModalButtonProps {
 export function OpenContactModalButton({
   children,
   size = 'base',
-  fullWidth = false,  
+  fullWidth = false,
 }: OpenContactModalButtonProps) {
+  const openContactModal = useContactModal((state) => state.openContactModal)
+
   return (
     <button
       type='button'

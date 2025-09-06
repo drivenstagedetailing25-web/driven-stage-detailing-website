@@ -1,12 +1,12 @@
-import type { JSX } from 'preact/jsx-runtime'
-import { closeContactModal } from '../../store/modalStore'
-import { useState, useMemo } from 'preact/hooks'
+import { useState, useMemo } from 'react'
+import { useContactModal } from '../../store/modalStore'
 
 interface ContactFormProps {
   blurredBackground?: boolean
 }
 
 export function ContactForm({ blurredBackground }: ContactFormProps) {
+  const closeContactModal = useContactModal((state) => state.closeContactModal)
   const [preferredDate, setPreferredDate] = useState('')
   const [preferredTime, setPreferredTime] = useState('')
   const [dateError, setDateError] = useState('')
@@ -54,7 +54,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     }
   }
 
-  function handleSubmit(e: JSX.TargetedSubmitEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (!preferredDate) {
@@ -78,7 +78,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       className={`relative w-full space-y-4 rounded-xl border border-zinc-700 bg-black/30 p-6 text-sm shadow-xl ${blurredBackground ? 'backdrop-blur-sm' : ''}`}
     >
       <div className='mt-5'>
-        <label for='name' className='text-light mb-1 block font-medium'>
+        <label htmlFor='name' className='text-light mb-1 block font-medium'>
           Full Name *
         </label>
         <input
@@ -92,7 +92,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       </div>
 
       <div>
-        <label for='email' className='text-light mb-1 block font-medium'>
+        <label htmlFor='email' className='text-light mb-1 block font-medium'>
           Email Address *
         </label>
         <input
@@ -106,7 +106,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       </div>
 
       <div>
-        <label for='phone' className='text-light mb-1 block font-medium'>
+        <label htmlFor='phone' className='text-light mb-1 block font-medium'>
           Phone Number
         </label>
         <input
@@ -119,7 +119,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       </div>
 
       <div>
-        <label for='service' className='text-light mb-1 block font-medium'>
+        <label htmlFor='service' className='text-light mb-1 block font-medium'>
           Service Interested In *
         </label>
         <select
@@ -139,7 +139,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         <div>
           <label
-            for='preferredDate'
+            htmlFor ='preferredDate'
             className='text-light mb-1 block font-medium'
           >
             Preferred Date *
@@ -161,7 +161,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
 
         <div>
           <label
-            for='preferredTime'
+            htmlFor='preferredTime'
             className='text-light mb-1 block font-medium'
           >
             Preferred Time *
@@ -189,7 +189,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       </div>
 
       <div>
-        <label for='message' className='text-light mb-1 block font-medium'>
+        <label htmlFor='message' className='text-light mb-1 block font-medium'>
           Additional Details
         </label>
         <textarea

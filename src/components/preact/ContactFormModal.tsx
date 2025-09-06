@@ -1,8 +1,11 @@
-import { isContactModalOpen, closeContactModal } from '../../store/modalStore'
+import { useContactModal } from '../../store/modalStore'
 import { ContactForm } from './ContactForm'
 
 export function ContactFormModal() {
-  if (!isContactModalOpen.value) return
+  const isOpen = useContactModal((state) => state.isOpen)
+  const closeContactModal = useContactModal((state) => state.closeContactModal)
+
+  if (!isOpen) return
 
   return (
     <div className='fixed inset-0 z-50 grid place-items-center bg-black/80 backdrop-blur-sm'>

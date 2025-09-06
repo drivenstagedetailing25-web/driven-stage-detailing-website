@@ -1,6 +1,13 @@
-import { signal } from '@preact/signals'
+import { create } from 'zustand'
 
-export const isContactModalOpen = signal(false)
+interface ContactModalState {
+  isOpen: boolean
+  openContactModal: () => void
+  closeContactModal: () => void
+}
 
-export const openContactModal = () => (isContactModalOpen.value = true)
-export const closeContactModal = () => (isContactModalOpen.value = false)
+export const useContactModal = create<ContactModalState>((set) => ({
+  isOpen: false,
+  openContactModal: () => set({ isOpen: true }),
+  closeContactModal: () => set({ isOpen: false }),
+}))
