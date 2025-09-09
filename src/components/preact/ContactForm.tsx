@@ -1,8 +1,15 @@
 import { useState, useMemo } from 'react'
 import { useContactModal } from '../../store/modalStore'
+import { toast } from '@pheralb/toast'
+import { Spinner } from './ui/Spinner'
 
 interface ContactFormProps {
   blurredBackground?: boolean
+}
+
+type ResponseSuccess = {
+  id: string
+  success: boolean
 }
 
 export function ContactForm({ blurredBackground }: ContactFormProps) {
@@ -11,6 +18,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
   const [preferredTime, setPreferredTime] = useState('')
   const [dateError, setDateError] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const todayISO = useMemo(() => {
     const d = new Date()
@@ -41,7 +49,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     if (!val) return
 
     const sel = new Date(val + 'T00:00:00')
-    const day = sel.getDay() // 0 Dom, 6 Sáb
+    const day = sel.getDay()
     if (day === 0 || day === 6) {
       setPreferredDate('')
       setDateError('Please select a weekday (Mon to Fri).')
@@ -70,6 +78,8 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     const formData = new FormData(e.currentTarget)
     const dataToSend = Object.fromEntries(formData.entries())
 
+    setLoading(true)
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
@@ -79,16 +89,25 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         body: JSON.stringify(dataToSend),
       })
 
+      setLoading(true)
+
       if (!response.ok) {
-        setError('There was an error sending your message. Please try again.')
-        window.alert(error)
+        throw new Error(
+          'There was an error sending your message. Please try again.',
+        )
       }
 
-      window.alert('Thank you! Your message has been sent.')
+      toast.success({
+        text: 'Thank you! Your message has been sent.',
+      })
+
+      e.currentTarget.reset()
 
       closeContactModal()
-    } catch (error) {
-      console.error('Error submitting form:', error)
+    } catch (err) {
+      console.error('Error submitting form')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -222,8 +241,19 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       </div>
 
       <div className='pt-2 text-center'>
-        <button type='submit' className='btn btn-primary w-full py-2.5'>
-          Get My Free Quote
+        <button
+          type='submit'
+          disabled={loading}
+          className='btn btn-primary w-full py-2.5'
+        >
+          {loading ? (
+            <div className='animate-fade-up flex items-center justify-center gap-1'>
+              <Spinner />
+              <span className='ml-2'>sending...</span>
+            </div>
+          ) : (
+            <span className='animate-fade-up'>{'Get My Free Quote'}</span>
+          )}
         </button>
       </div>
     </form>

@@ -1,4 +1,5 @@
 ---
+import { CustomToaster } from '../components/preact/CustomToaster'
 import Footer from '../components/astro/Footer.astro'
 import { ContactFormModal } from '../components/preact/ContactFormModal'
 import Header from '../components/preact/Header'
@@ -68,6 +69,7 @@ const {
   <body class='antialiased font-inter'>
     <Header client:load />
     <ContactFormModal client:load />
+    <CustomToaster client:load />
     <slot />
     <Footer />
   </body>

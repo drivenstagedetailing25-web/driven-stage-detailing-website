@@ -104,6 +104,11 @@
   &:hover {
     cursor: pointer;
   }
+
+  &:disabled {
+    background-color: var(--color-primary-dark);
+    cursor: not-allowed;
+  }
 }
 
 @utility btn-primary {
@@ -152,5 +157,30 @@
 
   @media screen and (width >= 1280px) {
     margin-top: 24dvh;
+  }
+}
+
+/* Animation utilities */
+@utility animate-fade-up {
+  animation: fadeUp 0.35s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
