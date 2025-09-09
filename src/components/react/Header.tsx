@@ -189,7 +189,7 @@ export default function Header() {
           {/* Desktop Dropdown Menu */}
 
           {isServicesOpen && (
-            <ul className='bg-dark animate-fade-in absolute top-full left-0 w-56 rounded-lg border py-2 shadow-xl'>
+            <ul className='bg-dark absolute top-full left-0 w-56 rounded-lg border py-2 shadow-xl'>
               {services.map((service, index) => (
                 <li key={index}>
                   <a

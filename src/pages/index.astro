@@ -60,8 +60,8 @@ const services = [
       <h1
         class='text-5xl md:text-[80px] font-bold tracking-wide text-white mb-6 animate-slide-up font-barlow flex flex-col items-center'
       >
-        <span class='block'>DRIVEN STAGE MOBILE</span>
-        <span class='block'>
+        <span class='block animate-fade-up'>DRIVEN STAGE MOBILE</span>
+        <span class='block animate-fade-up animate-delay-300'>
           <span class='text-primary'>AUTO</span>
           <span class='text-gradient-primary inline-block max-w-fit mx-auto'
             >DETAILING</span
@@ -99,10 +99,10 @@ const services = [
         Our Services
       </h2>
 
-      <ul class='grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto'>
+      <div class='grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto'>
         {
           services.map((service) => (
-            <li class='group cursor-pointer relative overflow-hidden rounded-2xl aspect-[3/4] hover:shadow-2xl transition-all duration-500'>
+            <article class='group cursor-pointer relative overflow-hidden rounded-2xl aspect-[3/4] hover:shadow-2xl transition-all duration-500 animate-fade-up'>
               <Image
                 width={600}
                 height={400}
@@ -150,10 +150,10 @@ const services = [
                   </a>
                 </div>
               </div>
-            </li>
+            </article>
           ))
         }
-      </ul>
+      </div>
     </div>
   </section>
 
@@ -167,7 +167,6 @@ const services = [
       </h2>
 
       <div class='space-y-16'>
-        <!-- Mobile Detailing Trailer -->
         <div class='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
           <div class='lg:pl-8'>
             <h3 class='text-3xl font-bold text-primary mb-6 font-barlow'>
@@ -184,7 +183,7 @@ const services = [
             </OpenContactModalButton>
           </div>
 
-          <div class='relative overflow-hidden rounded-2xl'>
+          <div class='relative overflow-hidden rounded-2xl animate-fade-right'>
             <Image
               width={600}
               height={400}
@@ -197,7 +196,7 @@ const services = [
 
         <!-- Trained Experts -->
         <div class='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
-          <div class='lg:order-1 relative overflow-hidden rounded-2xl'>
+          <div class='lg:order-1 relative overflow-hidden rounded-2xl animate-fade-left'>
             <Image
               width={600}
               height={400}
@@ -223,7 +222,7 @@ const services = [
 
         <!-- Quality & Excellence -->
         <div class='grid lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
-          <div class='lg:order-2 relative overflow-hidden rounded-2xl'>
+          <div class='lg:order-2 relative overflow-hidden rounded-2xl animate-fade-right'>
             <Image
               width={600}
               height={400}

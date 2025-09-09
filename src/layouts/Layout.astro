@@ -80,3 +80,11 @@ const {
     scroll-behavior: smooth;
   }
 </style>
+
+<script>
+  import { setupScrollAnimations } from '../lib/animate-on-scroll'
+
+  if (typeof window !== 'undefined') {
+    setupScrollAnimations()
+  }
+</script>

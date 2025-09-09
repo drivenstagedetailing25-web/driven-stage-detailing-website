@@ -247,12 +247,12 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
           className='btn btn-primary w-full py-2.5'
         >
           {loading ? (
-            <div className='animate-fade-up flex items-center justify-center gap-1'>
+            <div className='fade-up flex items-center justify-center gap-1'>
               <Spinner />
               <span className='ml-2'>sending...</span>
             </div>
           ) : (
-            <span className='animate-fade-up'>{'Get My Free Quote'}</span>
+            <span className='fade-up'>{'Get My Free Quote'}</span>
           )}
         </button>
       </div>
