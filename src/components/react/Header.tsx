@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { MobileMenu } from './MobileMenu'
 
 export default function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false)
@@ -13,8 +14,8 @@ export default function Header() {
     { name: 'Ceramic Coating', href: '/services/ceramic-coating' },
   ]
 
-  const toggleServices = () => setIsServicesOpen(!isServicesOpen)
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
   useEffect(() => {
     setIsHome(window.location.pathname === '/')
@@ -54,7 +55,7 @@ export default function Header() {
         <button
           type='button'
           onClick={toggleMobileMenu}
-          className='rounded-lg bg-white/10 p-2 lg:hidden'
+          className='rounded-lg bg-white/10 p-2 lg:hidden hover:cursor-pointer'
           aria-label='Toggle mobile menu'
         >
           <svg
@@ -82,67 +83,7 @@ export default function Header() {
         </button>
 
         {/* Mobile Menu Navigation */}
-
-        {isMobileMenuOpen && (
-          <nav className='bg-dark animate-slide-up absolute top-full mt-4 w-full border-t px-4 pb-4 text-white lg:hidden'>
-            <a
-              href='/'
-              className='block rounded-lg py-3 font-medium transition-all duration-200'
-            >
-              Home
-            </a>
-
-            <button
-              type='button'
-              onClick={toggleServices}
-              className='flex w-full items-center justify-between rounded-lg py-3 font-medium transition-all duration-200 hover:cursor-pointer'
-            >
-              Our Services
-              <svg
-                className={`h-4 w-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`}
-                fill='none'
-                viewBox='0 0 24 24'
-                stroke='currentColor'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M19 9l-7 7-7-7'
-                />
-              </svg>
-            </button>
-
-            {isServicesOpen && (
-              <ul className='mt-2 ml-4 space-y-1'>
-                {services.map((service, index) => (
-                  <li key={index}>
-                    <a
-                      href={service.href}
-                      className='text-muted block px-4 py-2 transition-colors duration-200'
-                    >
-                      {service.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <a
-              href='/about'
-              className='block rounded-lg py-3 font-medium transition-all duration-200'
-            >
-              About Us
-            </a>
-
-            <a
-              href='/contact'
-              className='bg-primary hover:bg-primary-dark mt-4 block rounded-lg py-3 text-center font-bold text-white transition-all duration-300'
-            >
-              Contact
-            </a>
-          </nav>
-        )}
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
       </div>
 
       {/* Desktop Navigation */}
@@ -189,9 +130,12 @@ export default function Header() {
           {/* Desktop Dropdown Menu */}
 
           {isServicesOpen && (
-            <ul className='bg-dark absolute top-full left-0 w-56 rounded-lg border py-2 shadow-xl'>
+            <ul className='bg-dark absolute top-[110%] mt-0 left-0 w-56 rounded-lg border py-2 shadow-xl transform transition-all duration-300 ease-out opacity-0 -translate-y-2 fade-down'>
               {services.map((service, index) => (
-                <li key={index}>
+                <li 
+                  key={index}
+                  className={`transform transition-all duration-500 ease-out opacity-0 -translate-y-1 desktop-service-delay-${index + 1}`}
+                >
                   <a
                     href={service.href}
                     className='hover:bg-light hover:text-primary block px-4 py-3 font-medium text-white transition-all duration-200 hover:cursor-pointer'

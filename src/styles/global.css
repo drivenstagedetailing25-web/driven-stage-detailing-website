@@ -202,3 +202,80 @@
 .animate-fade-in {
   opacity: 0;
 }
+
+/* Mobile Menu Animation Delays */
+.menu-item-delay-1 {
+  transition-delay: 200ms;
+}
+
+.menu-item-delay-2 {
+  transition-delay: 300ms;
+}
+
+.menu-item-delay-3 {
+  transition-delay: 400ms;
+}
+
+.menu-item-delay-4 {
+  transition-delay: 500ms;
+}
+
+.service-item-delay-1 {
+  transition-delay: 0ms;
+}
+
+.service-item-delay-2 {
+  transition-delay: 100ms;
+}
+
+.service-item-delay-3 {
+  transition-delay: 200ms;
+}
+
+.service-item-delay-4 {
+  transition-delay: 300ms;
+}
+
+/* Desktop Dropdown Animation */
+.fade-down {
+  animation: fadeDown 300ms ease-out forwards;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop Service Items Delays */
+.desktop-service-delay-1 {
+  animation: fadeDownItem 300ms ease-out forwards;
+}
+
+.desktop-service-delay-2 {
+  animation: fadeDownItem 300ms ease-out forwards;
+}
+
+.desktop-service-delay-3 {
+  animation: fadeDownItem 300ms ease-out forwards;
+}
+
+.desktop-service-delay-4 {
+  animation: fadeDownItem 300ms ease-out forwards;
+}
+
+@keyframes fadeDownItem {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
