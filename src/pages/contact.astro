@@ -4,7 +4,10 @@ import Layout from '../layouts/Layout.astro'
 import { ContactForm } from '../components/react/ContactForm'
 ---
 
-<Layout title='Driven Stage Detailing - Contact'>
+<Layout 
+  title='Contact Us - Driven Stage Detailing'
+  description='Contact Driven Stage Detailing for professional mobile auto detailing services. Get your free quote today and schedule your appointment at your convenient location.'
+>
   <!-- Contact Section with Car Animation -->
   <section
     class='first-section bg-gradient-to-br from-primary/5 via-dark to-dark relative pb-20 bg-dark overflow-hidden'
@@ -18,7 +21,9 @@ import { ContactForm } from '../components/react/ContactForm'
         id='contact'
         class='absolute right-0 top-1/2 -translate-y-1/2 w-full h-full'
       >
-        <img
+        <Image
+          width={1920}
+          height={1080}
           src='/images/yellow-sport-car.png'
           alt='Car approaching'
           class='w-full h-full object-cover object-center'

@@ -10,11 +10,17 @@ import fontBarlow700 from '/fonts/barlow-condensed/barlow-condensed-latin-700-no
 export interface Props {
   title?: string
   description?: string
+  OgImage?: string
+  keywords?: string
+  canonical?: string
 }
 
 const {
-  title = 'Driven Stage Detailing - Taller de Tuning Profesional',
-  description = 'Especialistas en tuning, detailing y modificaciones automotrices. Transforma tu vehículo con nuestros servicios profesionales.',
+  title = 'Driven Stage Detailing - Professional Mobile Auto Detailing Services',
+  description = 'Professional mobile auto detailing services at your location. Premium paint correction, ceramic coating, and detailing with state-of-the-art equipment and certified technicians.',
+  OgImage = '/og-image.webp',
+  keywords = 'mobile auto detailing, paint correction, ceramic coating, car detailing, professional detailing, mobile car wash, auto care, vehicle protection, car cleaning services',
+  canonical = Astro.url.href,
 } = Astro.props
 
 const isHome = Astro.url.pathname === '/'
@@ -60,20 +66,73 @@ const isHome = Astro.url.pathname === '/'
     />
 
     <meta name='description' content={description} />
-    <meta
-      name='keywords'
-      content='tuning, detailing, modificaciones automotrices, taller, personalización, performance'
-    />
+    <meta name='keywords' content={keywords} />
+    <meta name='author' content='Driven Stage Detailing' />
+    <meta name='robots' content='index, follow' />
+    <link rel='canonical' href={canonical} />
 
     <!-- Open Graph / Facebook -->
     <meta property='og:type' content='website' />
+    <meta property='og:url' content={canonical} />
     <meta property='og:title' content={title} />
     <meta property='og:description' content={description} />
+    <meta property='og:image' content={new URL(OgImage, Astro.site).href} />
+    <meta property='og:site_name' content='Driven Stage Detailing' />
+    <meta property='og:locale' content='en_US' />
 
     <!-- Twitter -->
-    <meta property='twitter:card' content='summary_large_image' />
-    <meta property='twitter:title' content={title} />
-    <meta property='twitter:description' content={description} />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:url' content={canonical} />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={new URL(OgImage, Astro.site).href} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type='application/ld+json'>
+      {
+        JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          'name': 'Driven Stage Detailing',
+          'description': 'Professional mobile auto detailing services',
+          'url': canonical,
+          'logo': new URL('/images/logo.png', Astro.site).href,
+          'image': new URL(OgImage, Astro.site).href,
+          'serviceType': 'Auto Detailing',
+          'areaServed': 'Mobile Service Area',
+          'hasOfferCatalog': {
+            '@type': 'OfferCatalog',
+            'name': 'Auto Detailing Services',
+            'itemListElement': [
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Service',
+                  'name': 'Mobile Auto Detailing',
+                  'description': 'Professional mobile auto detailing services at your location'
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Service',
+                  'name': 'Paint Correction',
+                  'description': 'Professional paint correction to eliminate swirl marks and scratches'
+                }
+              },
+              {
+                '@type': 'Offer',
+                'itemOffered': {
+                  '@type': 'Service',
+                  'name': 'Ceramic Coating',
+                  'description': 'Advanced ceramic coating protection for vehicles'
+                }
+              }
+            ]
+          }
+        })
+      }
+    </script>
 
     <title>{title}</title>
   </head>
