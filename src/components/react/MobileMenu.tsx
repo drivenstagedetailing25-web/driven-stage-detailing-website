@@ -170,7 +170,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className={`transform transition-all duration-700 ease-out service-item-delay-${index + 1} ${
                       showServiceItems
                         ? 'translate-y-0 opacity-100'
-                        : '-translate-y-4 opacity-0'
+                        : 'translate-y-4 opacity-0'
                     }`}
                   >
                     <a
