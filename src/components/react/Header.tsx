@@ -51,7 +51,7 @@ export default function Header({ isHome: initialIsHome = false }: HeaderProps) {
             aria-label='Driven Stage Detailing - Home'
           >
             <img
-              src='/images/logo.png'
+              src='/images/logo.webp'
               alt='Driven Stage Detailing Logo'
               className='h-24 w-auto brightness-110 contrast-125 md:h-32'
             />

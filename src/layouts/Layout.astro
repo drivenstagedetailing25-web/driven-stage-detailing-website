@@ -79,7 +79,7 @@ const isHome = Astro.url.pathname === '/'
     <meta property='og:image' content={new URL(OgImage, Astro.site).href} />
     <meta property='og:site_name' content='Driven Stage Detailing' />
     <meta property='og:locale' content='en_US' />
-    <meta property="og:logo" content="/images/logo.png" />
+    <meta property="og:logo" content="/images/logo.webp" />
 
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="4R-zPwaO1S08cA4oP2iBgn_l6NL_dEaRXFwdsklwqeQ" />
@@ -91,56 +91,9 @@ const isHome = Astro.url.pathname === '/'
     <meta name='twitter:description' content={description} />
     <meta name='twitter:image' content={new URL(OgImage, Astro.site).href} />
 
-    <!-- JSON-LD Structured Data -->
-    <script type='application/ld+json'>
-      {
-        JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          'name': 'Driven Stage Detailing',
-          'description': 'Professional mobile auto detailing services',
-          'url': canonical,
-          'logo': new URL('/images/logo.png', Astro.site).href,
-          'image': new URL(OgImage, Astro.site).href,
-          'serviceType': 'Auto Detailing',
-          'areaServed': 'Mobile Service Area',
-          'hasOfferCatalog': {
-            '@type': 'OfferCatalog',
-            'name': 'Auto Detailing Services',
-            'itemListElement': [
-              {
-                '@type': 'Offer',
-                'itemOffered': {
-                  '@type': 'Service',
-                  'name': 'Mobile Auto Detailing',
-                  'description': 'Professional mobile auto detailing services at your location'
-                }
-              },
-              {
-                '@type': 'Offer',
-                'itemOffered': {
-                  '@type': 'Service',
-                  'name': 'Paint Correction',
-                  'description': 'Professional paint correction to eliminate swirl marks and scratches'
-                }
-              },
-              {
-                '@type': 'Offer',
-                'itemOffered': {
-                  '@type': 'Service',
-                  'name': 'Ceramic Coating',
-                  'description': 'Advanced ceramic coating protection for vehicles'
-                }
-              }
-            ]
-          }
-        })
-      }
-    </script>
-
     <title>{title}</title>
   </head>
-  <body class='antialiased font-inter  overflow-x-hidden'>
+  <body class='antialiased font-inter overflow-x-hidden'>
     <Header client:load isHome={isHome} />
     <ContactFormModal client:load />
     <CustomToaster client:load />

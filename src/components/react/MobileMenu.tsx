@@ -84,7 +84,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className='flex items-center justify-between border-b border-gray-800 p-6'>
           <div className='flex items-center space-x-3'>
             <img
-              src='/images/logo.png'
+              src='/images/logo.webp'
               alt='Driven Stage Detailing Logo'
               className='h-12 w-auto brightness-110 contrast-125'
             />
