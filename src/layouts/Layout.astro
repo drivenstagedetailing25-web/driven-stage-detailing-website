@@ -16,6 +16,8 @@ const {
   title = 'Driven Stage Detailing - Taller de Tuning Profesional',
   description = 'Especialistas en tuning, detailing y modificaciones automotrices. Transforma tu vehículo con nuestros servicios profesionales.',
 } = Astro.props
+
+const isHome = Astro.url.pathname === '/'
 ---
 
 <!doctype html>
@@ -76,7 +78,7 @@ const {
     <title>{title}</title>
   </head>
   <body class='antialiased font-inter  overflow-x-hidden'>
-    <Header client:load />
+    <Header client:load isHome={isHome} />
     <ContactFormModal client:load />
     <CustomToaster client:load />
     <slot />
