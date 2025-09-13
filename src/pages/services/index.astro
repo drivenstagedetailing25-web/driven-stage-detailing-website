@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro'
 import ChevronRight from '../../assets/svg/chevron-right.svg'
 import Calendar from '../../assets/svg/calendar.svg'
 import Clock from '../../assets/svg/clock.svg'
+import { OpenContactModalButton } from '../../components/react/OpenContactModalButton'
 
 const services = [
   {
@@ -261,14 +262,10 @@ const individualServices = [
         Book your mobile detailing service today and experience the convenience
         of premium car care at your doorstep.
       </p>
-      <button
-        type='button'
-        id='schedule-btn-bottom'
-        class='btn btn-primary btn-base mr-4'
-      >
-        Schedule Now
-        <Calendar class='ml-2 w-5 h-5' />
-      </button>
+      <OpenContactModalButton client:visible>
+        Schedule Service
+        <Calendar class='ml-2 size-5' />
+      </OpenContactModalButton>
     </div>
   </section>
 </Layout>
