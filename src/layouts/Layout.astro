@@ -97,7 +97,9 @@ const isHome = Astro.url.pathname === '/'
     <Header client:load isHome={isHome} />
     <ContactFormModal client:load />
     <CustomToaster client:load />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
