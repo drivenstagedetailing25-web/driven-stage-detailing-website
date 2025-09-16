@@ -86,7 +86,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <img
               src='/images/logo.webp'
               alt='Driven Stage Detailing Logo'
-              className='h-12 w-auto brightness-110 contrast-125'
+              className='h-16 w-auto brightness-110 contrast-125'
             />
             <div>
               <p className='text-sm font-bold text-white'>DRIVEN STAGE</p>
@@ -175,7 +175,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   >
                     <a
                       href={service.href}
-                      className='text-muted block rounded-lg px-4 py-3 transition-all duration-300 ease-out hover:bg-white/5 hover:text-white text-xl'
+                      className='text-muted block rounded-lg px-4 py-1 transition-all duration-300 ease-out hover:bg-white/5 hover:text-white text-xl'
                       onClick={handleLinkClick}
                     >
                       {service.name}
