@@ -1,143 +1,98 @@
 ---
-import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
-import { ContactForm } from '../components/react/ContactForm'
+
+const contactMethods = [
+  {
+    title: 'Call or Text',
+    value: '(201) 966-6990',
+    description:
+      'Fastest way to reach us. We usually reply in under 60 seconds during business hours.',
+    href: 'tel:+12019666990',
+    icon: 'M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.08.35 2.24.54 3.43.54a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.06 21 3 13.94 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.19.19 2.35.54 3.43a1 1 0 0 1-.24 1l-2.2 2.37Z',
+  },
+  {
+    title: 'Email',
+    value: 'info@drivenstagedetailing.com',
+    description:
+      "Best for estimates, photos, or any request that doesn't need an immediate response.",
+    href: 'mailto:info@drivenstagedetailing.com',
+    icon: 'M4 5h16a1 1 0 0 1 1 1v.45l-9 5.63a2 2 0 0 1-2.12 0L1 6.45V6a1 1 0 0 1 1-1Zm17 3.3v9.7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8.3l8.35 5.22a4 4 0 0 0 4.24 0L21 8.3Z',
+  },
+  {
+    title: 'Service Area',
+    value: 'Sussex County',
+    description:
+      'We also serve surrounding counties. Let us know your location and we will confirm availability.',
+    href: '/services',
+    icon: 'M12 2a7 7 0 0 0-7 7c0 5.12 6 11 7 11s7-5.88 7-11a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z',
+  },
+  {
+    title: 'Hours',
+    value: '6 Days a Week',
+    description: 'Sunday to Friday.',
+    href: '/contact',
+    icon: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 10.42 3.1 1.79-.96 1.66-4.14-2.39V6h2Z',
+  },
+]
 ---
 
-<Layout 
+<Layout
   title='Contact Us - Driven Stage Detailing'
   description='Contact Driven Stage Detailing for professional mobile auto detailing services. Get your free quote today and schedule your appointment at your convenient location.'
 >
-  <!-- Contact Section with Car Animation -->
   <section
-    class='first-section bg-gradient-to-br from-primary/5 via-dark to-dark relative pb-20 bg-dark overflow-hidden'
+    class='first-section relative overflow-hidden bg-secondary-lighter/80 py-16 lg:py-20'
   >
-    <!-- Animated Car Background -->
-    <div
-      id='car-animation'
-      class='absolute inset-0 opacity-30 transition-all duration-800 ease-out transform translate-x-full scale-75'
-    >
-      <div
-        id='contact'
-        class='absolute right-0 top-1/2 -translate-y-1/2 w-full h-full'
-      >
-        <Image
-          width={1920}
-          height={1080}
-          src='/images/yellow-sport-car.webp'
-          alt='Car approaching'
-          class='w-full h-full object-cover object-center'
-        />
-        <div
-          class='absolute inset-0 bg-gradient-to-l from-transparent via-dark/50 to-dark'
+    <div class='container relative z-10 mx-auto px-6'>
+      <header class='max-w-3xl'>
+        <h1
+          class='font-barlow text-2xl font-bold uppercase tracking-[0.12em] text-dark md:text-5xl'
         >
-        </div>
+          Get in Touch
+        </h1>
+        <span class='mt-4 block h-1.5 w-20 rounded-full bg-primary'></span>
+        <p
+          class='mt-6 text-base leading-relaxed text-secondary-darker md:text-lg'
+        >
+          Four ways to reach us. Pick whichever fits your pace and we will take
+          care of the rest.
+        </p>
+      </header>
+
+      <div class='mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4'>
+        {
+          contactMethods.map((method) => (
+            <article class='group rounded-2xl border border-secondary-light bg-white/65 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl'>
+              <div class='mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-light'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 24 24'
+                  fill='currentColor'
+                  class='h-5 w-5'
+                  aria-hidden='true'
+                >
+                  <path d={method.icon} />
+                </svg>
+              </div>
+
+              <p class='font-barlow text-xs font-bold uppercase tracking-[0.24em] text-secondary-dark'>
+                {method.title}
+              </p>
+
+              <a
+                href={method.href}
+                class='mt-2 block text-xl leading-tight font-barlow font-bold text-dark transition-colors duration-200 group-hover:text-primary'
+              >
+                {method.value}
+              </a>
+
+              <p class='mt-3 text-sm leading-relaxed text-secondary-darker'>
+                {method.description}
+              </p>
+            </article>
+          ))
+        }
       </div>
     </div>
-
-    <!-- Contact Form Container -->
-    <div
-      class='container lg:pb-10 mx-auto px-6 relative z-10 h-full flex items-center'
-    >
-      <div
-        class='flex flex-col lg:flex-row lg:gap-20 lg:justify-around w-full'
-      >
-        <!-- Left Side - Giant Title -->
-        <div
-          class='flex lg:mt-20 flex-col text-center lg:text-left pt-2 justify-center h-full'
-        >
-          <h2
-            id='giant-title'
-            class='text-4xl md:text-6xl lg:text-7xl mb-6 font-bold font-barlow text-white leading-none opacity-0 transform translate-y-6 transition-all duration-800 ease-out'
-          >
-            Get Your
-            <span class='text-gradient-primary block'>Free Quote</span>
-          </h2>
-          <p
-            id='subtitle'
-            class='text-white mt-8 text-lg leading-relaxed text-pretty opacity-0 transform translate-y-8 transition-all duration-800 ease-out delay-300'
-          >
-            Ready to bring the best professional detailing service directly to
-            your location. <br /> Fill out the form and we'll reply with a personalized
-            quote as soon as possible.
-          </p>
-          <ul class='mt-8 space-y-3 text-sm text-light/80'>
-            <li class='flex items-start gap-2'>
-              <span class='text-white font-bold'>•</span> Same-day response during
-              business hours.
-            </li>
-            <li class='flex items-start gap-2'>
-              <span class='text-white font-bold'>•</span> Premium products and certified
-              processes.
-            </li>
-            <li class='flex items-start gap-2'>
-              <span class='text-white font-bold'>•</span> Mobile service: we come
-              to your home or office.
-            </li>
-          </ul>
-        </div>
-
-        <!-- Contact Form - Right Side -->
-        <article
-          class='flex flex-col justify-center h-full w-full max-w-3xl lg:max-w-md xl:max-w-xl mt-10'
-        >
-          <ContactForm client:visible blurredBackground />
-        </article>
-      </div>
-    </div>
-
-    <!-- JavaScript for Car Animation -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const carElement = document.getElementById('car-animation')
-        const giantTitle = document.getElementById('giant-title')
-        const subtitle = document.getElementById('subtitle')
-        const contactSection = document.querySelector('section:last-of-type')
-
-        if (!carElement || !contactSection || !giantTitle || !subtitle) return
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Car enters the scene
-                carElement.classList.remove('translate-x-full', 'scale-75')
-                carElement.classList.add('translate-x-0', 'scale-100')
-                carElement.style.opacity = '0.3'
-
-                // Animate giant title and subtitle
-                setTimeout(() => {
-                  giantTitle.classList.remove('opacity-0', 'translate-y-8')
-                  giantTitle.classList.add('opacity-100', 'translate-y-0')
-                }, 200)
-
-                setTimeout(() => {
-                  subtitle.classList.remove('opacity-0', 'translate-y-8')
-                  subtitle.classList.add('opacity-100', 'translate-y-0')
-                }, 500)
-              } else {
-                // Car exits the scene
-                carElement.classList.add('translate-x-full', 'scale-75')
-                carElement.classList.remove('translate-x-0', 'scale-100')
-                carElement.style.opacity = '0.1'
-
-                // Hide title and subtitle
-                giantTitle.classList.add('opacity-0', 'translate-y-8')
-                giantTitle.classList.remove('opacity-100', 'translate-y-0')
-
-                subtitle.classList.add('opacity-0', 'translate-y-8')
-                subtitle.classList.remove('opacity-100', 'translate-y-0')
-              }
-            })
-          },
-          {
-            threshold: 0.3,
-            rootMargin: '0px 0px -10% 0px',
-          },
-        )
-
-        observer.observe(contactSection)
-      })
-    </script>
   </section>
 </Layout>

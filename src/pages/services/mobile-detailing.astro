@@ -22,9 +22,9 @@ const serviceOptions = [
     features: [
       'Premium hand wash & dry',
       'Wheel & tire cleaning',
-      'Paint decontamination',
+      'Paint Sealant',
       'Wax protection',
-      'Exterior glass cleaning',
+      'Exterior glass and mirror cleaning',
     ],
     borderClass: 'border border-neutral-200',
   },
@@ -40,10 +40,10 @@ const serviceOptions = [
       bgColor: 'bg-secondary',
     },
     features: [
-      'Complete vacuuming',
+      'Complete vacuuming (seats, carpets, trunk)',
       'Dashboard & console cleaning',
-      'Leather conditioning',
-      'Interior glass cleaning',
+      'Door Panels & Cup Holder Areas',
+      'Interior glass and mirror cleaning',
       'Air freshening treatment',
     ],
     borderClass: 'border border-neutral-200',
@@ -65,11 +65,10 @@ const serviceOptions = [
       bgColor: 'bg-primary',
     },
     features: [
-      'Everything from both packages',
-      'Premium wax protection',
-      'Fabric protection treatment',
-      'Engine bay cleaning',
-      'Thorough wipe down',
+      'Full Essential Stage Exterior Services',
+      'Full Essential Stage Interior Services',
+      'Premium Paint Sealant',
+      'The Perfect Balance of Quality and Value',
     ],
     borderClass: 'border-2 border-primary',
   },
@@ -88,8 +87,13 @@ const luxuryServiceOptions = [
       bgColor: 'bg-gradient-to-r from-yellow-400 to-orange-500',
       textColor: 'text-dark',
     },
-    description:
-      'Premium exterior treatment with multi-stage paint correction, ceramic coating application, and professional wheel restoration for the ultimate finish.',
+    features: [
+      'Everything Included in the Essential Stage Exterior',
+      'Enhanced Paint Decontamination for a Smoother Finish',
+      'Black Trim Restoration with UV Protection',
+      'Thorough Wheel Well Cleaning',
+      'Meticulous Attention to Door Jambs and Body Edges',
+    ],
     borderClass: 'border border-neutral-200',
   },
   {
@@ -103,14 +107,19 @@ const luxuryServiceOptions = [
       text: 'Interior Only',
       bgColor: 'bg-gradient-to-r from-purple-500 to-blue-600',
     },
-    description:
-      'Deep steam cleaning and extraction with leather restoration, fabric protection, and advanced odor elimination for a completely refreshed cabin.',
+    features: [
+      'Everything Included in the Essential Stage Interior Package',
+      'Deep Steam Cleaning of Interior Panels and Vents',
+      'Thorough Carpet Shampoo & Extraction',
+      'Deep Seat Cleaning with Shampoo & Extraction',
+      'Leather Conditioning Treatment',
+    ],
     borderClass: 'border border-neutral-200',
   },
   {
     id: 3,
     title: 'Prestige Stage Full Detail',
-    price: '$400',
+    price: '$495',
     duration: '6 hours',
     image: '/images/services/paint-correction.jpg',
     alt: 'Prestige Stage Full Detail',
@@ -119,15 +128,20 @@ const luxuryServiceOptions = [
       bgColor: 'bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500',
       textColor: 'text-dark',
     },
-    description:
-      'The complete luxury experience combining both premium services with paint correction, ceramic coating, engine bay detailing, and 6-month warranty.',
+    features: [
+      'Includes Full Prestige Stage Interior Services',
+      'Includes Full Prestige Stage Exterior Services',
+      'Complete Steam Cleaning & Shampoo Extraction',
+      'Premium Leather Conditioning',
+      'Trim Restoration & Wheel Well Detailing',
+    ],
     savings: 'Save $60!',
     borderClass: 'border-2 border-yellow-400',
   },
 ]
 ---
 
-<Layout 
+<Layout
   title='Mobile Detailing Service - Driven Stage Detailing'
   description='Professional mobile auto detailing that comes to you. State-of-the-art equipment, premium products, and certified technicians deliver showroom results at your location. Book your appointment today.'
 >
@@ -191,7 +205,7 @@ const luxuryServiceOptions = [
   </section>
 
   <!-- Service Options Section -->
-  <section class='pt-20 pb-10 bg-white'>
+  <section id='main-services' class='pt-20 pb-10 bg-white'>
     <div class='container mx-auto px-6'>
       <h2
         class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-12'
@@ -208,9 +222,9 @@ const luxuryServiceOptions = [
         {
           serviceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up`}
+              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
             >
-              <div class='relative w-full h-48 overflow-hidden rounded-t-2xl'>
+              <div class='relative w-full h-40 overflow-hidden flex-shrink-0'>
                 <Image
                   class='w-full h-full object-cover'
                   width={400}
@@ -220,34 +234,34 @@ const luxuryServiceOptions = [
                   loading='lazy'
                 />
                 <div class='absolute inset-0 bg-gradient-to-t from-black/60 to-black/20' />
-                <div class='absolute top-4 left-4'>
+                <div class='absolute top-3 left-3'>
                   <span
-                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-sm font-semibold`}
+                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-xs font-semibold`}
                   >
                     {service.badge.text}
                   </span>
                 </div>
               </div>
 
-              <div class='p-6'>
-                <h3 class='text-2xl font-bold font-barlow text-foreground mb-4'>
+              <div class='p-5 flex flex-col flex-1'>
+                <h3 class='text-xl font-bold font-barlow text-foreground mb-3'>
                   {service.title}
                 </h3>
-                <div class='flex items-baseline mb-6'>
+                <div class='flex items-baseline mb-4'>
                   <span class='text-foreground/85'>From</span>
-                  <span class='text-3xl font-bold text-gradient-accent ml-4'>
+                  <span class='text-2xl font-bold text-gradient-accent ml-2'>
                     {service.price}
                   </span>
-                  <span class='text-foreground/85 ml-2'>
+                  <span class='text-foreground/85 ml-1'>
                     / {service.duration}
                   </span>
                 </div>
 
-                <ul class='space-y-3 text-foreground mb-8'>
+                <ul class='space-y-2 text-foreground text-sm mb-6 flex-1'>
                   {service.features.map((feature) => (
-                    <li class='flex items-center'>
-                      <CheckMark class='w-5 h-5 text-accent mr-3 flex-shrink-0' />
-                      {feature}
+                    <li class='flex items-start'>
+                      <CheckMark class='w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0' />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -282,9 +296,9 @@ const luxuryServiceOptions = [
         {
           luxuryServiceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative shadow-md animate-fade-up`}
+              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
             >
-              <div class='relative w-full h-48 overflow-hidden rounded-t-2xl'>
+              <div class='relative w-full h-40 overflow-hidden flex-shrink-0'>
                 <Image
                   class='w-full h-full object-cover'
                   width={400}
@@ -294,39 +308,44 @@ const luxuryServiceOptions = [
                   loading='lazy'
                 />
                 <div class='absolute inset-0 bg-gradient-to-t from-black/70 to-black/30' />
-                <div class='absolute top-4 left-4'>
+                <div class='absolute top-3 left-3'>
                   <span
-                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-sm font-semibold shadow-md`}
+                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-xs font-semibold shadow-md`}
                   >
                     {service.badge.text}
                   </span>
                 </div>
-                <div class='absolute bottom-4 right-4'>
-                  <div class='bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full'>
-                    <span class='text-yellow-400 text-xs font-semibold'>
+                <div class='absolute bottom-3 right-3'>
+                  <div class='bg-black/50 backdrop-blur-sm px-2.5 py-0.5 rounded-full'>
+                    <span class='text-yellow-400 text-[11px] font-semibold'>
                       ✨ LUXURY
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div class='p-6'>
-                <h3 class='text-2xl font-bold font-barlow text-foreground mb-4'>
+              <div class='p-5 flex flex-col flex-1'>
+                <h3 class='text-xl font-bold font-barlow text-foreground mb-3'>
                   {service.title}
                 </h3>
-                <div class='flex items-baseline mb-6'>
+                <div class='flex items-baseline mb-4'>
                   <span class='text-foreground/85'>From</span>
-                  <span class='text-3xl font-bold text-gradient-accent ml-4'>
+                  <span class='text-2xl font-bold text-gradient-accent ml-2'>
                     {service.price}
                   </span>
-                  <span class='text-foreground/85 ml-2'>
+                  <span class='text-foreground/85 ml-1'>
                     / {service.duration}
                   </span>
                 </div>
 
-                <p class='text-foreground/90 leading-relaxed mb-6'>
-                  {service.description}
-                </p>
+                <ul class='space-y-2 text-foreground text-sm mb-6 flex-1'>
+                  {service.features.map((feature) => (
+                    <li class='flex items-start'>
+                      <CheckMark class='w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0' />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 <OpenContactModalButton client:visible fullWidth>
                   Schedule Service

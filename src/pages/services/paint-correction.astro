@@ -4,13 +4,14 @@ import { Image } from 'astro:assets'
 import Calendar from '../../assets/svg/calendar.svg'
 import Home from '../../assets/svg/home.svg'
 import ChevronRight from '../../assets/svg/chevron-right.svg'
+import CheckMark from '../../assets/svg/check-mark.svg'
 import { OpenContactModalButton } from '../../components/react/OpenContactModalButton'
 
 const paintCorrectionOptions = [
   {
     id: 1,
     title: 'Paint Correction Stage 1',
-    price: '$595',
+    price: '$795',
     duration: '6 hours',
     image: '/images/services/paint-correction.jpg',
     alt: 'Paint Correction Stage 1',
@@ -20,13 +21,20 @@ const paintCorrectionOptions = [
     },
     description:
       'Single-step paint correction to remove light swirl marks, minor scratches, and oxidation. Perfect for vehicles with light to moderate paint imperfections using professional-grade compounds and polishing techniques.',
+    features: [
+      'Advanced Paint Decontamination & Surface Preparation',
+      'Professional Clay Bar Treatment',
+      'Single-Stage Paint Enhancement Polish',
+      'Removes Up to 60–70% of Surface Imperfections',
+      'Durable Paint Sealant for Enhanced Shine and Protection',
+    ],
     buttonText: 'Schedule Stage 1 Correction',
     borderClass: 'border border-zinc-200',
   },
   {
     id: 2,
     title: 'Paint Correction Stage 2',
-    price: '$795',
+    price: '$995',
     duration: '8 hours',
     image: '/images/services/ceramic-coating.jpg',
     alt: 'Paint Correction Stage 2',
@@ -36,7 +44,16 @@ const paintCorrectionOptions = [
       textColor: 'text-dark',
     },
     description:
-      'Multi-step paint correction process for heavily damaged paint. Removes deep scratches, severe swirl marks, and restores paint to showroom condition with ceramic coating application and detailed documentation.',
+      'Multi-step paint correction process for heavily damaged paint. Removes deep scratches, severe swirl marks, and restores paint to showroom condition.',
+    features: [
+      'Advanced Paint Decontamination & Surface Preparation',
+      'Premium Clay Bar Treatment',
+      'Heavy Defect Removal with Compound Cutting',
+      'Refinement Polish for Enhanced Depth and Clarity',
+      'Corrects Up to 85–95% of Paint Imperfections',
+      'Water Spot Removal Included',
+      'Brilliant Showroom Mirror Gloss Finish',
+    ],
     buttonText: 'Schedule Stage 2 Correction',
     borderClass: 'border-2 border-primary',
   },
@@ -124,9 +141,9 @@ const paintCorrectionOptions = [
         {
           paintCorrectionOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl shadow-md transition-all duration-300 ${service.borderClass} relative animate-fade-up`}
+              class={`bg-white rounded-2xl hover:-translate-y-1 hover:shadow-xl shadow-md transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
             >
-              <div class='relative w-full h-56 overflow-hidden rounded-t-2xl'>
+              <div class='relative w-full h-56 overflow-hidden flex-shrink-0'>
                 <Image
                   class='relative w-full h-full object-cover'
                   width={400}
@@ -136,32 +153,46 @@ const paintCorrectionOptions = [
                   loading='lazy'
                 />
                 <div class='absolute inset-0 bg-gradient-to-t from-black/60 to-black/20' />
-                <div class='absolute top-4 left-4'>
-                  <span
-                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-sm font-semibold`}
-                  >
-                    {service.badge.text}
-                  </span>
-                </div>
+                {service.badge && (
+                  <div class='absolute top-3 left-3'>
+                    <span
+                      class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-xs font-semibold`}
+                    >
+                      {service.badge.text}
+                    </span>
+                  </div>
+                )}
               </div>
 
-              <div class='p-8'>
-                <h3 class='text-2xl font-bold font-barlow text-foreground mb-4'>
+              <div class='p-5 flex flex-col flex-1'>
+                <h3 class='text-xl font-bold font-barlow text-foreground mb-3'>
                   {service.title}
                 </h3>
-                <div class='flex items-baseline mb-6'>
+                <div class='flex items-baseline mb-4'>
                   <span class='text-foreground/85'>From</span>
-                  <span class='text-3xl font-bold text-gradient-accent ml-4'>
+                  <span class='text-2xl font-bold text-gradient-accent ml-2'>
                     {service.price}
                   </span>
-                  <span class='text-foreground/85 ml-2'>
+                  <span class='text-foreground/85 ml-1'>
                     / {service.duration}
                   </span>
                 </div>
 
-                <p class='text-foreground/90 leading-relaxed mb-8'>
-                  {service.description}
-                </p>
+                {service.description && (
+                  <p class='text-foreground/90 leading-relaxed text-sm mb-3 flex-1'>
+                    {service.description}
+                  </p>
+                )}
+                {service.features && (
+                  <ul class='space-y-1.5 text-foreground text-sm mb-6 flex-1'>
+                    {service.features.map((feature) => (
+                      <li class='flex items-start'>
+                        <CheckMark class='w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0' />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 <OpenContactModalButton client:visible fullWidth>
                   Schedule Service

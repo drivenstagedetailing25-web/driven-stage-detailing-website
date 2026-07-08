@@ -13,7 +13,7 @@ interface EmailRequestBody {
   name: string
   email: string
   phone?: string
-  service: string
+  services: string
   preferredDate: string
   preferredTime: string
   message?: string
@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
   const requiredFields = [
     'name',
     'email',
-    'service',
+    'services',
     'preferredDate',
     'preferredTime',
   ]
@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
     )
   }
 
-  const textFields = ['name', 'service'] as const
+  const textFields = ['name', 'services'] as const
   const emptyFields = textFields.filter((field) => !isNotEmpty(body[field]))
 
   if (emptyFields.length > 0) {
@@ -84,7 +84,7 @@ export const POST: APIRoute = async ({ request }) => {
       body: JSON.stringify({
         from: 'Formulario Web <no-reply@drivenstagedetailing.com>',
         to: ['info@drivenstagedetailing.com'],
-        subject: `Nuevo mensaje de ${body.name} - ${body.service}`,
+        subject: `Nuevo mensaje de ${body.name} - ${body.services}`,
         html: htmlTemplate,
       }),
     })

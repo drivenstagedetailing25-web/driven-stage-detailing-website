@@ -29,7 +29,7 @@ interface EmailTemplateData {
   name: string
   email: string
   phone?: string
-  service: string
+  services: string
   preferredDate: string
   preferredTime: string
   message?: string
@@ -179,7 +179,7 @@ export function generateEmailTemplate(data: EmailTemplateData): string {
         <div class="service-highlight">
           <div class="field-label">🔧 Servicio Solicitado</div>
           <div class="field-value" style="font-size: 18px; font-weight: 600; color: #FF8C00;">
-            ${data.service}
+            ${data.services}
           </div>
         </div>
 

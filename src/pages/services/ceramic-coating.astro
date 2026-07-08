@@ -4,13 +4,14 @@ import { Image } from 'astro:assets'
 import Calendar from '../../assets/svg/calendar.svg'
 import Home from '../../assets/svg/home.svg'
 import ChevronRight from '../../assets/svg/chevron-right.svg'
+import CheckMark from '../../assets/svg/check-mark.svg'
 import { OpenContactModalButton } from '../../components/react/OpenContactModalButton'
 
 const ceramicCoatingOptions = [
   {
     id: 1,
     title: 'Ceramic Coating Stage 1',
-    price: '$1000',
+    price: '$1095',
     duration: '8 hours',
     image: '/images/services/ceramic-coating.jpg',
     alt: 'Ceramic Coating Stage 1',
@@ -18,15 +19,22 @@ const ceramicCoatingOptions = [
       text: 'Standard Protection',
       bgColor: 'bg-primary',
     },
-    description:
-      'Professional ceramic coating application with superior hydrophobic properties. Creates a protective barrier that enhances gloss and makes maintenance easier.',
+    features: [
+      'Advanced Paint Decontamination & Surface Preparation',
+      'Premium Clay Bar Treatment',
+      'One-Step Paint Enhancement Polish',
+      'Corrects Up to 60–70% of Surface Imperfections',
+      'Cerakote Professional Ceramic Coating Installation (Industry leading – 500 washes)',
+      '5-Year Manufacturer-Backed Warranty',
+      'Extreme Hydrophobic Protection with Brilliant Gloss Finish',
+    ],
     buttonText: 'Schedule Stage 1 Coating',
     borderClass: 'border border-zinc-200',
   },
   {
     id: 2,
     title: 'Ceramic Coating Stage 2',
-    price: '$1550',
+    price: '$1395',
     duration: '9 hours',
     image: '/images/services/paint-correction.jpg',
     alt: 'Ceramic Coating Stage 2',
@@ -35,8 +43,15 @@ const ceramicCoatingOptions = [
       bgColor: 'bg-gradient-to-r from-yellow-400 to-orange-500',
       textColor: 'text-dark',
     },
-    description:
-      'Complete paint correction followed by premium ceramic coating application. Includes multi-stage polishing for maximum protection and enhanced durability.',
+    features: [
+      'Advanced Paint Decontamination & Surface Preparation',
+      'Premium Clay Bar Treatment',
+      'Two-Step Paint Enhancement Polish (Heavy Defect Removal with Compound Followed by Fine Polishing)',
+      'Up to 85–95% Paint Imperfection Correction',
+      'Cerakote Professional Ceramic Coating Installation (Industry leading – 500 washes)',
+      '5-Year Manufacturer-Backed Warranty',
+      'Extreme Hydrophobic Protection with Brilliant Gloss Finish',
+    ],
     buttonText: 'Schedule Stage 2 Coating',
     borderClass: 'border-2 border-primary',
   },
@@ -124,9 +139,9 @@ const ceramicCoatingOptions = [
         {
           ceramicCoatingOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up`}
+              class={`bg-white rounded-2xl hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
             >
-              <div class='relative w-full h-64 overflow-hidden rounded-t-2xl'>
+              <div class='relative w-full h-52 overflow-hidden flex-shrink-0'>
                 <Image
                   class='w-full h-full object-cover'
                   width={500}
@@ -136,32 +151,36 @@ const ceramicCoatingOptions = [
                   loading='lazy'
                 />
                 <div class='absolute inset-0 bg-gradient-to-t from-black/60 to-black/20' />
-                <div class='absolute top-4 left-4'>
-                  <span
-                    class={`${service.badge.bgColor} ${service.badge.textColor || 'text-white'} px-3 py-1 rounded-full text-sm font-semibold`}
-                  >
-                    {service.badge.text}
-                  </span>
-                </div>
               </div>
 
-              <div class='p-8'>
-                <h3 class='text-2xl font-bold font-barlow text-foreground mb-4'>
+              <div class='p-5 flex flex-col flex-1'>
+                <h3 class='text-xl font-bold font-barlow text-foreground mb-3'>
                   {service.title}
                 </h3>
-                <div class='flex items-baseline mb-6'>
+                <div class='flex items-baseline mb-4'>
                   <span class='text-foreground/85'>From</span>
-                  <span class='text-3xl font-bold text-gradient-accent ml-4'>
+                  <span class='text-2xl font-bold text-gradient-accent ml-2'>
                     {service.price}
                   </span>
-                  <span class='text-foreground/85 ml-2'>
+                  <span class='text-foreground/85 ml-1'>
                     / {service.duration}
                   </span>
                 </div>
 
-                <p class='text-foreground/90 leading-relaxed mb-8'>
-                  {service.description}
-                </p>
+                {service.features ? (
+                  <ul class='space-y-1.5 text-foreground text-sm mb-6 flex-1'>
+                    {service.features.map((feature) => (
+                      <li class='flex items-start'>
+                        <CheckMark class='w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0' />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class='text-foreground/90 leading-relaxed text-sm mb-6 flex-1'>
+                    {service.description}
+                  </p>
+                )}
 
                 <OpenContactModalButton client:visible fullWidth>
                   Schedule Service

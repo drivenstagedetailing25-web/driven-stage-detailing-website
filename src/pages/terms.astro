@@ -1,0 +1,222 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+const sections = [
+  {
+    title: '1. Service Agreement',
+    content:
+      'By scheduling or receiving services from Driven Stage Auto Detailing, you agree to the following Terms & Conditions. These apply to all mobile and in-field detailing services performed within the State of New Jersey.',
+  },
+  {
+    title: '2. Mobile Service Requirements (NJ-Specific)',
+    items: [
+      'Customer must provide:',
+      'Safe and legal parking location',
+      'Adequate space to work around the vehicle',
+      'If required:',
+      'Access to water and/or electricity (unless self-contained service is confirmed)',
+      'Services may be refused or rescheduled if:',
+      'Location violates local ordinances',
+      'There is risk of fines, towing, or unsafe working conditions',
+      'Weather conditions (rain, snow, extreme cold/heat) prevent safe or proper service',
+    ],
+  },
+  {
+    title: '3. Booking, Deposits & Payment',
+    items: [
+      'A deposit may be required to secure appointments (especially for coatings or full details).',
+      'Full payment is due upon completion unless otherwise agreed.',
+      'Accepted payments may include: Cash, Zelle, Cash App, card, or other approved methods.',
+      'Late or non-payment may result in additional fees or refusal of future service.',
+    ],
+  },
+  {
+    title: '4. Cancellations & Rescheduling',
+    content:
+      'We understand that unexpected situations arise. If you need to cancel or reschedule your appointment, please notify us as soon as possible so we can accommodate your request and serve other clients efficiently.',
+    items: [
+      'Minimum 24-hour notice required.',
+      'Late cancellations may be charged 25-50% of the service cost.',
+      'No-shows or same-day cancellations may be charged up to 50% or full deposit forfeiture.',
+      'Weather-related reschedules are flexible and penalty-free.',
+    ],
+  },
+  {
+    title: '5. Vehicle Condition & Risk Acknowledgment',
+    content: 'Client acknowledges vehicle condition directly affects results. Pre-existing issues may become more visible after cleaning or polishing.',
+    items: [
+      'Driven Stage Auto Detailing is not responsible for:',
+      'Pre-existing scratches, dents, paint chips, or oxidation',
+      'Loose or failing trim, badges, or clear coat',
+      'Electrical issues when using interior cleaning tools (unless caused by negligence)',
+    ],
+  },
+  {
+    title: '6. Interior Detailing Disclaimer',
+    items: [
+      'Deep stains, odors (smoke, pet, mold), and spills may not be fully removable.',
+      'Biohazard situations (vomit, blood, mold) must be disclosed in advance and may incur additional charges or refusal.',
+    ],
+  },
+  {
+    title: '7. Personal Property',
+    content:
+      'Client must remove all valuables and personal items. We are not responsible for lost, damaged, or misplaced items left in the vehicle.',
+  },
+  {
+    title: '8. Weather & Environmental Policy',
+    items: [
+      'Mobile services are subject to NJ weather conditions.',
+      'Appointments may be rescheduled due to rain, snow, freezing temperatures, or high winds.',
+      'No fees for weather-related changes.',
+    ],
+  },
+  {
+    title: '9. Liability',
+    content:
+      'Driven Stage Auto Detailing is insured; however we are not liable for pre-existing damage, manufacturer defects, or improper prior repairs. Any damage claims must be reported within 24 hours.',
+  },
+  {
+    title: '10. Satisfaction Guarantee',
+    items: [
+      'Any concerns must be reported within 24 hours of service.',
+      'We will make reasonable efforts to correct issues.',
+      'No refunds once service is completed — corrections only.',
+    ],
+  },
+  {
+    title: '11. Ceramic Coating Warranty Terms',
+    subsections: [
+      {
+        sub: 'Warranty Coverage',
+        items: [
+          'Ceramic coatings are designed to provide long-term protection, not permanent perfection.',
+          'Warranty (if offered) covers loss of hydrophobic properties (water beading) and premature coating failure under normal conditions.',
+        ],
+      },
+      {
+        sub: 'Warranty Requirements',
+        items: [
+          'Vehicle must be hand washed regularly (every 2-4 weeks recommended).',
+          'Avoid automatic brush car washes.',
+          'Annual or bi-annual maintenance detail/inspection may be required.',
+        ],
+      },
+      {
+        sub: 'What Voids Warranty',
+        items: [
+          'Improper washing (automatic brushes, harsh chemicals).',
+          'Neglect or lack of maintenance.',
+          'Environmental damage (tree sap, bird droppings left sitting).',
+          'Accidents, scratches, or physical damage.',
+          'Use of unapproved products.',
+        ],
+      },
+      {
+        sub: 'Limitations',
+        items: [
+          'Coating does NOT prevent scratches or rock chips.',
+          'Coating does NOT make the vehicle maintenance-free.',
+          'Longevity varies based on driving conditions, storage (garage vs outdoor), and care habits.',
+        ],
+      },
+      {
+        sub: 'No Refund Policy',
+        items: [
+          'Once a ceramic coating is applied, no refunds will be issued.',
+          'Warranty claims result in reapplication or repair only, at company discretion.',
+        ],
+      },
+    ],
+  },
+  {
+    title: '12. Right to Refuse Service',
+    content:
+      'We reserve the right to refuse service due to unsafe conditions, hazardous contamination, disrespectful behavior, or unrealistic expectations.',
+  },
+  {
+    title: '13. Marketing Use',
+    content:
+      'Before/after photos may be taken for marketing. Personal identifiers will be avoided or blurred when possible.',
+  },
+  {
+    title: '14. Agreement',
+    content:
+      'By booking or accepting service, client acknowledges and agrees to all terms listed above.',
+  },
+  {
+    title: '15. Modifications to Terms and Conditions',
+    content:
+      'Driven Stage Auto Detailing, LLC reserves the right to modify, amend, or update these Terms and Conditions at its sole discretion. Any modifications shall become effective immediately upon posting on our website or otherwise being made available to customers. Continued use of our services following such modifications shall constitute your acknowledgment and acceptance of the revised Terms and Conditions.',
+  },
+]
+---
+
+<Layout
+  title='Terms & Conditions - Driven Stage Detailing'
+  description='Terms and Conditions for Driven Stage Auto Detailing mobile services in New Jersey.'
+>
+  <section class='first-section bg-gradient-secondary py-20'>
+    <div class='container mx-auto px-6'>
+      <h1
+        class='text-4xl md:text-5xl lg:text-6xl font-bold font-barlow mb-6 text-center text-primary'
+      >
+        Terms & <span class='text-gradient-primary'>Conditions</span>
+      </h1>
+      <p
+        class='text-center text-foreground text-lg max-w-2xl mx-auto'
+      >
+        Driven Stage Auto Detailing — New Jersey Mobile Services
+      </p>
+    </div>
+  </section>
+
+  <section class='py-16 bg-white'>
+    <div class='container mx-auto px-6 max-w-4xl'>
+      <p class='text-sm text-gray-500 mb-10'>
+        Last updated: July 2026
+      </p>
+
+      <div class='space-y-10'>
+        {
+          sections.map((section) => (
+            <article>
+              <h2 class='text-2xl font-bold font-barlow text-primary mb-4'>
+                {section.title}
+              </h2>
+
+              {section.content && (
+                <p class='text-foreground leading-relaxed mb-3'>
+                  {section.content}
+                </p>
+              )}
+
+              {section.items && (
+                <ul class='list-disc pl-6 space-y-1.5 text-foreground leading-relaxed'>
+                  {section.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+
+              {section.subsections && (
+                <div class='space-y-6 mt-4'>
+                  {section.subsections.map((sub) => (
+                    <div>
+                      <h3 class='text-lg font-bold text-dark mb-2'>{sub.sub}</h3>
+                      <ul class='list-disc pl-6 space-y-1.5 text-foreground leading-relaxed'>
+                        {sub.items.map((item) => (
+                          <li>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

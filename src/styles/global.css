@@ -236,6 +236,10 @@
   transition-delay: 300ms;
 }
 
+.service-item-delay-5 {
+  transition-delay: 400ms;
+}
+
 /* Desktop Dropdown Animation */
 .fade-down {
   animation: fadeDown 300ms ease-out forwards;
@@ -254,19 +258,23 @@
 
 /* Desktop Service Items Delays */
 .desktop-service-delay-1 {
-  animation: fadeDownItem 300ms ease-out forwards;
+  animation: fadeDownItem 300ms ease-out 50ms forwards;
 }
 
 .desktop-service-delay-2 {
-  animation: fadeDownItem 300ms ease-out forwards;
+  animation: fadeDownItem 300ms ease-out 100ms forwards;
 }
 
 .desktop-service-delay-3 {
-  animation: fadeDownItem 300ms ease-out forwards;
+  animation: fadeDownItem 300ms ease-out 150ms forwards;
 }
 
 .desktop-service-delay-4 {
-  animation: fadeDownItem 300ms ease-out forwards;
+  animation: fadeDownItem 300ms ease-out 200ms forwards;
+}
+
+.desktop-service-delay-5 {
+  animation: fadeDownItem 300ms ease-out 250ms forwards;
 }
 
 @keyframes fadeDownItem {

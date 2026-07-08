@@ -1,7 +1,8 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import { useContactModal } from '../../store/modalStore'
 import { toast } from '@pheralb/toast'
 import { Spinner } from './ui/Spinner'
+import { SERVICES } from '../../lib/services'
 
 interface ContactFormProps {
   blurredBackground?: boolean
@@ -63,8 +64,34 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     }
   }
 
+  const [selectedServices, setSelectedServices] = useState<string[]>([])
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [termsError, setTermsError] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setServicesOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  function handleServiceToggle(slug: string) {
+    setSelectedServices((prev) =>
+      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug],
+    )
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if (selectedServices.length === 0) {
+      return
+    }
 
     if (!preferredDate) {
       setDateError('Preferred date is required.')
@@ -75,8 +102,19 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       return
     }
 
+    if (!termsAccepted) {
+      setTermsError(true)
+      return
+    }
+
     const formData = new FormData(e.currentTarget)
-    const dataToSend = Object.fromEntries(formData.entries())
+    const dataToSend = {
+      ...Object.fromEntries(formData.entries()),
+      services: selectedServices
+        .map((slug) => SERVICES.find((s) => s.slug === slug)?.name ?? slug)
+        .join(', '),
+    }
+    delete dataToSend.service
 
     setLoading(true)
 
@@ -157,22 +195,68 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         />
       </div>
 
-      <div>
-        <label htmlFor='service' className='text-light mb-1 block font-medium'>
-          Service Interested In *
+      <div ref={dropdownRef} className='relative'>
+        <label className='text-light mb-1 block font-medium'>
+          Services Interested In *
         </label>
-        <select
-          id='service'
-          name='service'
-          required
-          className='bg-light border-muted focus:ring-primary text-foreground w-full rounded-lg border px-3 py-2 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none'
+        <button
+          type='button'
+          onClick={() => setServicesOpen(!servicesOpen)}
+          className={`bg-light border-muted text-foreground flex w-full cursor-pointer items-center justify-between rounded-lg border px-3 py-2 text-sm text-left transition-all focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none ${
+            selectedServices.length === 0 ? 'text-zinc-400' : ''
+          }`}
         >
-          <option value=''>Select a service</option>
-          <option value='mobile-detailing'>Mobile Detailing</option>
-          <option value='paint-correction'>Paint Correction</option>
-          <option value='ceramic-coating'>Ceramic Coating</option>
-          <option value='multiple'>Multiple Services</option>
-        </select>
+          <span>
+            {selectedServices.length === 0
+              ? 'Select services'
+              : `${selectedServices.length} service${selectedServices.length > 1 ? 's' : ''} selected`}
+          </span>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            viewBox='0 0 20 20'
+            fill='currentColor'
+            className={`h-4 w-4 transition-transform duration-200 ${
+              servicesOpen ? 'rotate-180' : ''
+            }`}
+          >
+            <path
+              fillRule='evenodd'
+              d='M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z'
+              clipRule='evenodd'
+            />
+          </svg>
+        </button>
+        {servicesOpen && (
+          <div className='bg-light border-muted absolute z-30 mt-1 w-full rounded-lg border p-3 shadow-lg'>
+            <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
+              {SERVICES.map((service) => (
+                <label
+                  key={service.slug}
+                  className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-all ${
+                    selectedServices.includes(service.slug)
+                      ? 'border-primary bg-primary/10 text-dark'
+                      : 'border-muted text-foreground hover:border-zinc-400'
+                  }`}
+                >
+                  <input
+                    type='checkbox'
+                    name='services'
+                    value={service.slug}
+                    checked={selectedServices.includes(service.slug)}
+                    onChange={() => handleServiceToggle(service.slug)}
+                    className='accent-primary h-4 w-4 rounded'
+                  />
+                  {service.name}
+                </label>
+              ))}
+            </div>
+          </div>
+        )}
+        {selectedServices.length === 0 && (
+          <p className='mt-1 text-xs font-medium text-amber-400'>
+            Select at least one service
+          </p>
+        )}
       </div>
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
@@ -239,6 +323,33 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
           placeholder='Tell us about your vehicle and service preferences...'
         ></textarea>
       </div>
+
+      <label class='flex items-start gap-2 text-xs text-muted cursor-pointer'>
+        <input
+          type='checkbox'
+          checked={termsAccepted}
+          onChange={(e) => {
+            setTermsAccepted(e.target.checked)
+            if (e.target.checked) setTermsError(false)
+          }}
+          class='accent-primary mt-0.5 h-4 w-4 rounded flex-shrink-0'
+        />
+        <span>
+          I accept the{' '}
+          <a
+            href='/terms'
+            target='_blank'
+            class='text-primary underline hover:text-primary/80'
+          >
+            Terms & Conditions
+          </a>
+        </span>
+      </label>
+      {termsError && (
+        <p class='text-xs font-medium text-red-400 -mt-2'>
+          You must accept the Terms & Conditions
+        </p>
+      )}
 
       <div className='pt-2 text-center'>
         <button

@@ -13,9 +13,19 @@ export default function Header({ isHome: initialIsHome = false }: HeaderProps) {
 
   const services = [
     { name: 'All Services', href: '/services' },
-    { name: 'Mobile Detailing', href: '/services/mobile-detailing' },
-    { name: 'Paint Correction', href: '/services/paint-correction' },
-    { name: 'Ceramic Coating', href: '/services/ceramic-coating' },
+    {
+      name: 'Exterior Detailing',
+      href: '/services/mobile-detailing#main-services',
+    },
+    {
+      name: 'Interior Detailing',
+      href: '/services/mobile-detailing#main-services',
+    },
+    { name: 'Full Detail', href: '/services/mobile-detailing#main-services' },
+    {
+      name: 'Add-Ons / Individual Services',
+      href: '/services#individual-services',
+    },
   ]
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -117,7 +127,7 @@ export default function Header({ isHome: initialIsHome = false }: HeaderProps) {
             <button
               type='button'
               ref={servicesRef}
-              className={`hover:text-muted relative flex items-center py-1 font-medium transition-colors duration-200 ${isServicesOpen ? 'text-muted' : 'text-white'}`}
+              className={`hover:text-muted relative flex cursor-pointer items-center py-1 font-medium transition-colors duration-200 ${isServicesOpen ? 'text-muted' : 'text-white'}`}
               aria-haspopup='true'
             >
               OUR SERVICES
@@ -140,7 +150,7 @@ export default function Header({ isHome: initialIsHome = false }: HeaderProps) {
             {/* Desktop Dropdown Menu */}
 
             {isServicesOpen && (
-              <ul className='bg-dark fade-down absolute top-[110%] left-0 mt-0 w-56 -translate-y-2 transform rounded-lg border py-2 opacity-0 shadow-xl transition-all duration-300 ease-out'>
+              <ul className='bg-dark fade-down absolute top-[110%] left-0 mt-0 w-64 -translate-y-2 transform rounded-lg border py-2 opacity-0 shadow-xl transition-all duration-300 ease-out'>
                 {services.map((service, index) => (
                   <li
                     key={index}

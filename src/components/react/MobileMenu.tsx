@@ -12,9 +12,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
   const services = [
     { name: 'All Services', href: '/services' },
-    { name: 'Mobile Detailing', href: '/services/mobile-detailing' },
-    { name: 'Paint Correction', href: '/services/paint-correction' },
-    { name: 'Ceramic Coating', href: '/services/ceramic-coating' },
+    { name: 'Exterior Detailing', href: '/services#main-services' },
+    { name: 'Interior Detailing', href: '/services#main-services' },
+    { name: 'Full Detail', href: '/services#main-services' },
+    { name: 'Add-Ons / Individual Services', href: '/services#individual-services' },
   ]
 
   const toggleServices = () => {
