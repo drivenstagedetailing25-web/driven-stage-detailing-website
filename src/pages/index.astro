@@ -3,6 +3,7 @@ import { ContactForm } from '../components/react/ContactForm'
 import { OpenContactModalButton } from '../components/react/OpenContactModalButton'
 import Layout from '../layouts/Layout.astro'
 import { Image } from 'astro:assets'
+import Hero from '../components/astro/Hero.astro'
 
 const services = [
   {
@@ -39,75 +40,7 @@ const services = [
   title='Driven Stage Detailing - Professional Mobile Auto Detailing Services'
   description='Professional mobile auto detailing services at your location. Premium paint correction, ceramic coating, and detailing with state-of-the-art equipment and certified technicians.'
 >
-  <!-- Hero Section -->
-  <section
-    class='min-h-[100svh] flex items-center justify-center relative overflow-hidden lg:pt-10'
-  >
-    <div class='absolute inset-0 z-0'>
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        poster='/videos/fallback.webp'
-        class='absolute inset-0 w-full h-full object-cover'
-      >
-        <source src='/videos/video-bg.webm' type='video/webm' />
-        Your browser does not support the video tag.
-      </video>
-
-      <div class='absolute inset-0 bg-black/60'></div>
-    </div>
-
-    <div class='container mx-auto px-6 text-center relative z-20 pt-10'>
-      <h1
-        class='text-5xl md:text-[80px] font-bold tracking-wide text-white mb-6 animate-slide-up font-barlow flex flex-col items-center'
-      >
-        <span class='block animate-fade-up'>DRIVEN STAGE MOBILE</span>
-        <span class='block animate-fade-up animate-delay-300'>
-          <span class='text-primary'>LUXURY AUTO</span>
-          <span class='text-gradient-primary inline-block max-w-fit mx-auto'
-            >DETAILING</span
-          >
-        </span>
-      </h1>
-
-      <p
-        class='text-xl md:text-[22px] mb-8 max-w-2xl mx-auto animate-slide-up text-muted font-semibold tracking-wider'
-      >
-        FROM THE ROAD TO THE SPOTLIGHT 
-      </p>
-
-      <p
-        class='text-sm md:text-base mb-8 animate-slide-up text-muted font-medium flex flex-wrap justify-center gap-x-3'
-        style='animation-delay: 0.2s;'
-      >
-        <span>100% Mobile</span>
-        <span aria-hidden='true'>·</span>
-        <span>We Come To You</span>
-        <span aria-hidden='true'>·</span>
-        <span>Ceramic Coating</span>
-        <span aria-hidden='true'>·</span>
-        <span>Paint Correction</span>
-        <span aria-hidden='true'>·</span>
-        <span>Interior Detailing</span>
-        <span aria-hidden='true'>·</span>
-        <span>Exterior Detailing</span>
-      </p>
-
-      <div
-        class='flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up'
-        style='animation-delay: 0.4s;'
-      >
-        <span class='text-white/90 text-sm md:text-base font-medium whitespace-nowrap'>
-          (201) 966-6990 8AM–6PM · 6 Days (Sunday-Friday)
-        </span>
-        <a href='/contact' class='btn btn-secondary btn-lg font-bold border-2'>
-          Contact Us
-        </a>
-      </div>
-    </div>
-  </section>
+  <Hero />
 
   <!-- Services Preview Section -->
   <section id='services' class='py-20 bg-white'>
