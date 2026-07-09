@@ -14,4 +14,5 @@ export const SERVICES: Service[] = [
   { slug: 'exterior-trim-restoration', name: 'Exterior Black Trim Restoration' },
   { slug: 'pet-hair-extraction', name: 'Pet Hair Extraction' },
   { slug: 'engine-bay-cleaning', name: 'Engine Bay Cleaning' },
+  { slug: 'odor-elimination-treatment', name: 'Odor Elimination Treatment' },
 ]
