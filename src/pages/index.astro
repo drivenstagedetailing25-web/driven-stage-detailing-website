@@ -5,6 +5,9 @@ import Layout from '@/layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import Hero from '@/components/astro/Hero.astro'
 import PackageCard from '@/components/astro/PackageCard.astro'
+import PrimaryButton from '@/components/astro/PrimaryButton.astro'
+import PhoneButton from '@/components/astro/PhoneButton.astro'
+import { BackgroundRippleEffect } from '@/components/react/ui/background-ripple-effect'
 
 const essentialPackages = [
   {
@@ -132,8 +135,9 @@ const luxuryPackages = [
   <Hero />
 
   <!-- Services Preview Section -->
-  <section id='services' class='py-20 bg-white'>
-    <div class='container mx-auto px-6'>
+  <section id='services' class='py-20 bg-white relative overflow-hidden'>
+    <BackgroundRippleEffect rows={7} cols={30} cellSize={48} />
+    <div class='container mx-auto px-6 relative z-10'>
       <h2
         class='text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold text-center font-barlow mb-4 text-gray-900'
       >
@@ -154,21 +158,28 @@ const luxuryPackages = [
       <span class='mt-3 mb-16 block h-1.5 w-20 rounded-full bg-accent mx-auto'
       ></span>
 
+      <div class='flex items-center gap-4 mb-8'>
+        <span class='h-px flex-1 bg-gradient-to-r from-transparent to-primary/30'></span>
+        <span class='text-sm font-bold font-barlow text-primary tracking-[0.25em] uppercase'>Essential Packages</span>
+        <span class='h-px flex-1 bg-gradient-to-l from-transparent to-primary/30'></span>
+      </div>
+
       <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20'>
         {essentialPackages.map((pkg) => <PackageCard {...pkg} />)}
       </div>
 
-      <h2
-        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4'
-      >
-        Luxury Service Packages
-      </h2>
-      <p class='text-center text-foreground text-lg mb-16 max-w-3xl mx-auto'>
-        Experience the ultimate in mobile detailing with our luxury packages.
-      </p>
+      <div class='flex items-center gap-4 mb-8'>
+        <span class='h-px flex-1 bg-gradient-to-r from-transparent to-amber-400/40'></span>
+        <span class='text-sm font-bold font-barlow text-amber-500 tracking-[0.25em] uppercase'>Luxury Packages</span>
+        <span class='h-px flex-1 bg-gradient-to-l from-transparent to-amber-400/40'></span>
+      </div>
 
       <div class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {luxuryPackages.map((pkg) => <PackageCard {...pkg} luxury />)}
+      </div>
+
+      <div class='flex justify-center mt-16'>
+        <PrimaryButton href='/services'>View All Services</PrimaryButton>
       </div>
     </div>
   </section>
@@ -194,9 +205,7 @@ const luxuryPackages = [
               and all the premium products needed. No need to leave your home or
               office - we handle everything on-site for your convenience.
             </p>
-            <OpenContactModalButton client:visible>
-              Book Now
-            </OpenContactModalButton>
+            <PhoneButton />
           </div>
 
           <div class='relative overflow-hidden rounded-2xl animate-fade-right'>
