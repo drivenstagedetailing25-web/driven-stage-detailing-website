@@ -5,7 +5,7 @@ import {
   validateEmail,
   isNotEmpty,
   generateEmailTemplate,
-} from '../../lib/utils'
+} from '@/lib/utils'
 
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY
 

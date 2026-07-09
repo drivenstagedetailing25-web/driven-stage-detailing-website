@@ -1,8 +1,8 @@
 ---
-import { CustomToaster } from '../components/react/CustomToaster'
-import Footer from '../components/astro/Footer.astro'
-import { ContactFormModal } from '../components/react/ContactFormModal'
-import Header from '../components/react/Header'
+import { CustomToaster } from '@/components/react/CustomToaster'
+import Footer from '@/components/astro/Footer.astro'
+import { ContactFormModal } from '@/components/react/ContactFormModal'
+import Header from '@/components/react/Header'
 import '../styles/global.css'
 import fontBarlow400 from '/fonts/barlow-condensed/barlow-condensed-latin-400-normal.woff2?url'
 import fontBarlow700 from '/fonts/barlow-condensed/barlow-condensed-latin-700-normal.woff2?url'
@@ -111,7 +111,7 @@ const isHome = Astro.url.pathname === '/'
 </style>
 
 <script>
-  import { setupScrollAnimations } from '../lib/animate-on-scroll'
+  import { setupScrollAnimations } from '@/lib/animate-on-scroll'
 
   if (typeof window !== 'undefined') {
     setupScrollAnimations()

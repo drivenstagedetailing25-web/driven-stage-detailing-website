@@ -1,4 +1,4 @@
-import { useContactModal } from '../../store/modalStore'
+import { useContactModal } from '@/store/modalStore'
 
 interface OpenContactModalButtonProps {
   children: React.ReactNode

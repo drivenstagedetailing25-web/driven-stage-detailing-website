@@ -1,4 +1,4 @@
-import { useContactModal } from '../../store/modalStore'
+import { useContactModal } from '@/store/modalStore'
 import { ContactForm } from './ContactForm'
 import { useEffect, useState } from 'react'
 
