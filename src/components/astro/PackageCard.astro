@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets'
+import CheckMark from '../../assets/svg/check-mark.svg'
+import Calendar from '../../assets/svg/calendar.svg'
+import { OpenContactModalButton } from '../react/OpenContactModalButton'
+
+interface Badge {
+  text: string
+  bgColor: string
+  textColor?: string
+}
+
+interface Props {
+  title: string
+  price: string
+  duration: string
+  image: string
+  alt: string
+  badge: Badge
+  features: string[]
+  borderClass?: string
+  luxury?: boolean
+  popularBadge?: Badge
+  savings?: string
+}
+
+const {
+  title,
+  price,
+  duration,
+  image,
+  alt,
+  badge,
+  features,
+  borderClass = 'border border-neutral-200',
+  luxury = false,
+  popularBadge,
+  savings,
+} = Astro.props;
+---
+
+<article
+  class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
+>
+  <div class='relative w-full h-40 overflow-hidden flex-shrink-0'>
+    <Image
+      class='w-full h-full object-cover'
+      width={400}
+      height={200}
+      src={image}
+      alt={alt}
+      loading='lazy'
+    />
+    <div
+      class={`absolute inset-0 ${luxury ? 'bg-gradient-to-t from-black/70 to-black/30' : 'bg-gradient-to-t from-black/60 to-black/20'}`}
+    />
+    <div class='absolute top-3 left-3'>
+      <span
+        class={`${badge.bgColor} ${badge.textColor || 'text-white'} px-3 py-1 rounded-full text-xs font-semibold ${luxury ? 'shadow-md' : ''}`}
+      >
+        {badge.text}
+      </span>
+    </div>
+    {luxury && (
+      <div class='absolute bottom-3 right-3'>
+        <div class='bg-black/50 backdrop-blur-sm px-2.5 py-0.5 rounded-full'>
+          <span class='text-yellow-400 text-[11px] font-semibold'>
+            ✨ LUXURY
+          </span>
+        </div>
+      </div>
+    )}
+    {popularBadge && (
+      <div class='absolute top-3 right-3'>
+        <span
+          class={`${popularBadge.bgColor} text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md`}
+        >
+          {popularBadge.text}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <div class='p-5 flex flex-col flex-1'>
+    <h3 class='text-xl font-bold font-barlow text-foreground mb-3'>
+      {title}
+    </h3>
+    <div class='flex items-baseline mb-4'>
+      <span class='text-foreground/85'>From</span>
+      <span class='text-2xl font-bold text-gradient-accent ml-2'>
+        {price}
+      </span>
+      <span class='text-foreground/85 ml-1'>/ {duration}</span>
+    </div>
+
+    {savings && (
+      <p class='text-sm font-semibold text-accent mb-3'>{savings}</p>
+    )}
+
+    <ul class='space-y-2 text-foreground text-sm mb-6 flex-1'>
+      {features.map((feature) => (
+        <li class='flex items-start'>
+          <CheckMark class='w-4 h-4 text-accent mr-2 mt-0.5 flex-shrink-0' />
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <OpenContactModalButton client:visible fullWidth>
+      Schedule Service
+      <Calendar class='ml-2 size-5' />
+    </OpenContactModalButton>
+  </div>
+</article>
