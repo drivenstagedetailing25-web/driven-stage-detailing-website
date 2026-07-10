@@ -40,7 +40,7 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
     <p
       class='hero-subtitle mb-8 max-w-2xl mx-auto text-muted font-semibold tracking-wider'
     >
-      <span id='typewriter-text'></span><span id='typewriter-cursor'>|</span>
+      FROM THE ROAD TO THE SPOTLIGHT
     </p>
 
     <p
@@ -213,24 +213,22 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
 
   .hero-subtitle {
     font-size: clamp(1.125rem, 1.5vw + 0.8vh, 1.375rem);
+    animation: slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.6s both;
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(400px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .hero-tags {
     font-size: clamp(0.7rem, 1vw + 0.4vh, 1rem);
-  }
-
-  #typewriter-cursor {
-    display: inline-block;
-    opacity: 1;
-    transition: opacity 0.4s ease;
-    animation: blink 0.7s step-end infinite;
-  }
-  #typewriter-cursor.done {
-    opacity: 0;
-    animation: none;
-  }
-  @keyframes blink {
-    50% { opacity: 0; }
   }
 
   @media (max-width: 639px) {
@@ -277,28 +275,3 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
     }
   }
 </style>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const el = document.getElementById('typewriter-text')
-    const cursor = document.getElementById('typewriter-cursor')
-    if (!el || !cursor) return
-
-    const text = 'FROM THE ROAD TO THE SPOTLIGHT'
-    el.textContent = ''
-    cursor.classList.remove('done')
-
-    let i = 0
-    function type() {
-      if (i < text.length) {
-        el.textContent += text.charAt(i)
-        i++
-        setTimeout(type, 60 + Math.random() * 40)
-      } else {
-        cursor.classList.add('done')
-      }
-    }
-
-    setTimeout(type, 800)
-  })
-</script>
