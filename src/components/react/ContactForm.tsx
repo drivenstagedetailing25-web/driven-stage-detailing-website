@@ -2,7 +2,7 @@ import { useState, useMemo, useRef, useEffect } from 'react'
 import { useContactModal } from '@/store/modalStore'
 import { toast } from '@pheralb/toast'
 import { SERVICES } from '@/lib/services'
-import { Spinner } from '@/components/react/ui/spinner'
+import { Spinner } from './ui/Spinner'
 
 interface ContactFormProps {
   blurredBackground?: boolean
