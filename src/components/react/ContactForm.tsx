@@ -152,7 +152,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`relative w-full space-y-4 rounded-xl border border-zinc-700 bg-black/30 p-6 text-sm shadow-xl ${blurredBackground ? 'backdrop-blur-sm' : ''}`}
+      className={`relative w-full space-y-4 rounded-xl border border-zinc-700 bg-black/20 p-6 text-sm shadow-xl ${blurredBackground ? 'backdrop-blur-sm' : ''}`}
     >
       <div className='mt-5'>
         <label htmlFor='name' className='text-light mb-1 block font-medium'>
@@ -324,7 +324,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         ></textarea>
       </div>
 
-      <label class='flex items-start gap-2 text-xs text-muted cursor-pointer'>
+      <label className='flex items-start gap-2 text-xs text-muted cursor-pointer'>
         <input
           type='checkbox'
           checked={termsAccepted}
@@ -332,21 +332,21 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
             setTermsAccepted(e.target.checked)
             if (e.target.checked) setTermsError(false)
           }}
-          class='accent-primary mt-0.5 h-4 w-4 rounded flex-shrink-0'
+          className='accent-primary mt-0.5 h-4 w-4 rounded flex-shrink-0'
         />
         <span>
           I accept the{' '}
           <a
             href='/terms'
             target='_blank'
-            class='text-primary underline hover:text-primary/80'
+            className='text-primary underline hover:text-primary/80'
           >
             Terms & Conditions
           </a>
         </span>
       </label>
       {termsError && (
-        <p class='text-xs font-medium text-red-400 -mt-2'>
+        <p className='text-xs font-medium text-red-400 -mt-2'>
           You must accept the Terms & Conditions
         </p>
       )}

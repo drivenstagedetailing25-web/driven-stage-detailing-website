@@ -186,7 +186,7 @@ const luxuryServiceOptions = [
           Perfect for busy professionals who demand excellence.
         </p>
 
-        <OpenContactModalButton client:visible size='lg'>
+        <OpenContactModalButton client:visible>
           Schedule Service
           <Calendar class='ml-2 size-5' />
         </OpenContactModalButton>
@@ -208,7 +208,7 @@ const luxuryServiceOptions = [
   <section id='main-services' class='pt-20 pb-10 bg-white'>
     <div class='container mx-auto px-6'>
       <h2
-        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-12'
+        class='text-3xl md:text-5xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-14'
       >
         Choose Your Service Package
       </h2>
@@ -222,7 +222,7 @@ const luxuryServiceOptions = [
         {
           serviceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
+              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative invisible intersect:visible intersect:animate-fade-up intersect-once intersect-half flex flex-col overflow-hidden`}
             >
               <div class='relative w-full h-40 overflow-hidden flex-shrink-0'>
                 <Image
@@ -282,7 +282,7 @@ const luxuryServiceOptions = [
   <section class='pb-20'>
     <div class='container mx-auto px-6'>
       <h2
-        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-12'
+        class='text-3xl md:text-5xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-14'
       >
         Luxury Service Packages
       </h2>
@@ -296,7 +296,7 @@ const luxuryServiceOptions = [
         {
           luxuryServiceOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
+              class={`bg-white rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative invisible intersect:visible intersect:animate-fade-up intersect-once intersect-half flex flex-col overflow-hidden`}
             >
               <div class='relative w-full h-40 overflow-hidden flex-shrink-0'>
                 <Image
@@ -364,7 +364,7 @@ const luxuryServiceOptions = [
     class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
   >
     <div class='container mx-auto px-6 text-center'>
-      <h2 class='text-3xl md:text-4xl font-bold font-barlow text-white mb-6'>
+      <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'>
         Ready to <span class='text-gradient-primary'>Transform</span> Your Vehicle?
       </h2>
       <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>

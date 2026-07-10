@@ -24,10 +24,12 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
 
   <div class='container mx-auto px-6 text-center relative z-20 pt-10'>
     <h1
-      class='hero-title font-bold tracking-wide text-white mb-6 animate-slide-up font-barlow flex flex-col items-center'
+      class='hero-title font-bold tracking-wide text-white mb-6 font-barlow flex flex-col items-center'
     >
-      <span class='block animate-fade-up'>DRIVEN STAGE MOBILE</span>
-      <span class='block animate-fade-up animate-delay-300'>
+      <span class='block animate-fade-up animate-delay-200'>
+        DRIVEN STAGE MOBILE</span
+      >
+      <span class='block animate-fade-up animate-delay-500'>
         <span class='text-primary'>LUXURY AUTO</span>
         <span class='text-gradient-primary inline-block max-w-fit mx-auto'
           >DETAILING</span
@@ -36,14 +38,13 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
     </h1>
 
     <p
-      class='hero-subtitle mb-8 max-w-2xl mx-auto animate-slide-up text-muted font-semibold tracking-wider'
+      class='hero-subtitle mb-8 max-w-2xl mx-auto text-muted font-semibold tracking-wider'
     >
-      FROM THE ROAD TO THE SPOTLIGHT
+      <span id='typewriter-text'></span><span id='typewriter-cursor'>|</span>
     </p>
 
     <p
-      class='hero-tags mb-8 animate-slide-up text-muted font-medium flex flex-wrap justify-center gap-x-3'
-      style='animation-delay: 0.2s;'
+      class='hero-tags mb-8 text-muted font-medium flex flex-wrap justify-center gap-x-3'
     >
       <span>100% Mobile</span>
       <span aria-hidden='true'>·</span>
@@ -58,7 +59,7 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
       <span>Exterior Detailing</span>
     </p>
 
-    <div class='cta-row animate-slide-up' style='animation-delay: 0.4s;'>
+    <div class='cta-row' style='animation-delay: 0.4s;'>
       <a href='tel:201-966-6990' class='cta-slab cta-slab-phone'>
         <span class='cta-icon' aria-hidden='true'>
           <Phone class='size-5' />
@@ -71,7 +72,9 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
       </a>
 
       <a href='/contact' class='cta-slab cta-slab-primary'>
-        <span class='flex flex-col items-start text-left sm:items-end sm:text-right gap-1 min-w-0'>
+        <span
+          class='flex flex-col items-start text-left sm:items-end sm:text-right gap-1 min-w-0'
+        >
           <span class='cta-main'>Contact Info</span>
         </span>
 
@@ -121,7 +124,7 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
   }
 
   .cta-slab-phone {
-    background: rgb(255 255 255 / 0.060);
+    background: rgb(255 255 255 / 0.06);
     color: var(--color-light);
     border: 1px solid rgb(255 255 255 / 0.3);
     clip-path: polygon(3.5% 0, 100% 0, 96.5% 100%, 0 100%);
@@ -216,6 +219,20 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
     font-size: clamp(0.7rem, 1vw + 0.4vh, 1rem);
   }
 
+  #typewriter-cursor {
+    display: inline-block;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    animation: blink 0.7s step-end infinite;
+  }
+  #typewriter-cursor.done {
+    opacity: 0;
+    animation: none;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
   @media (max-width: 639px) {
     .cta-slab {
       min-height: 3rem;
@@ -260,3 +277,28 @@ import ArrowRight from '@/assets/svg/arrow-right.svg'
     }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const el = document.getElementById('typewriter-text')
+    const cursor = document.getElementById('typewriter-cursor')
+    if (!el || !cursor) return
+
+    const text = 'FROM THE ROAD TO THE SPOTLIGHT'
+    el.textContent = ''
+    cursor.classList.remove('done')
+
+    let i = 0
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i)
+        i++
+        setTimeout(type, 60 + Math.random() * 40)
+      } else {
+        cursor.classList.add('done')
+      }
+    }
+
+    setTimeout(type, 800)
+  })
+</script>

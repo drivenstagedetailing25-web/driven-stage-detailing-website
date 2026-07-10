@@ -125,7 +125,7 @@ const ceramicCoatingOptions = [
   <section class='py-20 bg-white'>
     <div class='container mx-auto px-6'>
       <h2
-        class='text-3xl md:text-4xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-12'
+        class='text-3xl md:text-5xl font-bold font-barlow text-center text-gradient-primary mb-4 md:h-14'
       >
         Choose Your Protection Level
       </h2>
@@ -139,7 +139,7 @@ const ceramicCoatingOptions = [
         {
           ceramicCoatingOptions.map((service) => (
             <article
-              class={`bg-white rounded-2xl hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative animate-fade-up flex flex-col overflow-hidden`}
+              class={`bg-white rounded-2xl hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${service.borderClass} relative invisible intersect:visible intersect:animate-fade-up intersect-once intersect-half flex flex-col overflow-hidden`}
             >
               <div class='relative w-full h-52 overflow-hidden flex-shrink-0'>
                 <Image
@@ -193,7 +193,7 @@ const ceramicCoatingOptions = [
     class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
   >
     <div class='container mx-auto px-6 text-center'>
-      <h2 class='text-3xl md:text-4xl font-bold font-barlow text-white mb-6'>
+      <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'>
         Ready to <span class='text-gradient-primary'>Protect</span> Your Investment?
       </h2>
       <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>

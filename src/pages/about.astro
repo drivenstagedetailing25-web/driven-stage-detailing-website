@@ -24,7 +24,7 @@ const missionAndValues = [
 ]
 ---
 
-<Layout 
+<Layout
   title='About Us - Driven Stage Detailing'
   description='Learn about Driven Stage Detailing - your trusted mobile auto detailing specialists. Certified technicians, premium products, and exceptional service delivered to your location.'
 >
@@ -59,13 +59,17 @@ const missionAndValues = [
         >
           Our Story
         </h2>
-        <p class='text-foreground leading-relaxed text-pretty mb-6 text-lg'>
+        <p
+          class='text-foreground leading-relaxed text-pretty mb-6 text-lg invisible intersect:visible intersect:animate-fade-up intersect-once'
+        >
           Founded with a passion for automotive excellence, Driven Stage
           Detailing emerged from a simple belief: every vehicle deserves to look
           its absolute best. What started as a commitment to quality has evolved
           into New Jersey's premier mobile detailing service.
         </p>
-        <p class='text-foreground leading-relaxed text-pretty text-lg'>
+        <p
+          class='text-foreground leading-relaxed text-pretty text-lg invisible intersect:visible intersect:animate-fade-up animate-delay-300 intersect-once'
+        >
           We understand that your vehicle is more than just transportation—it's
           an investment, a statement, and often a source of pride. That's why
           we've dedicated ourselves to perfecting the art and science of
@@ -73,7 +77,9 @@ const missionAndValues = [
           your doorstep.
         </p>
         <div class='mt-8'>
-          <p class='text-foreground font-medium mb-4'>
+          <p
+            class='text-foreground font-medium mb-4 invisible intersect:visible intersect:animate-fade-up animate-delay-600 intersect-once'
+          >
             Ready to experience the Driven Stage difference?
           </p>
           <a href='/#contact' class='btn btn-primary btn-base font-bold'>
@@ -109,7 +115,7 @@ const missionAndValues = [
         {
           missionAndValues.map((value, index) => (
             <li
-              class={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-lg text-center transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:shadow-2xl hover:-translate-y-1 cursor-pointer ${
+              class={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 shadow-lg text-center transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:shadow-2xl hover:-translate-y-1 cursor-pointer invisible intersect:visible intersect:animate-fade-down intersect-once ${
                 index === 2 ? 'md:col-span-2 lg:col-span-1' : ''
               }`}
             >

@@ -6,6 +6,7 @@ import Header from '@/components/react/Header'
 import '../styles/global.css'
 import fontBarlow400 from '/fonts/barlow-condensed/barlow-condensed-latin-400-normal.woff2?url'
 import fontBarlow700 from '/fonts/barlow-condensed/barlow-condensed-latin-700-normal.woff2?url'
+import { ClientRouter } from 'astro:transitions'
 
 export interface Props {
   title?: string
@@ -48,7 +49,7 @@ const isHome = Astro.url.pathname === '/'
     <meta name='apple-mobile-web-app-title' content='Driven Stage Detailing' />
     <link rel='manifest' href='/favicon/site.webmanifest' />
 
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel='sitemap' href='/sitemap-index.xml' />
 
     <link
       rel='preload'
@@ -79,10 +80,13 @@ const isHome = Astro.url.pathname === '/'
     <meta property='og:image' content={new URL(OgImage, Astro.site).href} />
     <meta property='og:site_name' content='Driven Stage Detailing' />
     <meta property='og:locale' content='en_US' />
-    <meta property="og:logo" content="/images/logo.webp" />
+    <meta property='og:logo' content='/images/logo.webp' />
 
     <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="4R-zPwaO1S08cA4oP2iBgn_l6NL_dEaRXFwdsklwqeQ" />
+    <meta
+      name='google-site-verification'
+      content='4R-zPwaO1S08cA4oP2iBgn_l6NL_dEaRXFwdsklwqeQ'
+    />
 
     <!-- Twitter -->
     <meta name='twitter:card' content='summary_large_image' />
@@ -90,6 +94,8 @@ const isHome = Astro.url.pathname === '/'
     <meta name='twitter:title' content={title} />
     <meta name='twitter:description' content={description} />
     <meta name='twitter:image' content={new URL(OgImage, Astro.site).href} />
+
+    <ClientRouter />
 
     <title>{title}</title>
   </head>
@@ -104,16 +110,22 @@ const isHome = Astro.url.pathname === '/'
   </body>
 </html>
 
+<script>
+  import { Observer } from 'tailwindcss-intersect'
+
+  Observer._getThreshold = (element) => {
+    if (element.classList.contains('intersect-full')) return 0.75
+    if (element.classList.contains('intersect-half')) return 0.25
+    return 0
+  }
+
+  document.addEventListener('astro:page-load', function () {
+    Observer.start()
+  })
+</script>
+
 <style is:global>
   html {
     scroll-behavior: smooth;
   }
 </style>
-
-<script>
-  import { setupScrollAnimations } from '@/lib/animate-on-scroll'
-
-  if (typeof window !== 'undefined') {
-    setupScrollAnimations()
-  }
-</script>

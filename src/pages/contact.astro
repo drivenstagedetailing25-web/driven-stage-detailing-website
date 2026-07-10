@@ -50,7 +50,9 @@ const contactMethods = [
         >
           Get in Touch
         </h1>
-        <span class='mt-4 block h-1.5 w-20 rounded-full bg-primary'></span>
+        <span
+          class='mt-4 block h-1.5 w-20 rounded-full bg-accent overflow-hidden max-w-0 intersect:max-w-20 intersect-once transition-all duration-700 ease-out'
+        ></span>
         <p
           class='mt-6 text-base leading-relaxed text-secondary-darker md:text-lg'
         >
@@ -61,8 +63,10 @@ const contactMethods = [
 
       <div class='mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4'>
         {
-          contactMethods.map((method) => (
-            <article class='group rounded-2xl border border-secondary-light bg-white/65 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl'>
+          contactMethods.map((method, index) => (
+            <article
+              class={`group rounded-2xl border border-secondary-light bg-white/65 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl intersect:animate-fade-up intersect-once ${index < 2 ? 'xl:intersect:animate-fade-left' : 'xl:intersect:animate-fade-right'}`}
+            >
               <div class='mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-light'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
