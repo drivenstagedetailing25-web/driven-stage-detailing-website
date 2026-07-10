@@ -1,16 +1,11 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
 import { useContactModal } from '@/store/modalStore'
 import { toast } from '@pheralb/toast'
-import { Spinner } from './ui/spinner'
 import { SERVICES } from '@/lib/services'
+import { Spinner } from '@/components/react/ui/spinner'
 
 interface ContactFormProps {
   blurredBackground?: boolean
-}
-
-type ResponseSuccess = {
-  id: string
-  success: boolean
 }
 
 export function ContactForm({ blurredBackground }: ContactFormProps) {
@@ -114,8 +109,6 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         .map((slug) => SERVICES.find((s) => s.slug === slug)?.name ?? slug)
         .join(', '),
     }
-    delete dataToSend.service
-
     setLoading(true)
 
     try {
@@ -339,7 +332,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
           <a
             href='/terms'
             target='_blank'
-            className='text-primary underline hover:text-primary/80'
+            className='text-[#5998ff] underline hover:text-primary/80'
           >
             Terms & Conditions
           </a>
