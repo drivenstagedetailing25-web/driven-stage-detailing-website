@@ -63,6 +63,8 @@ export default function Header({ isHome: initialIsHome = false }: HeaderProps) {
             <img
               src='/images/logo.webp'
               alt='Driven Stage Detailing Logo'
+              loading='eager'
+              fetchPriority='high'
               className='h-24 w-auto brightness-110 contrast-125 md:h-32'
             />
             <div className='hidden sm:block'>

@@ -11,6 +11,7 @@ const serviceOptions = [
   {
     id: 1,
     title: 'Essential Stage Exterior',
+    preselectSlugs: ['essential-stage-exterior'],
     price: '$110',
     duration: '1 hour',
     image: '/images/services/premium-exterior.jpg',
@@ -31,6 +32,7 @@ const serviceOptions = [
   {
     id: 2,
     title: 'Essential Stage Interior',
+    preselectSlugs: ['essential-stage-interior'],
     price: '$190',
     duration: '1 hr 30 min',
     image: '/images/services/car-detailing.jpg',
@@ -51,6 +53,7 @@ const serviceOptions = [
   {
     id: 3,
     title: 'Essential Stage Full Detail',
+    preselectSlugs: ['essential-stage-full-detail'],
     price: '$240',
     duration: '2 hr 30 min',
     image: '/images/services/paint-correction.jpg',
@@ -78,6 +81,7 @@ const luxuryServiceOptions = [
   {
     id: 1,
     title: 'Prestige Stage Exterior',
+    preselectSlugs: ['prestige-stage-exterior'],
     price: '$160',
     duration: '2 hr',
     image: '/images/services/ceramic-coating.jpg',
@@ -99,6 +103,7 @@ const luxuryServiceOptions = [
   {
     id: 2,
     title: 'Prestige Stage Interior',
+    preselectSlugs: ['prestige-stage-interior'],
     price: '$390',
     duration: '4 hr 30 min',
     image: '/images/services/car-detailing.jpg',
@@ -119,6 +124,7 @@ const luxuryServiceOptions = [
   {
     id: 3,
     title: 'Prestige Stage Full Detail',
+    preselectSlugs: ['prestige-stage-full-detail'],
     price: '$495',
     duration: '6 hours',
     image: '/images/services/paint-correction.jpg',
@@ -266,7 +272,11 @@ const luxuryServiceOptions = [
                   ))}
                 </ul>
 
-                <OpenContactModalButton client:visible fullWidth>
+                <OpenContactModalButton
+                  client:visible
+                  fullWidth
+                  preselectSlugs={service.preselectSlugs}
+                >
                   Schedule Service
                   <Calendar class='ml-2 size-5' />
                 </OpenContactModalButton>
@@ -347,7 +357,11 @@ const luxuryServiceOptions = [
                   ))}
                 </ul>
 
-                <OpenContactModalButton client:visible fullWidth>
+                <OpenContactModalButton
+                  client:visible
+                  fullWidth
+                  preselectSlugs={service.preselectSlugs}
+                >
                   Schedule Service
                   <Calendar class='ml-2 size-5' />
                 </OpenContactModalButton>
@@ -364,7 +378,9 @@ const luxuryServiceOptions = [
     class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
   >
     <div class='container mx-auto px-6 text-center'>
-      <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'>
+      <h2
+        class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'
+      >
         Ready to <span class='text-gradient-primary'>Transform</span> Your Vehicle?
       </h2>
       <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>

@@ -11,6 +11,7 @@ const ceramicCoatingOptions = [
   {
     id: 1,
     title: 'Ceramic Coating Stage 1',
+    preselectSlugs: ['ceramic-coating-stage-1'],
     price: '$1095',
     duration: '8 hours',
     image: '/images/services/ceramic-coating.jpg',
@@ -34,6 +35,7 @@ const ceramicCoatingOptions = [
   {
     id: 2,
     title: 'Ceramic Coating Stage 2',
+    preselectSlugs: ['ceramic-coating-stage-2'],
     price: '$1395',
     duration: '9 hours',
     image: '/images/services/paint-correction.jpg',
@@ -103,7 +105,10 @@ const ceramicCoatingOptions = [
           enhanced gloss, and hydrophobic properties for years of superior paint
           preservation.
         </p>
-        <OpenContactModalButton client:visible>
+        <OpenContactModalButton
+          client:visible
+          preselectSlugs={['ceramic-coating-stage-1']}
+        >
           Schedule Service
           <Calendar class='ml-2 size-5' />
         </OpenContactModalButton>
@@ -176,7 +181,11 @@ const ceramicCoatingOptions = [
                   ))}
                 </ul>
 
-                <OpenContactModalButton client:visible fullWidth>
+                <OpenContactModalButton
+                  client:visible
+                  fullWidth
+                  preselectSlugs={service.preselectSlugs}
+                >
                   Schedule Service
                   <Calendar class='ml-2 size-5' />
                 </OpenContactModalButton>
@@ -193,7 +202,9 @@ const ceramicCoatingOptions = [
     class='py-20 bg-dark bg-gradient-to-b from-primary/25 via-dark to-dark'
   >
     <div class='container mx-auto px-6 text-center'>
-      <h2 class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'>
+      <h2
+        class='text-3xl md:text-4xl lg:text-5xl font-bold font-barlow text-white mb-6'
+      >
         Ready to <span class='text-gradient-primary'>Protect</span> Your Investment?
       </h2>
       <p class='text-muted text-lg mb-8 max-w-2xl mx-auto'>
@@ -201,7 +212,10 @@ const ceramicCoatingOptions = [
         services. Contact us today for a consultation and protect your
         investment for years to come.
       </p>
-      <OpenContactModalButton client:visible>
+      <OpenContactModalButton
+        client:visible
+        preselectSlugs={['ceramic-coating-stage-1']}
+      >
         Schedule Service
         <Calendar class='ml-2 size-5' />
       </OpenContactModalButton>

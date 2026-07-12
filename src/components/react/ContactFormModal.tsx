@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 export function ContactFormModal() {
   const isOpen = useContactModal((state) => state.isOpen)
+  const preselectedSlugs = useContactModal((state) => state.preselectedSlugs)
   const closeContactModal = useContactModal((state) => state.closeContactModal)
   const [isAnimating, setIsAnimating] = useState(false)
   const [shouldRender, setShouldRender] = useState(false)
@@ -55,7 +56,7 @@ export function ContactFormModal() {
         >
           <X />
         </button>
-        <ContactForm />
+        <ContactForm preselectedSlugs={preselectedSlugs} />
       </article>
     </div>
   )

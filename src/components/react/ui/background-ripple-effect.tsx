@@ -28,7 +28,7 @@ export const BackgroundRippleEffect = ({
       className='absolute inset-0 h-full w-full'
       style={
         {
-          '--cell-border-color': '#e9e9e9',
+          '--cell-border-color': '#e7e7e7',
           '--cell-fill-color': '#fafafa',
         } as React.CSSProperties
       }

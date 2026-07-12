@@ -22,6 +22,7 @@ interface Props {
   luxury?: boolean
   popularBadge?: Badge
   savings?: string
+  preselectSlugs?: string[]
 }
 
 const {
@@ -36,6 +37,7 @@ const {
   luxury = false,
   popularBadge,
   savings,
+  preselectSlugs,
 } = Astro.props
 ---
 
@@ -111,7 +113,11 @@ const {
       }
     </ul>
 
-    <OpenContactModalButton client:visible fullWidth>
+    <OpenContactModalButton
+      client:visible
+      fullWidth
+      preselectSlugs={preselectSlugs}
+    >
       Schedule Service
       <Calendar class='ml-2 size-5' />
     </OpenContactModalButton>

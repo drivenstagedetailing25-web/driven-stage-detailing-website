@@ -1,14 +1,20 @@
-import { useState, useMemo, useRef, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useContactModal } from '@/store/modalStore'
 import { toast } from '@pheralb/toast'
+import { ServiceDropdown } from './ServiceDropdown'
+import { DateTimePicker } from './DateTimePicker'
 import { SERVICES } from '@/lib/services'
 import { Spinner } from './ui/Spinner'
 
 interface ContactFormProps {
   blurredBackground?: boolean
+  preselectedSlugs?: string[]
 }
 
-export function ContactForm({ blurredBackground }: ContactFormProps) {
+export function ContactForm({
+  blurredBackground,
+  preselectedSlugs,
+}: ContactFormProps) {
   const closeContactModal = useContactModal((state) => state.closeContactModal)
   const [preferredDate, setPreferredDate] = useState('')
   const [preferredTime, setPreferredTime] = useState('')
@@ -22,23 +28,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
     return d.toISOString().split('T')[0]
   }, [])
 
-  const isToday = preferredDate === todayISO
-
-  const timeOptions = useMemo(() => {
-    const now = new Date()
-    const currentMinutes = now.getHours() * 60 + now.getMinutes()
-    const base = [
-      { value: '08:00', label: '8:00 AM', minutes: 8 * 60 },
-      { value: '11:00', label: '11:00 AM', minutes: 11 * 60 },
-      { value: '15:00', label: '3:00 PM', minutes: 15 * 60 },
-    ]
-    return base.map((o) => ({
-      ...o,
-      disabled: isToday && o.minutes <= currentMinutes + 5,
-    }))
-  }, [isToday, preferredDate])
-
-  function handleDateChange(e: any) {
+  function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
     const val = e.target.value
     setPreferredDate(val)
     setDateError('')
@@ -46,9 +36,9 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
 
     const sel = new Date(val + 'T00:00:00')
     const day = sel.getDay()
-    if (day === 0 || day === 6) {
+    if (day === 0) {
       setPreferredDate('')
-      setDateError('Please select a weekday (Mon to Fri).')
+      setDateError('Please select a day from Monday to Saturday.')
       return
     }
 
@@ -60,31 +50,64 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
   }
 
   const [selectedServices, setSelectedServices] = useState<string[]>([])
-  const [servicesOpen, setServicesOpen] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [termsError, setTermsError] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [serviceError, setServiceError] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [dropdownResetKey, setDropdownResetKey] = useState(0)
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setServicesOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    setSelectedServices(preselectedSlugs ?? [])
+  }, [preselectedSlugs])
 
   function handleServiceToggle(slug: string) {
-    setSelectedServices((prev) =>
-      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug],
-    )
+    setServiceError(false)
+    const service = SERVICES.find((item) => item.slug === slug)
+
+    setSelectedServices((prev) => {
+      if (!service) {
+        return prev.includes(slug)
+          ? prev.filter((item) => item !== slug)
+          : [...prev, slug]
+      }
+
+      if (service.group === 'addon') {
+        return prev.includes(slug)
+          ? prev.filter((item) => item !== slug)
+          : [...prev, slug]
+      }
+
+      if (prev.includes(slug)) {
+        return prev.filter((item) => item !== slug)
+      }
+
+      const packageGroups = [
+        'detailing',
+        'premium-coating',
+        'premium-correction',
+      ] as const
+      return [
+        ...prev.filter((item) => {
+          const selectedService = SERVICES.find(
+            (serviceItem) => serviceItem.slug === item,
+          )
+          return (
+            !selectedService ||
+            selectedService.group === 'addon' ||
+            selectedService.group !== service.group
+          )
+        }),
+        slug,
+      ]
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (selectedServices.length === 0) {
+      setServiceError(true)
       return
     }
 
@@ -133,6 +156,16 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
       })
 
       e.currentTarget.reset()
+      setPreferredDate('')
+      setPreferredTime('')
+      setSelectedServices([])
+      setTermsAccepted(false)
+      setTermsError(false)
+      setServiceError(false)
+      setDateError('')
+      setName('')
+      setEmail('')
+      setDropdownResetKey((prev) => prev + 1)
 
       closeContactModal()
     } catch (err) {
@@ -156,6 +189,8 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
           id='name'
           name='name'
           required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className='bg-light border-muted focus:ring-primary text-foreground w-full rounded-lg border px-3 py-2 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none'
           placeholder='Enter your full name'
         />
@@ -170,6 +205,8 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
           id='email'
           name='email'
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className='bg-light border-muted focus:ring-primary text-foreground w-full rounded-lg border px-3 py-2 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none'
           placeholder='Enter your email'
         />
@@ -188,121 +225,26 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         />
       </div>
 
-      <div ref={dropdownRef} className='relative'>
-        <label className='text-light mb-1 block font-medium'>
-          Services Interested In *
-        </label>
-        <button
-          type='button'
-          onClick={() => setServicesOpen(!servicesOpen)}
-          className={`bg-light border-muted text-foreground flex w-full cursor-pointer items-center justify-between rounded-lg border px-3 py-2 text-sm text-left transition-all focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none ${
-            selectedServices.length === 0 ? 'text-zinc-400' : ''
-          }`}
-        >
-          <span>
-            {selectedServices.length === 0
-              ? 'Select services'
-              : `${selectedServices.length} service${selectedServices.length > 1 ? 's' : ''} selected`}
-          </span>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 20 20'
-            fill='currentColor'
-            className={`h-4 w-4 transition-transform duration-200 ${
-              servicesOpen ? 'rotate-180' : ''
-            }`}
-          >
-            <path
-              fillRule='evenodd'
-              d='M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z'
-              clipRule='evenodd'
-            />
-          </svg>
-        </button>
-        {servicesOpen && (
-          <div className='bg-light border-muted absolute z-30 mt-1 w-full rounded-lg border p-3 shadow-lg'>
-            <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
-              {SERVICES.map((service) => (
-                <label
-                  key={service.slug}
-                  className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm transition-all ${
-                    selectedServices.includes(service.slug)
-                      ? 'border-primary bg-primary/10 text-dark'
-                      : 'border-muted text-foreground hover:border-zinc-400'
-                  }`}
-                >
-                  <input
-                    type='checkbox'
-                    name='services'
-                    value={service.slug}
-                    checked={selectedServices.includes(service.slug)}
-                    onChange={() => handleServiceToggle(service.slug)}
-                    className='accent-primary h-4 w-4 rounded'
-                  />
-                  {service.name}
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
-        {selectedServices.length === 0 && (
-          <p className='mt-1 text-xs font-medium text-amber-400'>
-            Select at least one service
-          </p>
-        )}
-      </div>
+      <ServiceDropdown
+        selectedServices={selectedServices}
+        onToggle={handleServiceToggle}
+        resetKey={dropdownResetKey}
+      />
 
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-        <div>
-          <label
-            htmlFor='preferredDate'
-            className='text-light mb-1 block font-medium'
-          >
-            Preferred Date *
-          </label>
-          <input
-            type='date'
-            id='preferredDate'
-            name='preferredDate'
-            required
-            min={todayISO}
-            value={preferredDate}
-            onChange={handleDateChange}
-            className={`bg-light border ${dateError ? 'border-red-500 focus:ring-red-500' : 'border-muted focus:ring-primary'} text-foreground w-full rounded-lg px-3 py-2 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none`}
-          />
-          {dateError && (
-            <p className='mt-1 text-xs font-medium text-red-400'>{dateError}</p>
-          )}
-        </div>
+      {serviceError && selectedServices.length === 0 && (
+        <p className='mt-1 text-xs font-medium text-amber-400'>
+          Select at least one service
+        </p>
+      )}
 
-        <div>
-          <label
-            htmlFor='preferredTime'
-            className='text-light mb-1 block font-medium'
-          >
-            Preferred Time *
-          </label>
-          <select
-            id='preferredTime'
-            name='preferredTime'
-            required
-            value={preferredTime}
-            onChange={(e: any) => setPreferredTime(e.target.value)}
-            className='bg-light border-muted focus:ring-primary text-foreground w-full rounded-lg border px-3 py-2 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none disabled:opacity-50'
-            disabled={!preferredDate}
-          >
-            <option value=''>
-              {preferredDate ? 'Select a time' : 'Select date first'}
-            </option>
-            {timeOptions.map((opt, idx) => (
-              <option key={idx} value={opt.value} disabled={opt.disabled}>
-                {opt.label}
-                {opt.disabled ? ' (Unavailable)' : ''}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      <DateTimePicker
+        preferredDate={preferredDate}
+        preferredTime={preferredTime}
+        dateError={dateError}
+        todayISO={todayISO}
+        onDateChange={handleDateChange}
+        onTimeChange={(e) => setPreferredTime(e.target.value)}
+      />
 
       <div>
         <label htmlFor='message' className='text-light mb-1 block font-medium'>
@@ -317,7 +259,7 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
         ></textarea>
       </div>
 
-      <label className='flex items-start gap-2 text-xs text-muted cursor-pointer'>
+      <label className='text-muted flex cursor-pointer items-start gap-2 text-xs'>
         <input
           type='checkbox'
           checked={termsAccepted}
@@ -325,24 +267,37 @@ export function ContactForm({ blurredBackground }: ContactFormProps) {
             setTermsAccepted(e.target.checked)
             if (e.target.checked) setTermsError(false)
           }}
-          className='accent-primary mt-0.5 h-4 w-4 rounded flex-shrink-0'
+          className='accent-primary mt-0.5 h-4 w-4 flex-shrink-0 rounded'
         />
         <span>
           I accept the{' '}
           <a
             href='/terms'
             target='_blank'
-            className='text-[#5998ff] underline hover:text-primary/80'
+            className='hover:text-primary/80 text-[#5998ff] underline'
           >
             Terms & Conditions
           </a>
         </span>
       </label>
       {termsError && (
-        <p className='text-xs font-medium text-red-400 -mt-2'>
+        <p className='-mt-2 text-xs font-medium text-red-400'>
           You must accept the Terms & Conditions
         </p>
       )}
+
+      {name.trim() &&
+        email.trim() &&
+        selectedServices.length > 0 &&
+        preferredDate &&
+        preferredTime &&
+        termsAccepted && (
+          <p className='text-muted animate-fade-up animate-duration-500 text-center text-xs leading-relaxed'>
+            Final pricing is confirmed after an on-site vehicle inspection. Any
+            adjustments will be discussed and approved by you before work
+            begins.
+          </p>
+        )}
 
       <div className='pt-2 text-center'>
         <button
