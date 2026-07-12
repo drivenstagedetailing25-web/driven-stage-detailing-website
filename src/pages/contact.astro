@@ -23,14 +23,14 @@ const contactMethods = [
     value: 'Sussex County',
     description:
       'We also serve surrounding counties. Let us know your location and we will confirm availability.',
-    href: '/services',
+    href: '#',
     icon: 'M12 2a7 7 0 0 0-7 7c0 5.12 6 11 7 11s7-5.88 7-11a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z',
   },
   {
     title: 'Hours',
     value: '6 Days a Week',
     description: 'Sunday to Friday.',
-    href: '/contact',
+    href: '#',
     icon: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 10.42 3.1 1.79-.96 1.66-4.14-2.39V6h2Z',
   },
 ]
@@ -65,7 +65,7 @@ const contactMethods = [
         {
           contactMethods.map((method, index) => (
             <article
-              class={`group rounded-2xl border border-secondary-light bg-white/65 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl intersect:animate-fade-up intersect-once ${index < 2 ? 'xl:intersect:animate-fade-left' : 'xl:intersect:animate-fade-right'}`}
+              class='group rounded-2xl border border-secondary-light bg-white/65 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl intersect:animate-fade-up intersect-once'
             >
               <div class='mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary text-light'>
                 <svg

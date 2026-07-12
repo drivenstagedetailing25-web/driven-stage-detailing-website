@@ -3,6 +3,10 @@
 @import "tailwindcss-intersect";
 @import "tailwindcss-animated";
 
+:root {
+  --default-animation-duration: 800ms;
+}
+
 @font-face {
   font-family: 'Barlow Condensed';
   font-style: normal;
